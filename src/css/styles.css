@@ -35,6 +35,30 @@
 
 }
 body{
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto";
   background-color: var(--color-background)
+}
+
+/* font styles */
+
+/* 'Roboto Bold 700' */
+@font-face { 
+  font-family: "Roboto";
+  src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+  font-weight: 700;
+}
+
+
+/* 'Roboto Medium 500' */
+@font-face { 
+  font-family: "Roboto";
+  src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+  font-weight: 500;
+}
+
+/* 'Roboto Normal 400' */
+@font-face { 
+  font-family: "Roboto";
+  src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+  font-weight: 400;
 }
