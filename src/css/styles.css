@@ -79,12 +79,12 @@ body{
   .container {
     padding-left: 30px;
     padding-right: 30px;
-    max-width: 708px;
+    max-width: 768px;
   }
 }
 
 @media (min-width: 1268px) {
   .container {
-    max-width: 1208px;
+    max-width: 1268px;
   }
 }
