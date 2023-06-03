@@ -11,8 +11,8 @@ rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
 />
     
-    <script type="module" crossorigin src="/Cimania-Goit-blended-01/assets/styles-fac82e35.js"></script>
-    <link rel="stylesheet" href="/Cimania-Goit-blended-01/assets/styles-c5817012.css">
+    <script type="module" crossorigin src="/Cimania-Goit-blended-01/assets/modal-window-03f5ebd9.js"></script>
+    <link rel="stylesheet" href="/Cimania-Goit-blended-01/assets/modal-window-36e1cb4e.css">
   </head>
   <body>
     <header class="header">
@@ -41,10 +41,63 @@ href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-norma
       <a href="./index.html">Go to home</a>
       <h1>Welcome Catalog</h1>
     </section>
-    
+    <div class="overlay is-hidden" data-modal>
+  <div class="pop-modal">
+    <div class="modal">
+      <button
+        type="button"
+        class="modal-close-btn js-modal-close"
+        data-modal-close
+      >
+        <svg class="modal-close-icon" width="24" height="24">
+          <use href="../img/close-outline.svg#close-icon"></use>
+        </svg>
+      </button>
+
+      <img class="img-pop-modal" src="../img/Rectangle.jpg" alt="film" />
+
+      <h2 class="name-film-pop-modal">John Wick: Chapter 4</h2>
+
+      <div class="vote-votes-pop-modal-container">
+        <p class="vote-votes-pop-modal-text">Vote / Votes</p>
+        <div class="ote-data-container-data">
+          <div class="vote-data-container-pop-modal">
+            <span class="vote-data-pop-modal">7.3</span>
+          </div>
+          <div class="devider-data-pop-modal">/</div>
+          <div class="votes-data-container-pop-modal">
+            <span class="votes-data-pop-modal">1260</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="popularity-pop-modal-text">Popularity</p>
+      <div class="popularity-data-pop-modal">100.2</div>
+
+      <p class="gerne-pop-modal-text">Genre</p>
+      <div class="gerne-data-pop-modal">Action Thriller Crime</div>
+
+      <h2 class="about-pop-modal-text">About</h2>
+      <div class="about-pop-modal-description">
+        John Wick (Keanu Reeves) takes on his most lethal adversaries yet in the
+        upcoming fourth instalment of the series. With the price on his head
+        ever increasing, John Wick uncovers a path to defeating The High Table.
+        But before he can earn his freedom, Wick must face off against a new
+        enemy with powerful alliances across the globe and forces that turn old
+        friends into foes.
+      </div>
+
+      <button type="submit" class="modal-add-btn">Add to my library</button>
+      <button type="submit" class="modal-remove-btn">
+        Remove from my library
+      </button>
+    </div>
+  </div>
+</div>
+
 
     <footer class="footer">
-  <p class="footer__copyright">
+  <p class="footer__copyright" data-modal-open>
     &#169;
     <script type="text/javascript">
       document.write(new Date().getFullYear());
