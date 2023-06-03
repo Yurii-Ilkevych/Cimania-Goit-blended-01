@@ -3,6 +3,7 @@ const refs = {
   backdropEl: document.querySelector('.backdrop'),
   mobMenuEl: document.querySelector('.mobile-menu'),
   navLinksElems: document.querySelectorAll('.nav-link'),
+  menuLinksElems: document.querySelectorAll('.mobile-menu-link'),
 };
 
 refs.navMenuBtn.addEventListener('click', onMenuBtnClick);
@@ -22,15 +23,23 @@ function onBackdropClick(e) {
 }
 
 function mobileMenuToggle() {
-  refs.backdropEl.classList.toggle('is-hidden');
+  refs.backdropEl.classList.toggle('is-hidden-header');
   refs.mobMenuEl.classList.toggle('shown');
 }
 
 function addActiveClass() {
   refs.navLinksElems.forEach(link => { 
-    if (link.getAttribute("href") === "." + window.location.pathname) { 
+    if (link.getAttribute("href") === window.location.pathname) { 
+      link.classList.add("active");
+    }
+  });
+
+  refs.menuLinksElems.forEach(link => { 
+    if (link.getAttribute("href") === window.location.pathname) { 
       link.classList.add("active");
     }
   });
 }
+
+console.log(refs.menuLinksElems);
 
