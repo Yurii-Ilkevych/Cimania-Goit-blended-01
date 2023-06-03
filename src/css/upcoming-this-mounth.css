@@ -1,0 +1,219 @@
+.container.container-upcoming {
+  max-width: 320px;
+}
+
+.upcoming-title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.19;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 24px;
+}
+
+.upcoming-film-img-wrap {
+  background-color: var(--color-background);
+  border-radius: 5px;
+  width: 280px;
+  height: 402px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.upcoming-film-img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.upcoming-film-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
+  color: var(--color-white);
+  margin-bottom: 20px;
+}
+
+.upcoming-film-info-wrap {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.19;
+  color: var(--color-gray);
+  margin-bottom: 20px;
+}
+
+.upcoming-film-info-part1 {
+  width: 100%;
+  display: flex;
+  gap: 57px;
+  margin-bottom: 12px;
+}
+
+.upcoming-film-info-part2 {
+  display: flex;
+  gap: 77px;
+}
+
+.upcoming-film-info-row {
+}
+
+.upcoming-film-info-row1 {
+  margin-bottom: 12px;
+}
+
+.info-votes-value-wrap {
+  display: flex;
+  gap: 4px;
+}
+
+.info-votes-value-white-wrap {
+  background: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 4px;
+  color: var(--color-background);
+  min-width: 36px;
+}
+
+.info-orange-text {
+  color: var(--color-orange);
+}
+
+.info-white-text {
+  color: var(--color-white);
+}
+
+.upcoming-film-description-title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.19;
+  text-transform: uppercase;
+  color: var(--color-gray);
+  margin-bottom: 16px;
+}
+
+.upcoming-film-description-text-wrap {
+  max-height: 220px;
+  overflow: auto;
+  margin-bottom: 20px;
+}
+
+.upcoming-film-description-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  color: var(--color-secondary-text);
+}
+
+.add-to-my-library {
+  background: var(--linear-top-light);
+  border-radius: 74px;
+  border: none;
+  width: 140px;
+  height: 38px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+  color: #111111;
+}
+
+.add-to-my-library:hover,
+.add-to-my-library:focus{
+    color: var(--color-orange);
+    background: var(--color-white);
+    border: 1px solid;
+    border-color: var(--color-orange);
+}
+
+@media screen and (max-width: 767px) {
+  .upcoming-film-img {
+    object-fit: cover;
+    object-position: 12.6% 0px;
+    overflow: hidden;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container.container-upcoming {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 704px;
+  }
+
+  .upcoming-title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.17;
+  }
+
+  .upcoming-film-img-wrap {
+    width: 704px;
+    height: 400px;
+    margin-bottom: 32px;
+  }
+
+  .upcoming-film-name {
+    font-size: 28px;
+    line-height: 1.18;
+    margin-bottom: 24px;
+  }
+
+  .upcoming-film-info-wrap {
+    display: flex;
+    gap: 118px;
+  }
+
+  .upcoming-film-info-part1 {
+    width: auto;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container.container-upcoming {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 1216px;
+  }
+
+  .upcoming-film {
+    display: flex;
+    gap: 16px;
+  }
+
+  .upcoming-film-img-wrap {
+    width: 805px;
+    height: 458px;
+    margin-bottom: 0;
+  }
+
+  .upcoming-film-img {
+  }
+
+  .upcoming-film-info-wrap {
+    display: block;
+  }
+
+  .upcoming-film-info-part1 {
+    margin-bottom: 12px;
+  }
+
+  .about-upcoming-film {
+    width: 390px;
+  }
+}
