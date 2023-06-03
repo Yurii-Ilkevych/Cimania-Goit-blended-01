@@ -382,6 +382,11 @@ html {
     margin-bottom: 24px;
   }
 
+  .modal-add-btn {
+    height: 40px;
+    line-height: 1.33;
+  }
+
   .modal-remove-btn {
     height: 40px;
     line-height: 1.33;
