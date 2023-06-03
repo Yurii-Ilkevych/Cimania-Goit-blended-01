@@ -29,15 +29,17 @@ function mobileMenuToggle() {
 
 function addActiveClass() {
   refs.navLinksElems.forEach(link => { 
-    if (link.getAttribute("href") === window.location.pathname) { 
+    if (link.getAttribute("href") === "." + window.location.pathname) { 
       link.classList.add("active");
     }
   });
 
   refs.menuLinksElems.forEach(link => { 
-    if (link.getAttribute("href") === window.location.pathname) { 
+    if (link.getAttribute("href") === "." + window.location.pathname) { 
       link.classList.add("active");
     }
   });
 }
+
+console.log(window.location.pathname);
 
