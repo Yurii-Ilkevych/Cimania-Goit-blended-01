@@ -41,5 +41,3 @@ function addActiveClass() {
   });
 }
 
-console.log(refs.menuLinksElems);
-

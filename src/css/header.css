@@ -65,6 +65,7 @@
 /* --- MOBILE-MENU --- */
 .backdrop {
   position: absolute;
+  z-index: 99;
   top: 0;
 
   width: 100vw;
@@ -76,11 +77,12 @@
 
 .mobile-menu {
   position: absolute;
+  z-index: 100;
 
   padding: 8px 20px;
   width: 204px;
   height: 100vh;
-  background-color: var(--color-background);
+  background-color: #171717;
   border-radius: 0px 8px 8px 0px;
 
   transform: translateX(-100%);
