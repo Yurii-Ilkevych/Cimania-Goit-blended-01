@@ -1,0 +1,308 @@
+
+@media  screen and (min-width: 320px ) {
+
+    .button-trailer {
+       
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .backdrop-trailer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 30;
+        overflow: hidden;
+        transition-duration: 500ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .modal-trailer {
+        color: #fff;
+        padding: 30px;
+        height: 280px;
+        width: 280px;
+        background: #111111;
+        box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
+        border-radius: 20px;
+        display: flex;
+        z-index: 110;
+        position: relative;
+      }
+      
+      .modal-button-trailer {
+        position: relative;
+        background-color:   var(--background-color);
+        color: #fff;
+
+        border: none;
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+
+      }
+      
+      .is-hidden {
+        display: none;
+  
+      }
+      
+      #player {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        position: relative;
+      }
+      
+      #player iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .p-trailer
+      {
+
+        color: #fff;
+        font-size: 16px;
+        line-height: 19px;
+        width: 214px;
+        height: 65px;
+      }
+      .p-trailer-child
+      {
+        margin-bottom: 3px;
+      }
+    
+      .modal-close-icon-trailer
+        {
+            position: absolute;
+            stroke: #f8f8f8;
+            transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            top: -20px;
+            left: -10px;
+        }
+        .img-trailer-one
+        {
+            width:150px;
+            height: 150px;
+            position:absolute;
+            top: 115px;
+            left: 60px;
+        }
+        .img-trailer-two
+        {
+            display: none;
+        }
+        .img-trailer-three
+        {
+            display: none;
+        }
+}
+
+@media  screen and (min-width: 768px)
+ {
+    
+    .button-trailer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .backdrop-trailer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+    
+      }
+      
+      .modal-trailer {
+        color: #fff;
+        padding: 20px;
+        height: 400px;
+        width: 600px;
+   
+        background: #111111;
+        box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
+        border-radius: 20px;
+       
+      }
+      
+      .modal-button-trailer {
+        background-color:var(--background-color);
+        color: #fff;
+    
+        border: none;
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+      }
+      
+      .is-hidden {
+        display: none;
+      }
+      
+      #player {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        position: relative;
+      }
+      
+      #player iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .modal-close-icon-trailer
+      {
+          position: absolute;
+          stroke: #f8f8f8;
+          transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+          top:10px;
+          left: 180px;
+      }
+      .p-trailer
+      {
+
+        color: #fff;
+        font-size: 24px;
+        line-height: 28px;
+        width: 321px;
+        height: 92px;
+        margin-left:20px; 
+        margin-top: 100px;
+      }
+      .p-trailer-child
+      {
+        margin-bottom: 3px;
+      }
+      .img-trailer-two
+      {
+          width:300px;
+          height: 260px;
+          position:absolute;
+          top: 110px;
+          left: 300px;
+          display: block;
+      }
+      .img-trailer-one
+      {
+        display: none;
+      }
+}
+@media  screen and (min-width: 1280px)
+ {
+    
+    .button-trailer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .backdrop-trailer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .modal-trailer {
+        color: #fff;
+        padding: 20px;
+        height: 400px;
+        width: 700px;
+        background: #111111;
+        box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
+        border-radius: 20px;
+      }
+      
+      .modal-button-trailer {
+        background-color: var(--background-color);
+        color: #fff;
+       
+        border: none;
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+      }
+      
+      .is-hidden {
+        display: none;
+      }
+      
+      #player {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        position: relative;
+      }
+      
+      #player iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .modal-close-icon-trailer
+      {
+          position: absolute;
+          stroke: #f8f8f8;
+          transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+          top: 10px;
+          left: 270px;
+      }
+      .img-trailer-three
+      {
+        display: block;
+        position: absolute;
+        top: 100px;
+        left: 330px;
+      }
+      .img-trailer-one
+      {
+        display: none;
+      }
+      .img-trailer-two
+      {
+        display: none;
+      }
+       .p-trailer
+      {
+
+        color: #fff;
+        font-size: 24px;
+        line-height: 28px;
+        width: 321px;
+        height: 100px;
+        margin-left:20px; 
+        margin-top: 120px;
+        justify-content: flex-start;
+      }
+}
