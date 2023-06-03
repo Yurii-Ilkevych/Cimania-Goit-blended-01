@@ -1,0 +1,113 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(13, 24, 237, 0.4);
+  overflow: hidden;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* opacity: 0;
+  visibility: hidden; */
+  z-index: 20;
+}
+.js-overlay-modal {
+}
+.pop-modal {
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  padding: 52px 16px;
+
+  width: 280px;
+  height: 847px;
+
+  transform: translate(-50%, -50%) scale(0.5);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #111111;
+  z-index: 100;
+  /* opacity: 0; */
+  /* visibility: hidden; */
+
+  box-shadow: 1px 1px 14px rgba(255, 107, 8, 0.42);
+  border-radius: 16px;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 23px;
+  height: 27px;
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  padding: 0;
+
+  background-color: transparent;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.js-modal-close {
+}
+.modal-close-icon {
+  stroke: #f8f8f8;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-pop-modal {
+  width: 248px;
+  height: 315px;
+  border-radius: 5px;
+  margin-bottom: 22px;
+}
+
+.is-hidden {
+  transform: translate(-50%, -50%) scale(0);
+}
+.name-film-pop-modal {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
+  margin-bottom: 29px;
+}
+
+.vote-votes-pop-modal-container {
+  display: flex;
+}
+.vote-votes-pop-modal-text {
+}
+.vote-data-container-pop-modal {
+}
+.vote-data-pop-modal {
+}
+.devider-data-pop-modal {
+}
+.votes-data-container-pop-modal {
+}
+.votes-data-pop-modal {
+}
+.popularity-pop-modal-text {
+}
+.popularity-data-pop-modal {
+}
+.gerne-pop-modal-text {
+}
+.gerne-data-pop-modal {
+}
+.about-pop-modal-text {
+}
+.about-pop-modal-description {
+}
+.modal-add-btn {
+}
+.modal-remove-btn {
+}
