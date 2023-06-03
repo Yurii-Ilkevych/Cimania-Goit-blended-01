@@ -99,7 +99,7 @@
   row-gap: 40px;
 }
 
-.is-hidden {
+.is-hidden-header {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
