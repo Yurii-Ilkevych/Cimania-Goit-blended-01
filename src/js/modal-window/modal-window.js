@@ -1,9 +1,9 @@
 // ------------------Закриття та відкриття модалки---------------
 (() => {
   const refs = {
-    openModalBtn: document.querySelector('[data-modal-open]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
+    openModalBtn: document.querySelector('[data-modal-open-test]'),
+    closeModalBtn: document.querySelector('[data-modal-close-test]'),
+    modal: document.querySelector('[data-modal-test]'),
     backdrop: document.querySelector('.overlay'),
     modalWindow: document.querySelector('.pop-modal'),
   };
@@ -37,7 +37,7 @@
 
 // -------------------------API----------------------------
 import axios from 'axios';
-const movieID = 19;
+const movieID = 20;
 const URL_KOV = `https://api.themoviedb.org/3/movie/${movieID}`;
 const API_KEY_KOV = 'c8c2a74c43d87203307f2db942752251';
 const imgBlock = document.querySelector('.container-all');
@@ -112,20 +112,25 @@ axios
     }
 
     addToLibraryButton.addEventListener('click', function () {
-      existingMovies.push(movieObject);
-      localStorage.setItem('movies', JSON.stringify(existingMovies));
-      toggleButtons();
-    });
-
-    removeToLibraryButton.addEventListener('click', function () {
+      const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
       const movieIndex = existingMovies.findIndex(
         movie => movie.movieID === movieID
       );
-      if (movieIndex > -1) {
-        existingMovies.splice(movieIndex, 1);
+
+      if (movieIndex === -1) {
+        existingMovies.push(movieObject);
         localStorage.setItem('movies', JSON.stringify(existingMovies));
         toggleButtons();
       }
+    });
+
+    removeToLibraryButton.addEventListener('click', function () {
+      const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+      const updatedMovies = existingMovies.filter(
+        movie => movie.movieID !== movieID
+      );
+      localStorage.setItem('movies', JSON.stringify(updatedMovies));
+      toggleButtons();
     });
     toggleButtons();
   })
