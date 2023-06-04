@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(13, 24, 237, 0.4);
+  background-color: rgba(46, 47, 66, 0.4);
   overflow: hidden;
   transition-duration: 500ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,6 +104,7 @@
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
   text-transform: uppercase;
   color: var(--color-background);
 }
@@ -124,7 +125,7 @@
   align-items: flex-start;
   padding: 1px 4px;
   gap: 10px;
-  width: 36px;
+  min-width: 36px;
   height: 16px;
   background: var(--color-white);
   border-radius: 5px;
@@ -141,6 +142,7 @@
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
   text-transform: uppercase;
   color: var(--color-background);
 }
@@ -193,8 +195,9 @@
   font-size: 14px;
   line-height: 1.14;
   display: flex;
-  align-items: center;
+  vertical-align: top;
   color: var(--color-white);
+  overflow-x: hidden;
 }
 
 .about-pop-modal-text {
@@ -285,7 +288,7 @@ html {
 
 .modal-remove-btn {
   position: relative;
-  width: calc(140px - 2px);
+  width: calc(176px - 2px);
   height: 38px;
   padding: 1px;
   border-radius: 74px;
@@ -447,7 +450,7 @@ html {
   }
 
   .votes-data-container-pop-modal {
-    width: 40px;
+    min-width: 40px;
     height: 18px;
   }
 
