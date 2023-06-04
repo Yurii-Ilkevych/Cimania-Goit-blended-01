@@ -70,21 +70,21 @@ body{
   padding-left: 20px;
   padding-right: 20px;
   width: 100%;
-  max-width: 280px;
+  width: 320px;
   margin-left: auto;
   margin-right: auto;
 }
 
 @media (min-width: 768px) {
   .container {
-    padding-left: 30px;
-    padding-right: 30px;
-    max-width: 708px;
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 768px;
   }
 }
 
-@media (min-width: 1268px) {
+@media (min-width: 1280px) {
   .container {
-    max-width: 1208px;
+    width: 1280px;
   }
 }

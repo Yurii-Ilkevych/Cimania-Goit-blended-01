@@ -1,0 +1,155 @@
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.list-movie-block-oops {
+/* display: none; */
+margin: 0 auto;
+max-width: 684px;
+color: var(--color-white);
+text-align: center;
+}
+
+.list-movie-block-link {
+font-family: inherit, sans-serif;
+font-weight: 500;
+text-decoration: none;
+color: var(--color-white);
+}
+
+.list-movie-block-thumb {
+position: relative;
+}
+
+.list-movie-block-thumb::after {
+content: '';
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 100%;
+background: transparent;
+border-radius: 5px;
+background-image: var(--linear-black-bottom);
+}
+
+.list-movie-block-wrap {
+overflow: hidden;
+
+border-radius: 5px;
+}
+
+.list-movie-block-info {
+position: absolute;
+bottom: 2%;
+left: 5%;
+z-index: 1;
+}
+
+.list-movie-block-text {
+color: var(--color-gray);
+}
+
+
+@media screen and (max-width: 767px) {
+    .list-movie-block-container {
+    padding-bottom: 20px;
+    }
+
+    .list-movie-block-oops {
+        font-size: 16px;
+        line-height: 1.19;
+    }
+
+    .list-movie-block-item {
+    margin-bottom: 16px;
+    }
+
+    .list-movie-block-wrap {
+    width: 280px;
+    height: 406px;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+.list-movie-block-container {
+    padding-bottom: 44px;
+    }
+
+    .list-movie-block-oops {
+        font-size: 24px;
+        line-height: 1.33;
+    }
+
+    .list-movie-block-list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    row-gap: 28px;
+    }
+
+    .list-movie-block-wrap {
+    width: 224px;
+    height: 325px;
+    }
+}
+
+
+@media screen and (max-width: 1267px) {
+.list-movie-block-oops {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    }
+    
+    .list-movie-block-link  {
+    font-size: 12px;
+    line-height: 1.6;
+    }
+}
+
+
+@media screen and (min-width: 1268px) {
+    .list-movie-block-oops {
+        padding-top: 120px;
+        padding-bottom: 100px;
+
+        font-size: 32px;
+        line-height: 1.125;
+    }
+
+    .list-movie-block-container {
+    padding-bottom: 60px;
+    }
+
+    .list-movie-block-list {
+    row-gap: 32px;
+    }
+
+    .list-movie-block-wrap {
+    width: 390px;
+    height: 574px;
+    }
+
+    .list-movie-block-wrap > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .list-movie-block-link  {
+    font-size: 20px;
+    line-height: 1.17;
+    }
+}
