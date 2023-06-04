@@ -1,3 +1,17 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 .search-string-block-form {
   display: flex;
   justify-content: center;
@@ -25,8 +39,8 @@
   /* display: none; */
   cursor: pointer;
   position: absolute;
-  top: 45%;
-  right: 10%;
+  top: 48%;
+  right: 8%;
   transform: translate(0%, -50%);
   width: 18px;
   height: 18px;
