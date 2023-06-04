@@ -40,7 +40,7 @@
       }
       
       .modal-button-trailer {
-        position: relative;
+        
         background-color:   var(--background-color);
         color: #fff;
 
@@ -48,7 +48,9 @@
         cursor: pointer;
         width: 24px;
         height: 24px;
-
+        position: absolute;
+        top: 10px;
+        left: 230px;
       }
       
       .is-hidden {
@@ -84,14 +86,18 @@
         margin-bottom: 3px;
       }
     
-      .modal-close-icon-trailer
+      /* .modal-close-icon-trailer
         {
             position: absolute;
-            stroke: #f8f8f8;
-            transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-            top: -20px;
-            left: -10px;
-        }
+           
+            top: 10px;
+            left: 120px;
+        } */
+      .modal-close-icon-trailer
+      {
+        stroke: #f8f8f8;
+        transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
         .img-trailer-one
         {
             width:150px;
@@ -141,7 +147,7 @@
         background: #111111;
         box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
         border-radius: 20px;
-       
+     
       }
       
       .modal-button-trailer {
@@ -152,6 +158,9 @@
         cursor: pointer;
         width: 24px;
         height: 24px;
+        position: absolute;
+        top:10px;
+        left: 540px;
       }
       
       .is-hidden {
@@ -172,13 +181,11 @@
         top: 0;
         left: 0;
       }
+    
       .modal-close-icon-trailer
       {
-          position: absolute;
-          stroke: #f8f8f8;
-          transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-          top:10px;
-          left: 180px;
+        stroke: #f8f8f8;
+        transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
       }
       .p-trailer
       {
@@ -213,6 +220,7 @@
  {
     
     .button-trailer {
+      position: absolute;
         background-color: #333;
         color: #fff;
         padding: 10px 20px;
@@ -250,6 +258,9 @@
         cursor: pointer;
         width: 24px;
         height: 24px;
+        position: absolute;
+        top: 20px;
+        left: 640px;
       }
       
       .is-hidden {
@@ -270,13 +281,11 @@
         top: 0;
         left: 0;
       }
+   
       .modal-close-icon-trailer
       {
-          position: absolute;
-          stroke: #f8f8f8;
-          transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-          top: 10px;
-          left: 270px;
+        stroke: #f8f8f8;
+        transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
       }
       .img-trailer-three
       {
