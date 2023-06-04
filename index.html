@@ -10,8 +10,8 @@ rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
 />
     
-    <script type="module" crossorigin src="/Cimania-Goit-blended-01/assets/modal-window-4909b9b5.js"></script>
-    <link rel="stylesheet" href="/Cimania-Goit-blended-01/assets/modal-window-2bc5773d.css">
+    <script type="module" crossorigin src="/Cimania-Goit-blended-01/assets/trailler-movie-85554ec9.js"></script>
+    <link rel="stylesheet" href="/Cimania-Goit-blended-01/assets/trailler-movie-d746e597.css">
   </head>
   <body>
     <header class="header">
@@ -154,7 +154,32 @@ href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-norma
     
 
 
+    <button type="button" class="button-trailer" data-movie-id="12345" data-modal-open>Watch Trailer</button>
+<div class="backdrop-trailer is-hidden" data-modal>
+  <div class="modal-trailer">
+  
+    <div class="modal-message error is-hidden">
+    <div class="p-trailer">
+        <p class="p-trailer-child">OOPS...</p>
+        <p class="p-trailer-child">We are sorry!</p>
+        <p>But we couldn't find the trailer</p>
+    </div>
+
+      <img src="../img/error-img-one.png" alt="Error Image" class="img-trailer-one">
+      <img src="../img/error-img-two.png" alt="Error Image" class="img-trailer-two">
+      <img src="../img/error-img-three.png" alt="Error Image" class="img-trailer-three">
+    </div>
+    <button type="button" class="modal-button-trailer " data-modal-close>
+      <svg  class="modal-close-icon-trailer" width="24" height="24">
+        <use href="../img/close-outline.svg#close-icon"></use>
+      </svg>
+    </button>
     
+  
+  </div>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
 
     <div class="overlay is-hidden" data-modal>
   <div class="pop-modal">
