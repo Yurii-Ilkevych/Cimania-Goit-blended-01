@@ -112,20 +112,25 @@ axios
     }
 
     addToLibraryButton.addEventListener('click', function () {
-      existingMovies.push(movieObject);
-      localStorage.setItem('movies', JSON.stringify(existingMovies));
-      toggleButtons();
-    });
-
-    removeToLibraryButton.addEventListener('click', function () {
+      const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
       const movieIndex = existingMovies.findIndex(
         movie => movie.movieID === movieID
       );
-      if (movieIndex > -1) {
-        existingMovies.splice(movieIndex, 1);
+
+      if (movieIndex === -1) {
+        existingMovies.push(movieObject);
         localStorage.setItem('movies', JSON.stringify(existingMovies));
         toggleButtons();
       }
+    });
+
+    removeToLibraryButton.addEventListener('click', function () {
+      const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+      const updatedMovies = existingMovies.filter(
+        movie => movie.movieID !== movieID
+      );
+      localStorage.setItem('movies', JSON.stringify(updatedMovies));
+      toggleButtons();
     });
     toggleButtons();
   })
