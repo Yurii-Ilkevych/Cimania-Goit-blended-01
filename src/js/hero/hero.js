@@ -1,13 +1,9 @@
-
-
 import axios from 'axios';
 import { KEY } from '../API';
-
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
 };
-
 
 const randomMovie = () => {
   return Math.floor(Math.random() * (19 - 0 + 1)) + 0;
@@ -32,14 +28,14 @@ async function fetchTrendsFilm() {
   return response;
 }
 
-
+// виклик при оновленні сторінки
 doTryOrCatch();
 
 async function doTryOrCatch() {
   try {
     const trendsMovies = await fetchTrendsFilm();
-    console.log(trendsMovies);
-    console.log(trendsMovies.data.results.length);
+    // console.log(trendsMovies);
+    // console.log(trendsMovies.data.results.length);
     if (trendsMovies.status !== 200) {
       throw new Error();
     }
@@ -49,21 +45,20 @@ async function doTryOrCatch() {
 
 function choiseRender(data) {
   if (data.results.length > 1) {
-    console.log(data);
+    // console.log(data);
     updateHeroSection(data.results[randomMovie()]);
-    // renderOneTrendsMovie(data.results[randomMovie()]);
   }
 }
 
 function updateHeroSection(movie) {
-  console.log(movie);
+  // console.log(movie);
   const movieHtml = renderOneTrendsMovie(movie);
   refs.heroSection.innerHTML = '';
   refs.heroSection.insertAdjacentHTML('beforeend', movieHtml);
 }
 
 function renderOneTrendsMovie(movie) {
-  console.log(movie);
+  // console.log(movie);
   return `<section
   class="hero-rendered"
   style="background-image: url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')"
