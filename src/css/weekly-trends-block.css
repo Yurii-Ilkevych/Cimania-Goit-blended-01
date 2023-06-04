@@ -1,0 +1,139 @@
+
+.weekly-trends {
+  padding-top: 40px;
+}
+
+.weekly-trends__topline {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.weekly-trends__title,
+.weekly-trends__link {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.weekly-trends__link {
+  color: var(--color-orange);
+}
+
+.weekly-trends-list{
+    overflow: hidden;
+}
+
+.weekly-trends-list__thumb {
+  position: relative;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.67;
+}
+.weekly-trends-list__img {
+}
+.weekly-trends-list__description {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  color: var(--color-gray);
+}
+.weekly-trends-list__name {
+  font-size: inherit;
+  font-weight: inherit;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+.weekly-trends-list__genres {
+  display: inline-block;
+}
+.weekly-trends-list__year {
+  display: inline-block;
+  position: relative;
+  margin-left: 10px;
+}
+.weekly-trends-list__year::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  width: 1px;
+  height: 10px;
+  background-color: var(--color-gray);
+  transform: translateY(-50%);
+}
+.weekly-trends-list__rating {
+  position: absolute;
+  bottom: 16px;
+  right: 12px;
+}
+.rating {
+  display: flex;
+  gap: 4px;
+}
+.rating > li {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background-image: url('../img/rating/star-outline.png');
+  overflow: hidden;
+}
+
+.wtf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .weekly-trends {
+    padding-top: 52px;
+  }
+
+  .weekly-trends__title,
+  .weekly-trends__link {
+    font-size: 24px;
+  }
+
+  .weekly-trends-list__item {
+    width: 224px;
+  }
+
+  .weekly-trends-list__thumb {
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 1280px) {
+  .weekly-trends {
+    padding-top: 80px;
+  }
+
+  .weekly-trends__topline {
+    margin-bottom: 28px;
+  }
+
+  .weekly-trends__title,
+  .weekly-trends__link {
+    font-size: 28px;
+  }
+
+  .weekly-trends-list__item {
+    width: 395px;
+  }
+
+  .weekly-trends-list__thumb {
+    font-size: 20px;
+    line-height: 1.15;
+  }
+
+  .weekly-trends-list__year::before{
+    height: 17px;
+  }
+}
