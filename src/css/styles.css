@@ -83,8 +83,8 @@ body{
   }
 }
 
-@media (min-width: 1268px) {
+@media (min-width: 1280px) {
   .container {
-    width: 1268px;
+    width: 1280px;
   }
 }
