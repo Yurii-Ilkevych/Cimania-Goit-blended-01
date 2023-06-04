@@ -2,8 +2,9 @@ const refs = {
   navMenuBtn: document.querySelector('.nav-menu-btn'),
   backdropEl: document.querySelector('.backdrop'),
   mobMenuEl: document.querySelector('.mobile-menu'),
-  navLinksElems: document.querySelectorAll('.nav-link'),
-  menuLinksElems: document.querySelectorAll('.mobile-menu-link'),
+  homeLinkEl: document.querySelectorAll('.home-link'),
+  catalogLinkEl: document.querySelectorAll('.catalog-link'),
+  libraryLinkEl: document.querySelectorAll('.library-link'),
 };
 
 refs.navMenuBtn.addEventListener('click', onMenuBtnClick);
@@ -28,18 +29,17 @@ function mobileMenuToggle() {
 }
 
 function addActiveClass() {
-  refs.navLinksElems.forEach(link => { 
-    if (link.getAttribute("href") === "." + window.location.pathname) { 
-      link.classList.add("active");
-    }
-  });
-
-  refs.menuLinksElems.forEach(link => { 
-    if (link.getAttribute("href") === "." + window.location.pathname) { 
-      link.classList.add("active");
-    }
-  });
+  if (window.location.pathname.includes('index.html')) {
+    refs.homeLinkEl.forEach(link => {
+      link.classList.add('active');
+    });
+  } else if (window.location.pathname.includes('catalog.html')) {
+    refs.catalogLinkEl.forEach(link => {
+      link.classList.add('active');
+    });
+  } else if (window.location.pathname.includes('my-library.html')) {
+    refs.libraryLinkEl.forEach(link => {
+      link.classList.add('active');
+    });
+  }
 }
-
-console.log(window.location.pathname);
-
