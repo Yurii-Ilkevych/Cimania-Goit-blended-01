@@ -372,10 +372,10 @@
   }
 
   .rating {
-  margin-bottom: 20px;
-  font-size: 25px;
-  line-height: 20px;
-}
+    margin-bottom: 20px;
+    font-size: 25px;
+    line-height: 20px;
+  }
 
   .hero-default-text.rendered {
     width: 300px;
@@ -453,10 +453,10 @@
   }
 
   .rating {
-  margin-bottom: 28px;
-  font-size: 30px;
-  line-height: 24px;
-}
+    margin-bottom: 28px;
+    font-size: 30px;
+    line-height: 24px;
+  }
 
   .hero-default-text.rendered {
     width: 400px;

@@ -40,7 +40,9 @@ async function doTryOrCatch() {
       throw new Error();
     }
     choiseRender(trendsMovies.data);
-  } catch (error) {}
+  } catch (error) {
+    renderDefaultSection();
+  }
 }
 
 function choiseRender(data) {
@@ -111,3 +113,24 @@ function renderOneTrendsMovie(movie) {
 </section>`;
 }
 
+function renderDefaultSection() {
+  const defaultSection = `<div class="hero-upd" >
+  <section class="hero-default">
+    <div class="container">
+      <div class="hero-default-wrap">
+        <h1 class="hero-default-tille">Let’s Make Your Own Cinema</h1>
+        <p class="hero-default-text">
+          Is a guide to creating a personalized movie theater experience. You'll
+          need a projector, screen, and speakers.<span
+            class="hero-default-text extended"
+            >Decorate your space, choose your films, and stock up on snacks for
+            the full experience.</span
+          >
+        </p>
+        <a href="../catalog.html" class="hero-get-started-btn">Get Started</a>
+      </div>
+    </div>
+  </section>`;
+  refs.heroSection.innerHTML = '';
+  refs.heroSection.insertAdjacentHTML('beforeend', defaultSection);
+}
