@@ -57,8 +57,15 @@ function updateHeroSection(movie) {
   refs.heroSection.insertAdjacentHTML('beforeend', movieHtml);
 }
 
+function makeRating(data) {
+  return Math.round(data * 10);
+}
+
 function renderOneTrendsMovie(movie) {
   // console.log(movie);
+  const movieRating = makeRating(movie.vote_average);
+  // console.log(movie.vote_average);
+  // console.log(movieRating);
   return `<section
   class="hero-rendered"
   style="background-image: url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')"
@@ -67,10 +74,18 @@ function renderOneTrendsMovie(movie) {
     <div class="container">
       <div class="hero-rendered-wrap">
         <h1 class="hero-default-tille rendered" data-id="${movie.id}">${movie.original_title}</h1>
-        <div class="hero-star">
-          <!-- <div class="rating-bg" aria-hidden="true">★★★★★</div> -->
-          <div class="rating" data-rating="4.5" aria-hidden="true">★★★★★</div>
-        </div>
+        <p class="rating" data-rating="4.5" aria-hidden="true" style="background: linear-gradient(
+    to right,
+    var(--color-orange),
+    var(--color-orange),
+    ${movieRating}%,
+    var(--color-gray-white-theme) 1%,
+    var(--color-gray-white-theme) 99%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: rgba(0, 0, 0, 0);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2)">★★★★★</p>
         <p class="hero-default-text rendered">
           ${movie.overview}
         </p>
@@ -95,3 +110,4 @@ function renderOneTrendsMovie(movie) {
   </div>
 </section>`;
 }
+
