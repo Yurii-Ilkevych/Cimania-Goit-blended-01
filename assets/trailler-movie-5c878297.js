@@ -8,18 +8,18 @@
     <div class="container">
       <div class="hero-rendered-wrap">
         <h1 class="hero-default-tille rendered" data-id="${e.id}">${e.original_title}</h1>
-        <p class="rating" data-rating="4.5" aria-hidden="true" style="background: linear-gradient(
-    to right,
-    var(--color-orange),
-    var(--color-orange),
-    ${t}%,
-    var(--color-gray-white-theme) 1%,
-    var(--color-gray-white-theme) 99%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: rgba(0, 0, 0, 0);
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2)">★★★★★</p>
+        <p class="rating" data-rating="4.5" aria-label="4.5 stars out of 5" style="background: linear-gradient(
+        to right,
+        var(--color-orange),
+        var(--color-orange),
+        ${t}%,
+        var(--color-gray-white-theme) 1%,
+        var(--color-gray-white-theme) 99%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: rgba(0, 0, 0, 0);
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2)">★★★★★</p>
         <p class="hero-default-text rendered">
           ${e.overview}
         </p>
