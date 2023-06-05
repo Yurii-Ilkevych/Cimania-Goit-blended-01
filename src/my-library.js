@@ -1,0 +1,1 @@
+import './js/added-movies/added-movies';
