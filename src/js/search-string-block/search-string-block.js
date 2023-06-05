@@ -82,7 +82,7 @@ async function fetchFilmByValue(value) {
     return response.data.results;
 }
 
-const genreFetch = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${API_KEY_V}`);
+// const genreFetch = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${API_KEY_V}`);
 
 // console.log(genreFetch.data.genres);
 
