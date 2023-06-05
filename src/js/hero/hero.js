@@ -1,19 +1,18 @@
 
-
 import axios from 'axios';
 import { KEY } from '../API';
+
 
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
 };
 
-
 const randomMovie = () => {
   return Math.floor(Math.random() * (19 - 0 + 1)) + 0;
 };
 
-// налаштування запиту
+// Настройка запита
 const options = {
   method: 'GET',
   headers: {
@@ -23,7 +22,7 @@ const options = {
   },
 };
 
-// запит на сервер
+//  запит до серверу
 async function fetchTrendsFilm() {
   const response = await axios.get(
     'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
@@ -31,7 +30,6 @@ async function fetchTrendsFilm() {
   );
   return response;
 }
-
 
 doTryOrCatch();
 
@@ -51,7 +49,6 @@ function choiseRender(data) {
   if (data.results.length > 1) {
     console.log(data);
     updateHeroSection(data.results[randomMovie()]);
-    // renderOneTrendsMovie(data.results[randomMovie()]);
   }
 }
 
@@ -60,6 +57,60 @@ function updateHeroSection(movie) {
   const movieHtml = renderOneTrendsMovie(movie);
   refs.heroSection.innerHTML = '';
   refs.heroSection.insertAdjacentHTML('beforeend', movieHtml);
+
+  const openModalBtn = document.getElementById('hero-trailer-btn');
+  const closeModalBtn = document.querySelector('[data-hero-modal-close]');
+  const modal = document.querySelector('[data-hero-modal]');
+  const playerContainer = document.getElementById('player-container');
+  const errorModal = document.querySelector('.hero-modal-message.error');
+
+  openModalBtn.addEventListener('click', () => openModal(movie));
+  closeModalBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', handleKeyDown);
+
+  async function openModal(movie) {
+    const trailerKey = await getMovieTrailer(movie.id);
+    if (trailerKey) {
+      playerContainer.innerHTML = ''; 
+
+      // Создаем свой плеер для вставки трейлера
+      const player = document.createElement('iframe');
+      player.src = `https://www.youtube.com/embed/${trailerKey}`;
+      player.allowFullscreen = true;
+      
+      player.classList.add('player'); 
+      playerContainer.appendChild(player);
+
+
+          
+      openModalBtn.addEventListener('click', () => openModal(movie), { passive: true });
+      closeModalBtn.addEventListener('click', closeModal, { passive: true });
+ 
+
+   
+      modal.classList.remove('is-hidden');
+    } else {
+      // Показываем модальное окно с ошибкой
+      errorModal.classList.remove('is-hidden');
+      modal.classList.remove('is-hidden');
+    }
+  }
+
+  function closeModal() {
+  
+    modal.classList.add('is-hidden');
+
+    // Очищаем плеер
+    playerContainer.innerHTML = '';
+
+ 
+    errorModal.classList.add('is-hidden');
+
+
+    
+  openModalBtn.removeEventListener('click', () => openModal(movie), { passive: true });
+  closeModalBtn.removeEventListener('click', closeModal, { passive: true });
+  }
 }
 
 function renderOneTrendsMovie(movie) {
@@ -85,6 +136,7 @@ function renderOneTrendsMovie(movie) {
               class="hero-trailer-btn"
               id="hero-trailer-btn"
               type="button"
+              data-id="${movie.id}"
             >
               Watch trailer
             </button>
@@ -100,3 +152,35 @@ function renderOneTrendsMovie(movie) {
   </div>
 </section>`;
 }
+
+
+
+
+
+
+
+
+
+// Запрос трейлера фильма по его идентификатору
+async function getMovieTrailer(movieId) {
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
+      params: {
+        api_key: KEY,
+      },
+    });
+
+    const videos = response.data.results;
+    const trailer = videos.find((video) => video.type === 'Trailer');
+
+    if (trailer) {
+      return trailer.key;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Failed to get movie trailer:', error);
+    return null;
+  }
+}
+

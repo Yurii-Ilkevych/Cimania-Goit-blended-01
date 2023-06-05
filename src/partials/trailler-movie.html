@@ -1,25 +1,25 @@
-<button type="button" class="button-trailer" data-movie-id="12345" data-modal-open>Watch Trailer</button>
-<div class="backdrop-trailer is-hidden" data-modal>
+<!-- <button type="button" class="button-trailer" data-hero-trailer-btn>Watch Trailer</button> -->
+
+<div class="backdrop-trailer is-hidden" data-hero-modal>
   <div class="modal-trailer">
-  
-    <div class="modal-message error is-hidden">
-    <div class="p-trailer">
+    <div class="hero-modal-message error is-hidden">
+      <div class="p-trailer">
         <p class="p-trailer-child">OOPS...</p>
         <p class="p-trailer-child">We are sorry!</p>
         <p>But we couldn't find the trailer</p>
-    </div>
-
+      </div>
       <img src="../img/error-img-one.png" alt="Error Image" class="img-trailer-one">
       <img src="../img/error-img-two.png" alt="Error Image" class="img-trailer-two">
       <img src="../img/error-img-three.png" alt="Error Image" class="img-trailer-three">
     </div>
-    <button type="button" class="modal-button-trailer " data-modal-close>
-      <svg  class="modal-close-icon-trailer" width="24" height="24">
+    <button type="button" class="modal-button-trailer" data-hero-modal-close>
+      <svg class="modal-close-icon-trailer" width="24" height="24">
         <use href="../img/close-outline.svg#close-icon"></use>
       </svg>
     </button>
+    <div id="player-container" class="player-container"></div>
+
     
-  
   </div>
 </div>
 
