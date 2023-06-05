@@ -69,6 +69,7 @@ function handleMoreDetailsClick() {
   const dataId = movieId.getAttribute('data-id');
   // console.log(dataId); 
   openModal(dataId);
+
 }
 
 function makeRating(data) {
@@ -90,7 +91,7 @@ function renderOneTrendsMovie(movie) {
     <div class="container">
       <div class="hero-rendered-wrap">
         <h1 class="hero-default-tille rendered" data-id="${movie.id}">${movie.original_title}</h1>
-        <p class="hero-star-rating" data-rating="4.5" aria-label="4.5 stars out of 5" style="background: linear-gradient(
+        <p class="rating" data-rating="4.5" aria-label="4.5 stars out of 5" style="background: linear-gradient(
         to right,
         var(--color-orange),
         var(--color-orange),
