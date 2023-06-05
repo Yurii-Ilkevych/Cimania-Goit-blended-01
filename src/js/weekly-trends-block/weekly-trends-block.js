@@ -7,19 +7,19 @@ export const weeklyContainerEl = document.querySelector(
   '.weekly-trends-list__wrapper'
 );
 var swiper = new Swiper('.mySwiper', {
-  slidesPerView: 1,
-  spaceBetween: 0,
+  slidesPerView: 3,
+  spaceBetween: 15,
   mousewheel: {
     sensitivity: 1,
   },
   breakpoints: {
     768: {
-      slidesPerView: 3,
       spaceBetween: 16,
       centeredSlides: false,
     },
-    1280: {
-      spaceBetween: 15,
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 0,
     },
   },
   pagination: {
@@ -28,7 +28,4 @@ var swiper = new Swiper('.mySwiper', {
   },
 });
 
- populateMarkupWeeklyTrends();
-
-
-
+populateMarkupWeeklyTrends();
