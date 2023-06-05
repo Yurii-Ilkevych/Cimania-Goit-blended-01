@@ -1,42 +1,46 @@
 // ------------------Закриття та відкриття модалки---------------
-(() => {
-  const refs = {
-    openModalBtn: document.querySelector('[data-modal-open-test]'),
-    closeModalBtn: document.querySelector('[data-modal-close-test]'),
-    modal: document.querySelector('[data-modal-test]'),
-    backdrop: document.querySelector('.overlay'),
-    modalWindow: document.querySelector('.pop-modal'),
-  };
 
-  refs.openModalBtn.addEventListener('click', openModal);
-  refs.closeModalBtn.addEventListener('click', closeModal);
-  refs.backdrop.addEventListener('click', closeModal);
-  refs.modal.addEventListener('click', stopPropagation);
-  refs.modalWindow.addEventListener('click', stopPropagation);
+const refs = {
+  openModalBtn: document.querySelector('[data-modal-open-test]'),
+  closeModalBtn: document.querySelector('[data-modal-close-test]'),
+  modal: document.querySelector('[data-modal-test]'),
+  backdrop: document.querySelector('.overlay'),
+  modalWindow: document.querySelector('.pop-modal'),
+};
 
-  function openModal() {
-    refs.modal.classList.remove('is-hidden');
-    document.addEventListener('keydown', handleKeyPress);
+refs.openModalBtn.addEventListener('click', () => {
+  openModal();
+});
+refs.closeModalBtn.addEventListener('click', closeModal);
+refs.backdrop.addEventListener('click', closeModal);
+refs.modal.addEventListener('click', stopPropagation);
+refs.modalWindow.addEventListener('click', stopPropagation);
+
+export function openModal() {
+  refs.modal.classList.remove('is-hidden');
+  document.addEventListener('keydown', handleKeyPress);
+  document.documentElement.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  refs.modal.classList.add('is-hidden');
+  document.removeEventListener('keydown', handleKeyPress);
+  document.documentElement.style.overflow = '';
+}
+
+function handleKeyPress(event) {
+  if (event.key === 'Escape') {
+    closeModal();
   }
+}
 
-  function closeModal() {
-    refs.modal.classList.add('is-hidden');
-    document.removeEventListener('keydown', handleKeyPress);
-  }
-
-  function handleKeyPress(event) {
-    if (event.key === 'Escape') {
-      closeModal();
-    }
-  }
-
-  function stopPropagation(event) {
-    event.stopPropagation();
-  }
-})();
+function stopPropagation(event) {
+  event.stopPropagation();
+}
 
 // -------------------------API----------------------------
 import axios from 'axios';
+
 const movieID = 20;
 const URL_KOV = `https://api.themoviedb.org/3/movie/${movieID}`;
 const API_KEY_KOV = 'c8c2a74c43d87203307f2db942752251';
