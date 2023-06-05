@@ -8,7 +8,7 @@ const pagination = new Pagination("pagination-block-div", {
   page: 1,
 
   template: { 
-    
+    usageStatistics: false,
     page: '<a href="#" class="tui-page-btn important-page">{{page}}</a>',
     currentPage: '<strong class="tui-page-btn tui-is-selected important-page">{{page}}</strong>',
     moveButton:

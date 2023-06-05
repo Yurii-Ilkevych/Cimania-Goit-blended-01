@@ -31,7 +31,8 @@ display: none;
     
 }
 .tui-pagination .tui-first-child.tui-is-selected.important-page{
-    border-left: none
+    border-left: none;
+    cursor: pointer;
 }
 
 

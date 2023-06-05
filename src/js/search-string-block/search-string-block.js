@@ -9,6 +9,7 @@ const refs = {
 
 const API_KEY_V = '48b2bba5f96af80717b061a99685cb65';
 let value = '';
+let page = 1;
 
 const options = {
     method: 'GET',
@@ -82,6 +83,7 @@ async function fetchFilmByValue(value) {
     return response.data.results;
 }
 
+// ""тут якась біда не деплоїться проект при використанні функції нижче""
 // const genreFetch = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${API_KEY_V}`);
 
 // console.log(genreFetch.data.genres);
