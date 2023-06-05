@@ -1,6 +1,6 @@
-.container.container-upcoming {
+/* .container.container-upcoming {
   max-width: 320px;
-}
+} */
 
 .upcoming-title {
   font-family: 'Roboto';
@@ -143,17 +143,17 @@
 @media screen and (max-width: 767px) {
   .upcoming-film-img {
     object-fit: cover;
-    object-position: 12.6% 0px;
+    object-position: 50% 0px;
     overflow: hidden;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .container.container-upcoming {
+  /* .container.container-upcoming {
     padding-left: 32px;
     padding-right: 32px;
     max-width: 704px;
-  }
+  } */
 
   .upcoming-title {
     font-weight: 500;
@@ -185,11 +185,11 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .container.container-upcoming {
+  /* .container.container-upcoming {
     padding-left: 32px;
     padding-right: 32px;
     max-width: 1216px;
-  }
+  } */
 
   .upcoming-film {
     display: flex;
