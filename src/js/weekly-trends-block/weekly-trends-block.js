@@ -28,7 +28,7 @@ var swiper = new Swiper('.mySwiper', {
   },
 });
 
-populateMarkupWeeklyTrends();
+// populateMarkupWeeklyTrends();
 
 
 
