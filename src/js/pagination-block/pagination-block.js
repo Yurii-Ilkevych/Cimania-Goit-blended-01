@@ -7,7 +7,8 @@ const pagination = new Pagination("pagination-block-div", {
   visiblePages: 3,
   page: 1,
 
-  template: {
+  template: { 
+    
     page: '<a href="#" class="tui-page-btn important-page">{{page}}</a>',
     currentPage: '<strong class="tui-page-btn tui-is-selected important-page">{{page}}</strong>',
     moveButton:
@@ -22,7 +23,7 @@ const pagination = new Pagination("pagination-block-div", {
         '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
             '<span class="tui-ico-ellip">...</span>' +
         '</a>'
-        
+
 }
 });
 
