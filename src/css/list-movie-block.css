@@ -13,7 +13,7 @@
 }
 
 .list-movie-block-oops {
-/* display: none; */
+display: none;
 margin: 0 auto;
 max-width: 684px;
 color: var(--color-white);

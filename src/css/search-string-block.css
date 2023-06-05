@@ -36,7 +36,7 @@
 }
 
 .search-string-block-clear-btn {
-  /* display: none; */
+  display: none;
   cursor: pointer;
   position: absolute;
   top: 48%;
