@@ -24,10 +24,8 @@
 
   border: none;
   border-radius: 74px;
-  border-image-source: var(--linear-top-light);
-  border-image-slice: 1;
   padding: 12px 24px;
-  background: var(--linear-top-light);
+  background: transparent;
   color: var(--color-background);
   transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     outline 0.25s cubic-bezier(0.4, 0, 0.2, 1),
@@ -43,13 +41,65 @@
   right: -2px;
   background: var(--linear-top-light);
   border-radius: 74px;
-  z-index: -2;
+  z-index: -1;
 }
 
 .btn-library-search:hover,
 .btn-library-search:focus {
   color: var(--color-orange);
   background: #f5f5f5;
+}
+
+.select {
+  position: relative;
+  width: 172px;
+  height: 44px;
+}
+
+#genre {
+  display: block;
+  appearance: none;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  width: 172px;
+  height: 44px;
+  padding: 14px 30px 10px 20px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  border-radius: 8px;
+  color: #b7b7b7;
+  cursor: pointer;
+}
+
+.select::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 15px;
+  right: 15px;
+  pointer-events: none;
+  background-image: url('../img/chevron-down.svg');
+}
+
+#genre > option {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.43;
+  background-color: #1c1c1c;
+  border: 2px solid #fff;
+  border-color: #ffffff;
+  color: #f8f8f8;
+  padding: 14px 0 10px 20px;
+}
+
+#genre > option:hover {
+  color: #f87719;
+  background-color: #f87719;
 }
 
 @media screen and (min-width: 768px) {
