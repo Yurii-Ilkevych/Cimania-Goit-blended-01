@@ -249,7 +249,7 @@
   margin-bottom: 13px;
 }
 
-.rating {
+.hero-rendered-wrap>.rating {
   display: inline-block;
   margin-bottom: 21px;
   font-size: 22px;
@@ -371,7 +371,7 @@
     margin-bottom: 12px;
   }
 
-  .rating {
+  .hero-rendered-wrap>.rating {
     margin-bottom: 20px;
     font-size: 25px;
     line-height: 20px;
@@ -452,7 +452,7 @@
     margin-bottom: 16px;
   }
 
-  .rating {
+  .hero-rendered-wrap>.rating {
     margin-bottom: 28px;
     font-size: 30px;
     line-height: 24px;
