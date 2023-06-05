@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { KEY } from '../API';
-// import { openModal } from '../modal-window/modal-window';
+import { openModal } from '../modal-window/modal-window';
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
@@ -64,11 +64,11 @@ function updateHeroSection(movie) {
 
 // modal 
 function handleMoreDetailsClick() {
-  console.log('click on More details btn');
+  // console.log('click on More details btn');
   const movieId = document.querySelector('.hero-default-tille.rendered');
   const dataId = movieId.getAttribute('data-id');
-  console.log(dataId); 
-  // openModal(dataId);
+  // console.log(dataId); 
+  openModal(dataId);
 }
 
 function makeRating(data) {

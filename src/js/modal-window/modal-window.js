@@ -1,16 +1,16 @@
 // ------------------Закриття та відкриття модалки---------------
 
 const refs = {
-  openModalBtn: document.querySelector('[data-modal-open-test]'),
+  // openModalBtn: document.querySelector('[data-modal-open-test]'),
   closeModalBtn: document.querySelector('[data-modal-close-test]'),
   modal: document.querySelector('[data-modal-test]'),
   backdrop: document.querySelector('.overlay'),
   modalWindow: document.querySelector('.pop-modal'),
 };
 
-refs.openModalBtn.addEventListener('click', () => {
-  openModal();
-});
+// refs.openModalBtn.addEventListener('click', () => {
+//   openModal();
+// });
 refs.closeModalBtn.addEventListener('click', closeModal);
 refs.backdrop.addEventListener('click', closeModal);
 refs.modal.addEventListener('click', stopPropagation);
