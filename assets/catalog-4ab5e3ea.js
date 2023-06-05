@@ -1,4 +1,4 @@
-import{a as V}from"./trailler-movie-5d41cde4.js";const F={listMovieBlockOops:document.querySelector(".list-movie-block-oops"),listMovieBlockList:document.querySelector(".list-movie-block-list")};function j(C){return C.reduce((L,{backdrop_path:l,title:x,genre_ids:e,release_date:r,vote_average:i})=>L+`<li class="list-movie-block-item">
+import{a as V}from"./trailler-movie-5c0a9b1b.js";const F={listMovieBlockOops:document.querySelector(".list-movie-block-oops"),listMovieBlockList:document.querySelector(".list-movie-block-list")};function j(C){return C.reduce((L,{backdrop_path:l,title:x,genre_ids:e,release_date:r,vote_average:i})=>L+`<li class="list-movie-block-item">
         <a class="list-movie-block-link" href="./">
             <div class="list-movie-block-thumb">
                 <div class="list-movie-block-wrap"><img class="list-movie-block-img" src="https://image.tmdb.org/t/p/w500/${l}" alt="${x}"></div>
