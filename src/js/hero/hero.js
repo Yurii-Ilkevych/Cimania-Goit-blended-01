@@ -64,8 +64,8 @@ function makeRating(data) {
 function renderOneTrendsMovie(movie) {
   // console.log(movie);
   const movieRating = makeRating(movie.vote_average);
-  console.log(movie.vote_average);
-  console.log(movieRating);
+  // console.log(movie.vote_average);
+  // console.log(movieRating);
   return `<section
   class="hero-rendered"
   style="background-image: url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')"
