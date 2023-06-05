@@ -11,3 +11,31 @@
     clip: rect(0 0 0 0);
     overflow: hidden;
 }
+.tui-pagination.tui-pagination .tui-page-btn{
+border:none
+}
+
+.tui-page-btn.tui-is-disabled.tui-first{
+display: none;
+}
+.tui-page-btn.tui-is-disabled.tui-prev{
+
+}
+
+.tui-pagination{
+    text-align: center;
+}
+
+ .tui-page-btn.important-page{
+    border-radius: 50%;
+    
+} 
+.tui-page-btn.tui-is-selected.important-page{
+    background: var(--linear-top-light);
+    
+}
+.tui-pagination .tui-first-child.tui-is-selected.important-page{
+    border-left: none
+}
+
+
