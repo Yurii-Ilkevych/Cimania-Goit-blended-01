@@ -18,10 +18,6 @@ border:none
 .tui-page-btn.tui-is-disabled.tui-first{
 display: none;
 }
-.tui-page-btn.tui-is-disabled.tui-prev{
-
-}
-
 .tui-pagination{
     text-align: center;
 }

@@ -27,7 +27,7 @@ const pagination = new Pagination("pagination-block-div", {
 
 pagination.on("afterMove", (event) => {
   const { page } = event;
-  /* тут делаешь запрос */
+  /* тут викликаємо запит */
   // fetch(`https://some-site.com/products?page=${page}`)
   console.log(page);
 });
