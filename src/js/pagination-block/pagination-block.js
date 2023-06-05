@@ -22,6 +22,7 @@ const pagination = new Pagination("pagination-block-div", {
         '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
             '<span class="tui-ico-ellip">...</span>' +
         '</a>'
+        
 }
 });
 
