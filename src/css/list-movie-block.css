@@ -55,12 +55,21 @@ border-radius: 5px;
     height: 100%;
     object-fit: cover;
 }
+
 .list-movie-block-info {
-display: flex;
+/* display: flex;
+align-items: flex-end; */
 position: absolute;
 bottom: 2%;
 left: 5%;
 z-index: 1;
+}
+
+.list-movie-block-rating {
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+    z-index: 2;
 }
 
 .list-movie-block-text {
@@ -87,9 +96,17 @@ color: var(--color-gray);
     height: 406px;
     }
 
-    .list-movie-block-rating {
-        width: 86px;
+    .list-movie-block-info {
+        max-width: 256px;
     }
+
+    .list-movie-block-text {
+        max-width: 165px;
+    }
+    /* .list-movie-block-rating {
+        width: 86px;
+        height: 14px;
+    } */
 }
 
 
@@ -115,9 +132,18 @@ color: var(--color-gray);
     height: 325px;
     }
 
-    .list-movie-block-rating {
-        width: 66px;
+    .list-movie-block-info {
+        max-width: 200px;
     }
+
+    .list-movie-block-text {
+        max-width: 129px;
+    }
+
+    /* .list-movie-block-rating {
+        width: 66px;
+        height: 10px;
+    } */
 }
 
 
@@ -161,7 +187,16 @@ color: var(--color-gray);
     line-height: 1.17;
     }
 
-    .list-movie-block-rating {
-        width: 66px;
+    .list-movie-block-info {
+        max-width: 355px;
     }
+
+    .list-movie-block-text {
+        max-width: 244px;
+    }
+
+    /* .list-movie-block-rating {
+        width: 66px;
+        height: 18px;
+    } */
 }
