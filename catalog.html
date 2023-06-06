@@ -6,14 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catalog</title>
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
-/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     
-    <script type="module" crossorigin src="/Cimania-Goit-blended-01/assets/catalog-ff245563.js"></script>
-    <link rel="modulepreload" crossorigin href="/Cimania-Goit-blended-01/assets/trailler-movie-1788af35.js">
-    <link rel="stylesheet" href="/Cimania-Goit-blended-01/assets/trailler-movie-12d93d0c.css">
+    <script type="module" crossorigin src="/Cimania-Goit-blended-01/assets/catalog-7d5f6569.js"></script>
+    <link rel="modulepreload" crossorigin href="/Cimania-Goit-blended-01/assets/developers-51a85563.js">
+    <link rel="stylesheet" href="/Cimania-Goit-blended-01/assets/developers-0cc159c4.css">
     <link rel="stylesheet" href="/Cimania-Goit-blended-01/assets/catalog-a0b14d8a.css">
   </head>
   <body>
@@ -90,7 +97,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-norma
     <!-- ================ Hero ======================= -->
 
 <div class="hero-upd"></div>
-
 
 
     <section class="search-string-block-section">
@@ -202,7 +208,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-norma
         <div id="pagination-block-div" class="tui-pagination"></div>
     </div>
 </section>
-    
+
     <button type="button" class="button-trailer" data-movie-id="12345" data-modal-open>Watch Trailer</button>
 <div class="backdrop-trailer is-hidden" data-modal>
   <div class="modal-trailer">
@@ -270,11 +276,249 @@ href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-norma
       <use href="/Cimania-Goit-blended-01/assets/symbol-defs-2192c1b9.svg#icon-heart"></use>
     </svg>
     by
-    <a data-modal-open class="footer__developers--link" href=""
-      >GoIT Students</a
-    >
+    <a data-dev-open class="footer__developers--link" href="">GoIT Students</a>
   </p>
 </footer>
+
+    <section class="developers backdrop-developers is-hidden" data-dev>
+  <div class="modal-developers">
+    <button class="modal__close-footer-btn" data-dev-close>
+      <svg class="modal__icon-footer" width="14" height="14">
+        <path
+          fill="none"
+          stroke-width="2"
+          stroke="currentColor"
+          d="M8.533 8.533l14.933 14.933M8.533 23.467L23.466 8.534"
+        />
+      </svg>
+    </button>
+    <div class="developers-container">
+      <h2 class="developers__title">Developers</h2>
+      <div class="developers-gallery">
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/Yurii-Ilkevych"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Yurii Ilkevych.jpg"
+              alt="Yurii Ilkevych"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Yurii Ilkevych</h3>
+            <p class="developers__position">Team Lead</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/LameWolf"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Yaroslav Tkach.jpg"
+              alt="Yaroslav Tkach"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Yaroslav Tkach</h3>
+            <p class="developers__position">Scrum Master</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/ViktoriiaYakymovych"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Viktoriia Yakymovych.jpg"
+              alt="Viktoriia Yakymovych"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Viktoriia Yakymovych</h3>
+            <p class="developers__position">Front-end Developer</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/Zetonen"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Andrii Tomashevskyi.jpg"
+              alt="Andrii Tomashevskyi"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Andrii Tomashevskyi</h3>
+            <p class="developers__position">Front-end developer</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/VovaPliuto"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Volodymyr Pliuto.jpg"
+              alt="Volodymyr Pliuto"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Volodymyr Pliuto</h3>
+            <p class="developers__position">Front-end Developer</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/Egor4ik2"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Egor Krechuniak.jpg"
+              alt="Egor Krechuniak"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Egor Krechuniak</h3>
+            <p class="developers__position">Front-end Developer</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/IngvarVG76"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Igor Grybanov.jpg"
+              alt="Igor Grybanov"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Igor Grybanov</h3>
+            <p class="developers__position">Front-end Developer</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/VolodymyrBakun"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Volodymyr Bakun.jpg"
+              alt="Volodymyr Bakun"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Volodymyr Bakun</h3>
+            <p class="developers__position">Front-end Developer</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/Serzh1006"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Serhii Kravchenko.jpg"
+              alt="Serhii Kravchenko"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Serhii Kravchenko</h3>
+            <p class="developers__position">Front-end Developer</p>
+          </div>
+        </div>
+        <div class="developers-gallery__item">
+          <p class="developers__link">
+            <a
+              class="developers__link--github"
+              href="https://github.com/Sasho878748"
+              target="_blank"
+              rel="noreferrer noopener"
+              ><i class="fab fa-github-square"></i
+            ></a>
+          </p>
+          <div class="developers__card">
+            <img
+              class="developers__image"
+              src="../img/developers/Oleksandr Kovalenko.jpg"
+              alt="Oleksandr Kovalenko"
+            />
+          </div>
+          <div class="developers__content">
+            <h3 class="developers__member">Oleksandr Kovalenko</h3>
+            <p class="developers__position">Front-end Developer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     
     
