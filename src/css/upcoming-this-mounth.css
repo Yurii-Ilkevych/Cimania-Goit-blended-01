@@ -1,6 +1,3 @@
-/* .container.container-upcoming {
-  max-width: 320px;
-} */
 
 .upcoming-title {
   font-family: 'Roboto';
@@ -10,6 +7,7 @@
   line-height: 1.19;
   text-transform: uppercase;
   color: var(--color-white);
+  margin-top: 32px;
   margin-bottom: 24px;
 }
 
@@ -122,7 +120,7 @@
   background: var(--linear-top-light);
   border-radius: 74px;
   border: none;
-  width: 140px;
+  min-width: 140px;
   height: 38px;
   font-family: 'Roboto';
   font-style: normal;
@@ -130,15 +128,17 @@
   font-size: 12px;
   line-height: 1.67;
   color: #111111;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
-.add-to-my-library:hover,
+/* .add-to-my-library:hover,
 .add-to-my-library:focus{
     color: var(--color-orange);
     background: var(--color-white);
     border: 1px solid;
     border-color: var(--color-orange);
-}
+} */
 
 @media screen and (max-width: 767px) {
   .upcoming-film-img {
@@ -149,16 +149,12 @@
 }
 
 @media screen and (min-width: 768px) {
-  /* .container.container-upcoming {
-    padding-left: 32px;
-    padding-right: 32px;
-    max-width: 704px;
-  } */
 
   .upcoming-title {
     font-weight: 500;
     font-size: 24px;
     line-height: 1.17;
+    margin-top: 44px;
   }
 
   .upcoming-film-img-wrap {
@@ -185,11 +181,10 @@
 }
 
 @media screen and (min-width: 1280px) {
-  /* .container.container-upcoming {
-    padding-left: 32px;
-    padding-right: 32px;
-    max-width: 1216px;
-  } */
+
+  .upcoming-title{
+    margin-top: 60px;
+  }
 
   .upcoming-film {
     display: flex;
