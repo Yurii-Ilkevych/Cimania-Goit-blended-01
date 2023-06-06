@@ -5,23 +5,59 @@ const refs = {
   closeModalBtn: document.querySelector('[data-dev-close]'),
 };
 
+// overflow hidden
+
+const onOpenModal = e => {
+  e.preventDefault();
+  refs.devModal.classList.remove('is-hidden');
+
+  const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
+  const body = document.body;
+
+  body.classList.add('dev-open');
+
+  body.style.position = 'fixed';
+  body.style.left = '0px';
+  body.style.right = '0px';
+  body.style.top = `-${scrollY}`;
+};
+const onCloseModal = () => {
+  const body = document.body;
+
+  body.classList.remove('dev-open');
+  const scrollY = body.style.top;
+  body.style.position = '';
+  body.style.top = '';
+  body.style.left = '';
+  body.style.right = '';
+  window.scrollTo(0, parseInt(scrollY || '0') * -1);
+
+  refs.devModal.classList.add('is-hidden');
+};
+window.addEventListener('scroll', () => {
+  document.documentElement.style.setProperty(
+    '--scroll-y',
+    `${window.scrollY}px`
+  );
+});
+
 // Open Modal
 
-function onOpenModal(evt) {
-  evt.preventDefault();
+// function onOpenModal(evt) {
+//   evt.preventDefault();
 
-  document.body.classList.add('dev-open');
-  refs.devModal.classList.remove('is-hidden');
-  window.addEventListener('keydown', onEscKeyPress);
-}
+//   document.body.classList.add('dev-open');
+//   refs.devModal.classList.remove('is-hidden');
+//   window.addEventListener('keydown', onEscKeyPress);
+// }
 
-// Close Modal
+// // Close Modal
 
-function onCloseModal() {
-  document.body.classList.remove('dev-open');
-  refs.devModal.classList.add('is-hidden');
-  window.removeEventListener('keydown', onEscKeyPress);
-}
+// function onCloseModal() {
+//   document.body.classList.remove('dev-open');
+//   refs.devModal.classList.add('is-hidden');
+//   window.removeEventListener('keydown', onEscKeyPress);
+// }
 
 // On Escape Press
 
