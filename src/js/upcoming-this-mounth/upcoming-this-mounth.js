@@ -3,6 +3,7 @@ import axios from 'axios';
 const refs = {
   upcomingFilmEl: document.querySelector('.upcoming-film'),
   btnAddToMyLibraryEl: document.querySelector('.add-to-my-library'),
+  btn: document.getElementById('btn'),
 };
 
 const MY_API_KEY = 'b9984943b63ba7234c73c01c632259d1';
@@ -60,7 +61,9 @@ function createUpcomingFilmMarkup(response, genres) {
     response.data.results[randomNumber.toFixed()].genre_ids[1];
 
   const firstGenre = findGenre(firstGenreToFind, genres.data.genres);
-  const secondGenre = findGenre(secondGenreToFind, genres.data.genres);
+  const secondGenre = findGenre(secondGenreToFind, genres.data.genres)
+    ? ', ' + findGenre(secondGenreToFind, genres.data.genres)
+    : '';
 
   const markup = `
       <div class="upcoming-film-img-wrap">
@@ -108,7 +111,7 @@ function createUpcomingFilmMarkup(response, genres) {
               <p class="upcoming-film-info-row1">${
                 response.data.results[randomNumber.toFixed()].popularity
               }</p>
-              <p>${firstGenre}, ${secondGenre}</p>
+              <p>${firstGenre}${secondGenre}</p>
             </div>
           </div>
         </div>
@@ -120,11 +123,13 @@ function createUpcomingFilmMarkup(response, genres) {
             }
             </p>
           </div>
-          <button type="button" class="add-to-my-library">
+          <button type="button" id="btn" class="add-to-my-library">
             Add to my library
           </button>
         </div>
       </div>`;
+  
+
   return markup;
 }
 
@@ -135,11 +140,73 @@ function renderUpcomingFilm(markup) {
   return (refs.upcomingFilmEl.innerHTML = markup);
 }
 
+// _______________ГОЛОВНА___________________//
+
 async function showUpcomingFilm() {
   const response = await getUpcomingFilm();
   const genres = await getGenres();
   const markup = createUpcomingFilmMarkup(response, genres);
   const rendering = renderUpcomingFilm(markup);
+
+  const btnAdd = document.getElementById('btn');
+
+handleAddRemooveToLibrary(response, btnAdd);
 }
 
 showUpcomingFilm();
+
+
+
+// _____local storage______//
+
+function handleAddRemooveToLibrary(response, btnAdd) {
+  const movieObject = {
+    movieID: response.data.results[randomNumber.toFixed()].id,
+    posterPath: response.data.results[randomNumber.toFixed()].poster_path,
+    movieTitle: response.data.results[randomNumber.toFixed()].title,
+    rating: response.data.results[randomNumber.toFixed()].vote_average,
+    votes: response.data.results[randomNumber.toFixed()].vote_count,
+    popularity: response.data.results[randomNumber.toFixed()].popularity,
+    gerne: response.data.results[randomNumber.toFixed()].genre_ids,
+    overview: response.data.results[randomNumber.toFixed()].overview,
+  };
+  const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+  
+  const movieIndex = existingMovies.findIndex(
+    movie => movie.movieID === response.data.results[randomNumber.toFixed()].id
+  );
+
+  const updatedMovies = existingMovies.filter(
+    movie => movie.movieID !== response.data.results[randomNumber.toFixed()].id
+  );
+  
+  if (movieIndex > -1) {
+  btnAdd.textContent = 'Remove from my library';
+}
+
+
+  btnAdd.addEventListener('click', function () {
+const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+
+const movieIndex = existingMovies.findIndex(
+  movie => movie.movieID === response.data.results[randomNumber.toFixed()].id
+);
+
+    if (movieIndex === -1) {
+  existingMovies.push(movieObject);
+      localStorage.setItem('movies', JSON.stringify(existingMovies));
+      btnAdd.textContent = 'Remove from my library';
+
+    } if (movieIndex > -1) {
+      localStorage.setItem('movies', JSON.stringify(updatedMovies));
+      btnAdd.textContent = 'Add to my library';
+    }
+
+  })
+}
+
+
+
+
+ 
+ 
