@@ -29,7 +29,7 @@
         justify-content: center;
         align-items: center;
         z-index: 30;
-        overflow: hidden;
+
         transition-duration: 500ms;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -44,7 +44,7 @@
         border-radius: 20px;
         display: flex;
         z-index: 110;
-        position: relative;
+        position: fixed;
       }
       
       .modal-button-trailer {
