@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { KEY } from '../API';
 import { openModal } from '../modal-window/modal-window';
+// сюди імпортувати функцію, яка буде відкривати модалку з трейлером. викликати в строці 87. 
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
 };
 
+// вибір рандомного фільму з 20
 const randomMovie = () => {
   return Math.floor(Math.random() * (19 - 0 + 1)) + 0;
 };
@@ -32,6 +34,7 @@ async function fetchTrendsFilm() {
 // виклик при оновленні сторінки
 doTryOrCatch();
 
+// обробка запиту
 async function doTryOrCatch() {
   try {
     const trendsMovies = await fetchTrendsFilm();
@@ -46,6 +49,7 @@ async function doTryOrCatch() {
   }
 }
 
+// перевірка даних та виклик оновлення
 function choiseRender(data) {
   if (data.results.length > 1) {
     // console.log(data);
@@ -53,6 +57,7 @@ function choiseRender(data) {
   }
 }
 
+// оновлення секції Hero
 function updateHeroSection(movie) {
   // console.log(movie);
   const movieHtml = renderOneTrendsMovie(movie);
@@ -60,27 +65,43 @@ function updateHeroSection(movie) {
   refs.heroSection.insertAdjacentHTML('beforeend', movieHtml);
   const moreDetailsBtn = document.getElementById('hero-more-btn');
   moreDetailsBtn.addEventListener('click', handleMoreDetailsClick);
+  const watchTrailerBtn = document.getElementById('hero-trailer-btn');
+  watchTrailerBtn.addEventListener('click', handlewatchTrailerClick);
 }
 
-// modal 
+// modal More Details
 function handleMoreDetailsClick() {
   // console.log('click on More details btn');
   const movieId = document.querySelector('.hero-default-tille.rendered');
   const dataId = movieId.getAttribute('data-id');
-  // console.log(dataId); 
+  // console.log(dataId);
   openModal(dataId);
-
 }
 
+// modal Whatch Trailer
+function handlewatchTrailerClick() {
+  // console.log('click on whatch trailer btn');
+  const movieId = document.querySelector('.hero-default-tille.rendered');
+  const dataId = movieId.getAttribute('data-id');
+  // console.log(dataId);
+  // openModal(dataId); // replace it with imported function
+}
+
+// Makes rating for 5 star beckgroung
 function makeRating(data) {
   return Math.round(data * 10);
 }
 
-function screenReaderRating(data) {}
+// Makes rating for screen readers
+function screenReaderRating(data) {
+  return Math.round((data / 2) * 10) / 10;
+}
 
+// Daily trending moovie markup
 function renderOneTrendsMovie(movie) {
   // console.log(movie);
   const movieRating = makeRating(movie.vote_average);
+  const screenReaderMovieRating = screenReaderRating(movie.vote_average);
   // console.log(movie.vote_average);
   // console.log(movieRating);
   return `<section
@@ -91,7 +112,7 @@ function renderOneTrendsMovie(movie) {
     <div class="container">
       <div class="hero-rendered-wrap">
         <h1 class="hero-default-tille rendered" data-id="${movie.id}">${movie.original_title}</h1>
-        <p class="rating" data-rating="4.5" aria-label="4.5 stars out of 5" style="background: linear-gradient(
+        <p class="rating" aria-label="${screenReaderMovieRating} stars out of 5" style="background: linear-gradient(
         to right,
         var(--color-orange),
         var(--color-orange),
@@ -110,6 +131,7 @@ function renderOneTrendsMovie(movie) {
           <div class="hero-trailer-btn-gr">
             <button
               class="hero-trailer-btn"
+              data-id="${movie.id}" 
               id="hero-trailer-btn"
               type="button"
             >
@@ -117,7 +139,11 @@ function renderOneTrendsMovie(movie) {
             </button>
           </div>
           <div>
-            <button class="hero-more-btn" id="hero-more-btn" type="button">
+            <button 
+            class="hero-more-btn"
+            data-id="${movie.id}" 
+            id="hero-more-btn" 
+            type="button">
               More details
             </button>
           </div>
@@ -128,6 +154,7 @@ function renderOneTrendsMovie(movie) {
 </section>`;
 }
 
+// Default hero section
 function renderDefaultSection() {
   const defaultSection = `<div class="hero-upd" >
   <section class="hero-default">
