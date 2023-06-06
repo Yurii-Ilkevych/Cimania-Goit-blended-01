@@ -18,24 +18,26 @@
           </li>
 
           <li class="nav-item">
-            <a href="./my-library.html" class="nav-link library-link">My library</a>
+            <a href="./my-library.html" class="nav-link library-link"
+              >My library</a
+            >
           </li>
         </ul>
       </nav>
-      <div class="theme-changer">
-        <img
-          class="changer-moon"
-          src="./public/moon.svg"
-          alt="Moon-icon"
-          width="10"
-        />
-        <img
-          class="changer-btn"
+      <input type="checkbox" id="theme-changer" />
+      <label for="theme-changer" class="theme-changer">
+        <svg class="icon-moon">
+          <use href="./img/header-sprite.svg#icon-moon"></use>
+        </svg>
+        <svg class="icon-sun">
+          <use href="./img/header-sprite.svg#icon-sun"></use>
+        </svg>
+        <img class="changer-btn"
+          width="13.5"
           src="./public/white-circle-btn.svg"
-          alt="White button"
-          width="13"
+          alt="Icon button"
         />
-      </div>
+      </label>
     </div>
   </div>
 
@@ -57,10 +59,14 @@
             <a href="./index.html" class="mobile-menu-link home-link">HOME</a>
           </li>
           <li class="mobile-menu-item">
-            <a href="./catalog.html" class="mobile-menu-link catalog-link">CATALOG</a>
+            <a href="./catalog.html" class="mobile-menu-link catalog-link"
+              >CATALOG</a
+            >
           </li>
           <li class="mobile-menu-item">
-            <a href="./my-library.html" class="mobile-menu-link library-link">MY LIBRARY</a>
+            <a href="./my-library.html" class="mobile-menu-link library-link"
+              >MY LIBRARY</a
+            >
           </li>
         </ul>
       </nav>
