@@ -44,29 +44,102 @@
 }
 
 /* --- THEME CHANGER --- */
-.theme-changer {
-  position: relative;
 
+#theme-changer {
+  display: none;
+}
+
+#theme-changer + label {
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   width: 44px;
   height: 18px;
-  margin-left: 78px;
-  padding: 3px;
   border-radius: 194px;
-  background: var(--linear-top-light);
+  cursor: pointer;
+  background-image: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
+  /* background-color: tomato; */
 }
 
 .changer-btn {
-  height: 13;
+  position: absolute;
+  right: 3px;
+  z-index: 5;
+  transition: all 300ms linear;
+}
+
+#theme-changer:checked + label .changer-btn {
+  right: 28px;
+}
+
+.icon-moon,
+.icon-sun {
+  width: 10px;
+  height: 10px;
+}
+
+.icon-moon {
+  position: absolute;
+  left: 3px;
+}
+
+.icon-sun {
+  position: absolute;
+  right: 3px;
+  z-index: 1;
+}
+
+[light] {
+  background-color: var(--color-white);
+}
+
+[light] .logo-text,
+[light] .info-votes-value-white-wrap p,
+[light] .upcoming-film-description-text {
+  color: var(--color-secondary-black);
+}
+
+[light] .nav-list,
+[light] .nav-menu-btn,
+[light] .search-string-block-input::placeholder {
+  color: var(--color-gray-white-theme);
+}
+
+[light] .search-string-block-clear-btn > svg {
+  stroke: var(--color-gray-white-theme);
+}
+
+[light] .search-string-block-btn > svg {
+  stroke: var(--color-background);
+}
+
+[light] .search-string-block-input {
+  border-color: var(--color-gray-white-theme);
+}
+
+[light] .hero-trailer-btn,
+[light] .upcoming-title,
+[light] .upcoming-film-name,
+[light] .upcoming-film-info-rows,
+[light] .upcoming-film-description-title,
+[light] .weekly-trends__title,
+[light] .list-movie-block-oops,
+[light] .library-txt-info {
+  color: var(--color-background);
+}
+
+[light] .p-tariler {
+  background-color: var(--color-white);
+  color: var(--color-background);
 }
 
 /* --- MOBILE-MENU --- */
 .backdrop {
-  position: absolute;
+  position: fixed;
   z-index: 99;
   top: 0;
+  overflow: hidden;
 
   width: 100vw;
   height: 100vh;
@@ -76,7 +149,7 @@
 }
 
 .mobile-menu {
-  position: absolute;
+  position: fixed;
   z-index: 100;
 
   padding: 8px 20px;
@@ -117,7 +190,7 @@
   font-style: 14px;
   line-height: calc(16 / 14);
   font-weight: 400;
-  color: var(--color-white);
+  color: var(--color-gray);
 }
 
 /* .mobile-menu-link:hover,
@@ -127,6 +200,12 @@
 }
 
 /* --- ADAPTIVE CSS --- */
+
+@media screen and (min-width: 321px) {
+  .mobile-menu {
+    width: 60%;
+  }
+}
 
 @media screen and (min-width: 768px) {
   .container-header {
@@ -166,7 +245,7 @@
     gap: 32px;
 
     margin-left: 59px;
-    color: var(--color-white);
+    color: var(--color-gray);
     text-transform: uppercase;
   }
 
@@ -181,19 +260,31 @@
     color: var(--color-orange);
   } */
 
-  .theme-changer {
+  #theme-changer + label {
     width: 60px;
     height: 24px;
+  }
+
+  #theme-changer:checked + label .changer-btn {
+    right: 39px;
   }
 
   .changer-btn {
     height: 18px;
     width: 18px;
+    right: 4px;
   }
 
-  .changer-moon {
+  .icon-moon {
     height: 13px;
     width: 13px;
+    left: 5px;
+  }
+
+  .icon-sun {
+    width: 14px;
+    height: 14px;
+    right: 5px;
   }
 }
 
