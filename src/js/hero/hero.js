@@ -2,6 +2,8 @@ import axios from 'axios';
 import { KEY } from '../API';
 import { openModal } from '../modal-window/modal-window';
 // сюди імпортувати функцію, яка буде відкривати модалку з трейлером. викликати в строці 87. 
+import {openTrailerModal, closeTrailerModal, handleTrailerModalKeyDown } from '../trailler-movie/trailler-movie'
+
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
@@ -80,9 +82,30 @@ function handleMoreDetailsClick() {
 
 // modal Whatch Trailer
 function handlewatchTrailerClick() {
+
+
+  const movieId = document.querySelector('.hero-default-tille.rendered').getAttribute('data-id');
+  
+  // Открыть модальное окно с трейлером
+  openTrailerModal({ id: movieId });
+
+  // Закрыть модальное окно с трейлером по нажатию клавиши Escape
+  document.addEventListener('keydown', handleTrailerModalKeyDown);
+
+  // Получаем ссылку на кнопку закрытия модального окна
+  const closeButton = document.querySelector('[data-modal-close]');
+
+  // Добавляем обработчик события на клик кнопки закрытия
+  closeButton.addEventListener('click', closeTrailerModal);
+
+  // Функция для закрытия модального окна
+  closeTrailerModal()
+
+
+  
   // console.log('click on whatch trailer btn');
-  const movieId = document.querySelector('.hero-default-tille.rendered');
-  const dataId = movieId.getAttribute('data-id');
+  // const movieId = document.querySelector('.hero-default-tille.rendered');
+  // const dataId = movieId.getAttribute('data-id');
   // console.log(dataId);
   // openModal(dataId); // replace it with imported function
 }
@@ -176,3 +199,5 @@ function renderDefaultSection() {
   refs.heroSection.innerHTML = '';
   refs.heroSection.insertAdjacentHTML('beforeend', defaultSection);
 }
+
+
