@@ -26,12 +26,13 @@ document.addEventListener('DOMContentLoaded', onLoadTrends);
 async function onLoadTrends() {
     try {
         const resp = await fetchTrends();
-         console.log(resp);
+        const genres = await genreFetch();
+        //  console.log(resp);
 
         if (resp.length === 0) {
             refsList.listMovieBlockOops.style.display = 'block';
         }
-        const markup = createMarkup(resp);
+        const markup = createMarkup(resp, genres);
         renderMarkup(markup);
     } catch (error ) {
         console.log(error);
@@ -53,13 +54,13 @@ async function onSearchSubmit(e) {
         return;
     } 
     try {
+        const genres = await genreFetch();
         const resp = await fetchFilmByValue(value);
-        // console.log(resp);
 
         if (resp.length === 0) {
             refsList.listMovieBlockOops.style.display = 'block';
         }
-        const markup = createMarkup(resp);
+        const markup = createMarkup(resp, genres);
         renderMarkup(markup);
     } catch (error) {
         console.log(error);
@@ -83,10 +84,14 @@ async function fetchFilmByValue(value) {
     return response.data.results;
 }
 
-// ""тут якась біда не деплоїться проект при використанні функції нижче""
-// const genreFetch = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${API_KEY_V}`);
-
-// console.log(genreFetch.data.genres);
+export async function genreFetch() {
+    const response = await axios.get(
+        `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${API_KEY_V}`,
+    options
+    );
+    const genres = response.data.genres;
+    return genres;
+}
 
 
 function onClearInput() {
