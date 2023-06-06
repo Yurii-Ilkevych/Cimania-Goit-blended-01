@@ -1,26 +1,24 @@
-import axios from 'axios';
-import { KEY } from '../API';
+import { save, load } from './functions/loadPosterFromStorage';
+import { createMarkupMyLibrary } from './functions/createMarkupMyLibrary';
+import { addMarkupInLibrary } from './functions/addMarkupInLibrary';
 
-const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
-const url2 = 'https://api.themoviedb.org/3/genre/movie/list';
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWRjYTZiOTk2ZDY4YzcwYzVhY2Q2ZTg5ZmEwZDgyNSIsInN1YiI6IjY0N2NkMjBiMjYzNDYyMDBmOTI5NWRkZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3hG3mma-Lf_TxF0tRVboK7xVA16kPp-JXhfXHs-s6Eo',
-  },
-};
+const firstBox = document.querySelector('.first-box-library');
+const select = document.querySelector('.select');
 
-async function getDataToLibrary() {
-  const dataFilm = await axios.get(url2, options);
-  return dataFilm;
-}
+changeLibrary();
 
-showData();
-async function showData() {
-  const a = await getDataToLibrary();
-  const genre = a.data.genres;
-  console.log('MyData', genre);
-  genre.map(obj => console.log(obj.name));
+function changeLibrary() {
+  const dataFilm = load('poster1');
+  if (dataFilm === undefined || dataFilm.length === 0) {
+    if (firstBox.classList.contains('is-hidden')) {
+      firstBox.classList.remove('is-hidden');
+      return;
+    }
+    return;
+  } else {
+    firstBox.classList.add('is-hidden');
+    select.classList.remove('is-hidden');
+    const newMarkup = createMarkupMyLibrary(dataFilm);
+    addMarkupInLibrary(newMarkup);
+  }
 }

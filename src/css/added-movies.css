@@ -1,5 +1,49 @@
 .library-section-box {
   max-width: 280px;
+  padding-top: 35px;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.library-gallery {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-poster {
+  position: relative;
+  width: 280px;
+  height: 406px;
+  background: var(--linear-black-bottom);
+
+  box-shadow: var(--shadow-bold);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-poster img {
+  object-fit: cover;
+}
+
+.poster-info {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+  text-transform: uppercase;
+}
+
+.info-about-post {
+  text-transform: capitalize;
+  color: var(--color-gray);
 }
 
 .library-txt-info {
@@ -12,17 +56,21 @@
   color: var(--color-white);
 }
 
+.search-link-films {
+  display: block;
+  text-align: center;
+}
+
 .btn-library-search {
   position: relative;
   width: auto;
   height: auto;
-  display: block;
+  display: inline-block;
   margin: 0 auto;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.16;
 
-  border: none;
   border-radius: 74px;
   padding: 12px 24px;
   background: transparent;
@@ -52,7 +100,7 @@
 
 .select {
   position: relative;
-  width: 172px;
+  width: 202px;
   height: 44px;
 }
 
@@ -63,13 +111,13 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
-  width: 172px;
+  width: 202px;
   height: 44px;
   padding: 14px 30px 10px 20px;
   border: 1px solid #ffffff;
   background: transparent;
   border-radius: 8px;
-  color: #b7b7b7;
+  color: var(--color-gray);
   cursor: pointer;
 }
 
@@ -85,21 +133,14 @@
   background-image: url('../img/chevron-down.svg');
 }
 
-#genre > option {
+select > option {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 14px;
   line-height: 1.43;
   background-color: #1c1c1c;
-  border: 2px solid #fff;
-  border-color: #ffffff;
-  color: #f8f8f8;
+  color: var(--color-secondary-text);
   padding: 14px 0 10px 20px;
-}
-
-#genre > option:hover {
-  color: #f87719;
-  background-color: #f87719;
 }
 
 @media screen and (min-width: 768px) {
@@ -116,6 +157,25 @@
   .library-section-box {
     max-width: 708px;
   }
+  .card-poster {
+    width: 224px;
+    height: 325px;
+  }
+  .library-gallery {
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 28px;
+    column-gap: 16px;
+  }
+  .poster-info {
+    line-height: 1.5;
+  }
+  .select {
+    height: 40px;
+  }
+  #genre {
+    padding: 8px 30px 5px 20px;
+  }
 }
 
 @media screen and (min-width: 1268px) {
@@ -131,5 +191,25 @@
   }
   .library-section-box {
     max-width: 1208px;
+  }
+  .poster-info {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .card-poster {
+    width: 392px;
+    height: 574px;
+  }
+  .library-gallery {
+    row-gap: 32px;
+    column-gap: 16px;
+  }
+  #genre {
+    width: 275px;
+    height: 44px;
+  }
+  .select {
+    width: 275px;
+    height: 50px;
   }
 }
