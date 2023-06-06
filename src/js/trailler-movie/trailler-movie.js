@@ -1,61 +1,71 @@
-// import axios from 'axios';
-// import { KEY } from '../API';
+import axios from 'axios';
+import { KEY } from '../API';
 
+export async function openModal(movie) {
+  const trailerKey = await getMovieTrailer(movie.id);
+  if (trailerKey) {
+    const playerContainer = document.getElementById('player-container');
+    playerContainer.innerHTML = '';
 
+    // Создаем свой плеер для вставки трейлера
+    const player = document.createElement('iframe');
+    player.src = `https://www.youtube.com/embed/${trailerKey}`;
+    player.allowFullscreen = true;
+    player.classList.add('player');
+    playerContainer.appendChild(player);
 
-// export async function openModal(movie, playerContainer) {
-//   const trailerKey = await getMovieTrailer(movie.id);
-//   if (trailerKey) {
-//     // Очищаем содержимое контейнера перед созданием плеера
-//     playerContainer.innerHTML = '';
+    const openModalBtn = document.getElementById('hero-trailer-btn');
+    const closeModalBtn = document.querySelector('[data-hero-modal-close]');
+    const modal = document.querySelector('[data-hero-modal]');
+    const errorModal = document.querySelector('.hero-modal-message.error');
 
-//     // Создаем свой плеер для вставки трейлера
-//     const player = document.createElement('iframe');
-//     player.src = `https://www.youtube.com/embed/${trailerKey}`;
-//     player.allowFullscreen = true;
-//     player.width = '560';
-//     player.height = '315';
-//     playerContainer.appendChild(player);
+    openModalBtn.addEventListener('click', () => openModal(movie), { passive: true });
+    closeModalBtn.addEventListener('click', closeModal, { passive: true });
 
-//     // Показываем модальное окно
-//     modal.classList.remove('is-hidden');
-//   } else {
-//     // Показываем модальное окно с ошибкой
-//     errorModal.classList.remove('is-hidden');
-//     modal.classList.remove('is-hidden');
-//   }
-// }
+    modal.classList.remove('is-hidden');
+  } else {
+    const modal = document.querySelector('[data-hero-modal]');
+    const errorModal = document.querySelector('.hero-modal-message.error');
 
-// export function closeModal() {
-//   // Скрываем модальное окно
-//   modal.classList.add('is-hidden');
+    errorModal.classList.remove('is-hidden');
+    modal.classList.remove('is-hidden');
+  }
+}
 
-//   // Очищаем плеер
-//   playerContainer.innerHTML = '';
+export function closeModal() {
+  const modal = document.querySelector('[data-hero-modal]');
+  const playerContainer = document.getElementById('player-container');
+  const errorModal = document.querySelector('.hero-modal-message.error');
 
-//   // Скрываем модальное окно с ошибкой
-//   errorModal.classList.add('is-hidden');
-// }
-// // ...
-// // Запрос трейлера фильма по его идентификатору
-// export async function getMovieTrailer(movieId) {
-//   try {
-//     const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
-//       params: {
-//         api_key: KEY,
-//       },
-//     });
+  modal.classList.add('is-hidden');
+  playerContainer.innerHTML = '';
+  errorModal.classList.add('is-hidden');
 
-//     const videos = response.data.results;
-//     const trailer = videos.find((video) => video.type === 'Trailer');
+  const openModalBtn = document.getElementById('hero-trailer-btn');
+  const closeModalBtn = document.querySelector('[data-hero-modal-close]');
 
-//     if (trailer) {
-//       return trailer.key;
-//     } else {
-//       return null;
-//     }
-//   } catch (error) {
-//     console.error('Failed to get movie trailer:', error);
-//     return null;
-//   }
-// }
+  openModalBtn.removeEventListener('click', () => openModal(movie), { passive: true });
+  closeModalBtn.removeEventListener('click', closeModal, { passive: true });
+}
+
+export async function getMovieTrailer(movieId) {
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
+      params: {
+        api_key: KEY,
+      },
+    });
+
+    const videos = response.data.results;
+    const trailer = videos.find((video) => video.type === 'Trailer');
+
+    if (trailer) {
+      return trailer.key;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Failed to get movie trailer:', error);
+    return null;
+  }
+}

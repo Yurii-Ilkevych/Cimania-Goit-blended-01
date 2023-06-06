@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { KEY } from '../API';
+import { openModal, closeModal, getMovieTrailer } from '../trailler-movie/trailler-movie';
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
@@ -9,7 +10,6 @@ const randomMovie = () => {
   return Math.floor(Math.random() * (19 - 0 + 1)) + 0;
 };
 
-// Настройка запиту
 const options = {
   method: 'GET',
   headers: {
@@ -19,7 +19,6 @@ const options = {
   },
 };
 
-// Запит до серверу
 async function fetchTrendsFilm() {
   const response = await axios.get(
     'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
@@ -27,8 +26,6 @@ async function fetchTrendsFilm() {
   );
   return response;
 }
-
-doTryOrCatch();
 
 async function doTryOrCatch() {
   try {
@@ -38,11 +35,11 @@ async function doTryOrCatch() {
     if (trendsMovies.status !== 200) {
       throw new Error();
     }
-    chooseRender(trendsMovies.data);
+    choiseRender(trendsMovies.data);
   } catch (error) {}
 }
 
-function chooseRender(data) {
+function choiseRender(data) {
   if (data.results.length > 1) {
     console.log(data);
     updateHeroSection(data.results[randomMovie()]);
@@ -55,51 +52,12 @@ function updateHeroSection(movie) {
   refs.heroSection.innerHTML = '';
   refs.heroSection.insertAdjacentHTML('beforeend', movieHtml);
 
-  const openModalBtnHero = document.getElementById('hero-trailer-btn');
-  const closeModalBtnHero = document.querySelector('[data-hero-modal-close]');
-  const modalHero = document.querySelector('[data-hero-modal]');
-  const playerContainer = document.getElementById('player-container');
-  const errorModalHero = document.querySelector('.hero-modal-message.error');
+  const openModalBtn = document.getElementById('hero-trailer-btn');
+  const closeModalBtn = document.querySelector('[data-hero-modal-close]');
 
-  openModalBtnHero.addEventListener('click', () => openModalHero(movie));
-  closeModalBtnHero.addEventListener('click', closeModalHero);
+  openModalBtn.addEventListener('click', () => openModal(movie));
+  closeModalBtn.addEventListener('click', closeModal);
   document.addEventListener('keydown', handleKeyDown);
-
-  async function openModalHero(movie) {
-    const trailerKey = await getMovieTrailer(movie.id);
-    if (trailerKey) {
-      playerContainer.innerHTML = '';
-
-      // Создаем свой плеер для вставки трейлера
-      const player = document.createElement('iframe');
-      player.src = `https://www.youtube.com/embed/${trailerKey}`;
-      player.allowFullscreen = true;
-
-      player.classList.add('player');
-      playerContainer.appendChild(player);
-
-      openModalBtnHero.addEventListener('click', openModalHero, { passive: true });
-      closeModalBtnHero.addEventListener('click', closeModalHero, { passive: true });
-
-      modalHero.classList.remove('is-hidden');
-    } else {
-      // Показываем модальное окно с ошибкой
-      errorModalHero.classList.remove('is-hidden');
-      modalHero.classList.remove('is-hidden');
-    }
-  }
-
-  function closeModalHero() {
-    modalHero.classList.add('is-hidden');
-
-    // Очищаем плеер
-    playerContainer.innerHTML = '';
-
-    errorModalHero.classList.add('is-hidden');
-
-    openModalBtnHero.removeEventListener('click', openModalHero, { passive: true });
-    closeModalBtnHero.removeEventListener('click', closeModalHero, { passive: true });
-  }
 }
 
 function renderOneTrendsMovie(movie) {
@@ -113,7 +71,6 @@ function renderOneTrendsMovie(movie) {
       <div class="hero-rendered-wrap">
         <h1 class="hero-default-tille rendered" data-id="${movie.id}">${movie.original_title}</h1>
         <div class="hero-star">
-          <!-- <div class="rating-bg" aria-hidden="true">★★★★★</div> -->
           <div class="rating" data-rating="4.5" aria-hidden="true">★★★★★</div>
         </div>
         <p class="hero-default-text rendered">
@@ -142,28 +99,10 @@ function renderOneTrendsMovie(movie) {
 </section>`;
 }
 
-
-
-
-// Запрос трейлера фильма по его идентификатору
-async function getMovieTrailer(movieId) {
-  try {
-    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
-      params: {
-        api_key: KEY,
-      },
-    });
-
-    const videos = response.data.results;
-    const trailer = videos.find((video) => video.type === 'Trailer');
-
-    if (trailer) {
-      return trailer.key;
-    } else {
-      return null;
-    }
-  } catch (error) {
-    console.error('Failed to get movie trailer:', error);
-    return null;
+async function handleKeyDown(event) {
+  if (event.key === 'Escape') {
+    closeModal();
   }
 }
+
+doTryOrCatch();
