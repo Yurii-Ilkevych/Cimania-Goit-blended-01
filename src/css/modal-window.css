@@ -9,7 +9,7 @@
   padding: 52px 16px;
   width: 280px;
   height: 847px;
-  transform: translate(-50%, -50%) scale(0.5);
+  transform: translate(-50%, -50%) scale(1);
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--color-background);
@@ -185,7 +185,6 @@
   font-size: 14px;
   line-height: 1.14;
   display: flex;
-  vertical-align: top;
   color: var(--color-white);
   overflow-x: hidden;
 }
@@ -361,7 +360,6 @@ html {
 
   .gerne-data-pop-modal {
     width: 129px;
-    height: 16px;
     align-items: start;
   }
 
@@ -467,9 +465,7 @@ html {
 
   .gerne-data-pop-modal {
     width: 148px;
-    height: 19px;
     margin-left: 108px;
-    align-items: center;
   }
 
   .about-pop-modal-text {
