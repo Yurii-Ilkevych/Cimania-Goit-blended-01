@@ -7,8 +7,8 @@ const refs = {
 
 // overflow hidden
 
-const onOpenModal = e => {
-  e.preventDefault();
+const onOpenModal = evt => {
+  evt.preventDefault();
   refs.devModal.classList.remove('is-hidden');
 
   const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
@@ -21,6 +21,7 @@ const onOpenModal = e => {
   body.style.right = '0px';
   body.style.top = `-${scrollY}`;
 };
+
 const onCloseModal = () => {
   const body = document.body;
 
@@ -34,6 +35,7 @@ const onCloseModal = () => {
 
   refs.devModal.classList.add('is-hidden');
 };
+
 window.addEventListener('scroll', () => {
   document.documentElement.style.setProperty(
     '--scroll-y',
@@ -41,40 +43,22 @@ window.addEventListener('scroll', () => {
   );
 });
 
-// Open Modal
-
-// function onOpenModal(evt) {
-//   evt.preventDefault();
-
-//   document.body.classList.add('dev-open');
-//   refs.devModal.classList.remove('is-hidden');
-//   window.addEventListener('keydown', onEscKeyPress);
-// }
-
-// // Close Modal
-
-// function onCloseModal() {
-//   document.body.classList.remove('dev-open');
-//   refs.devModal.classList.add('is-hidden');
-//   window.removeEventListener('keydown', onEscKeyPress);
-// }
-
 // On Escape Press
 
-function onEscKeyPress(evt) {
+const onEscKeyPress = evt => {
   const isEscKey = evt.code === 'Escape';
   if (isEscKey) {
     onCloseModal();
   }
-}
+};
 
 // On Overlay Click
 
-function onOverlayClick(evt) {
+const onOverlayClick = evt => {
   if (evt.currentTarget === evt.target) {
     onCloseModal();
   }
-}
+};
 
 refs.openModalBtn.addEventListener('click', onOpenModal);
 refs.closeModalBtn.addEventListener('click', onCloseModal);
