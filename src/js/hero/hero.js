@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { KEY } from '../API';
-import { openModal, closeModal, getMovieTrailer } from '../trailler-movie/trailler-movie';
+import { openTrailerModal, closeTrailerModal, handleTrailerModalKeyDown } from '../trailler-movie/trailler-movie';
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
@@ -19,7 +19,7 @@ const options = {
   },
 };
 
-async function fetchTrendsFilm() {
+async function fetchTrendingMovies() {
   const response = await axios.get(
     'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
     options
@@ -27,19 +27,19 @@ async function fetchTrendsFilm() {
   return response;
 }
 
-async function doTryOrCatch() {
+async function handleTryCatch() {
   try {
-    const trendsMovies = await fetchTrendsFilm();
-    console.log(trendsMovies);
-    console.log(trendsMovies.data.results.length);
-    if (trendsMovies.status !== 200) {
+    const trendingMovies = await fetchTrendingMovies();
+    console.log(trendingMovies);
+    console.log(trendingMovies.data.results.length);
+    if (trendingMovies.status !== 200) {
       throw new Error();
     }
-    choiseRender(trendsMovies.data);
+    chooseRender(trendingMovies.data);
   } catch (error) {}
 }
 
-function choiseRender(data) {
+function chooseRender(data) {
   if (data.results.length > 1) {
     console.log(data);
     updateHeroSection(data.results[randomMovie()]);
@@ -48,19 +48,19 @@ function choiseRender(data) {
 
 function updateHeroSection(movie) {
   console.log(movie);
-  const movieHtml = renderOneTrendsMovie(movie);
+  const movieHtml = renderTrendingMovie(movie);
   refs.heroSection.innerHTML = '';
   refs.heroSection.insertAdjacentHTML('beforeend', movieHtml);
 
-  const openModalBtn = document.getElementById('hero-trailer-btn');
+  const openTrailerBtn = document.getElementById('hero-trailer-btn');
   const closeModalBtn = document.querySelector('[data-hero-modal-close]');
 
-  openModalBtn.addEventListener('click', () => openModal(movie));
-  closeModalBtn.addEventListener('click', closeModal);
-  document.addEventListener('keydown', handleKeyDown);
+  openTrailerBtn.addEventListener('click', () => openTrailerModal(movie));
+  closeModalBtn.addEventListener('click', closeTrailerModal);
+  document.addEventListener('keydown', handleTrailerModalKeyDown);
 }
 
-function renderOneTrendsMovie(movie) {
+function renderTrendingMovie(movie) {
   console.log(movie);
   return `<section
   class="hero-rendered"
@@ -99,10 +99,4 @@ function renderOneTrendsMovie(movie) {
 </section>`;
 }
 
-async function handleKeyDown(event) {
-  if (event.key === 'Escape') {
-    closeModal();
-  }
-}
-
-doTryOrCatch();
+handleTryCatch();
