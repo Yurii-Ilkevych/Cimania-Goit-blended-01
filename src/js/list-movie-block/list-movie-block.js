@@ -13,21 +13,15 @@ export function createMarkup(resp, genres) {
     ) => {
         backdrop_path === null ? backdrop_path = '/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg' : backdrop_path;
         release_date !== undefined ? release_date = release_date.split('').slice(0, 4).join('') : release_date = 'No date';
-        if(title === undefined) title = 'No name';
+        title === undefined ? title = 'NO NAME' : title = title.toUpperCase();
 
-        function findGenre(genre, arr) {
-            let genreName = '';
-            const xxx = arr.map(el => {
-            if (el.id === genre) {
-                genreName = el.name;
-            }
-            });
-            return genreName;
-        }
         const firstGenreToFind = genre_ids[0];
         const secondGenreToFind = genre_ids[1];
         const firstGenre = findGenre(firstGenreToFind, genres);
         const secondGenre = findGenre(secondGenreToFind, genres);
+        
+        const movieRating = rating(vote_average);
+        const screenReaderMovieRating = ratingScreen(vote_average);
         
         return (
         markup +
@@ -39,8 +33,19 @@ export function createMarkup(resp, genres) {
                     <div><h3 class="list-movie-block-title">${title}</h3>
                         <p class="list-movie-block-text">${firstGenre} ${secondGenre} | <span class="list-movie-block-span">${release_date}</span></p>
                     </div>
-                    <div class="list-movie-block-rating"></div>
                 </div>
+                <p class="list-movie-block-rating" aria-label="${screenReaderMovieRating} stars out of 5" style="background: linear-gradient(
+                    to right,
+                    var(--color-orange),
+                    var(--color-orange),
+                    ${movieRating}%,
+                    var(--color-gray-white-theme) 1%,
+                    var(--color-gray-white-theme) 99%
+                    );
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    color: rgba(0, 0, 0, 0);
+                    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2)">★★★★★</p>
             </div>
         </a>
     </li>`
@@ -52,3 +57,21 @@ export function createMarkup(resp, genres) {
 export function renderMarkup(markup) { 
     refsList.listMovieBlockList.insertAdjacentHTML("beforeend", markup);
 };
+
+function findGenre(genre, arr) {
+    let genreName = '';
+    const xxx = arr.map(el => {
+    if (el.id === genre) {
+        genreName = el.name;
+    }
+    });
+    return genreName;
+}
+
+function rating(data) {
+    return Math.round(data * 10);
+}
+
+function ratingScreen(data) {
+    return Math.round((data / 2) * 10) / 10;
+}
