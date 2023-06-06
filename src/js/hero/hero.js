@@ -1,8 +1,5 @@
-
 import axios from 'axios';
 import { KEY } from '../API';
-
-
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
@@ -12,7 +9,7 @@ const randomMovie = () => {
   return Math.floor(Math.random() * (19 - 0 + 1)) + 0;
 };
 
-// Настройка запита
+// Настройка запиту
 const options = {
   method: 'GET',
   headers: {
@@ -22,7 +19,7 @@ const options = {
   },
 };
 
-//  запит до серверу
+// Запит до серверу
 async function fetchTrendsFilm() {
   const response = await axios.get(
     'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
@@ -41,11 +38,11 @@ async function doTryOrCatch() {
     if (trendsMovies.status !== 200) {
       throw new Error();
     }
-    choiseRender(trendsMovies.data);
+    chooseRender(trendsMovies.data);
   } catch (error) {}
 }
 
-function choiseRender(data) {
+function chooseRender(data) {
   if (data.results.length > 1) {
     console.log(data);
     updateHeroSection(data.results[randomMovie()]);
@@ -58,58 +55,50 @@ function updateHeroSection(movie) {
   refs.heroSection.innerHTML = '';
   refs.heroSection.insertAdjacentHTML('beforeend', movieHtml);
 
-  const openModalBtn = document.getElementById('hero-trailer-btn');
-  const closeModalBtn = document.querySelector('[data-hero-modal-close]');
-  const modal = document.querySelector('[data-hero-modal]');
+  const openModalBtnHero = document.getElementById('hero-trailer-btn');
+  const closeModalBtnHero = document.querySelector('[data-hero-modal-close]');
+  const modalHero = document.querySelector('[data-hero-modal]');
   const playerContainer = document.getElementById('player-container');
-  const errorModal = document.querySelector('.hero-modal-message.error');
+  const errorModalHero = document.querySelector('.hero-modal-message.error');
 
-  openModalBtn.addEventListener('click', () => openModal(movie));
-  closeModalBtn.addEventListener('click', closeModal);
+  openModalBtnHero.addEventListener('click', () => openModalHero(movie));
+  closeModalBtnHero.addEventListener('click', closeModalHero);
   document.addEventListener('keydown', handleKeyDown);
 
-  async function openModal(movie) {
+  async function openModalHero(movie) {
     const trailerKey = await getMovieTrailer(movie.id);
     if (trailerKey) {
-      playerContainer.innerHTML = ''; 
+      playerContainer.innerHTML = '';
 
       // Создаем свой плеер для вставки трейлера
       const player = document.createElement('iframe');
       player.src = `https://www.youtube.com/embed/${trailerKey}`;
       player.allowFullscreen = true;
-      
-      player.classList.add('player'); 
+
+      player.classList.add('player');
       playerContainer.appendChild(player);
 
+      openModalBtnHero.addEventListener('click', openModalHero, { passive: true });
+      closeModalBtnHero.addEventListener('click', closeModalHero, { passive: true });
 
-          
-      openModalBtn.addEventListener('click', () => openModal(movie), { passive: true });
-      closeModalBtn.addEventListener('click', closeModal, { passive: true });
- 
-
-   
-      modal.classList.remove('is-hidden');
+      modalHero.classList.remove('is-hidden');
     } else {
       // Показываем модальное окно с ошибкой
-      errorModal.classList.remove('is-hidden');
-      modal.classList.remove('is-hidden');
+      errorModalHero.classList.remove('is-hidden');
+      modalHero.classList.remove('is-hidden');
     }
   }
 
-  function closeModal() {
-  
-    modal.classList.add('is-hidden');
+  function closeModalHero() {
+    modalHero.classList.add('is-hidden');
 
     // Очищаем плеер
     playerContainer.innerHTML = '';
 
- 
-    errorModal.classList.add('is-hidden');
+    errorModalHero.classList.add('is-hidden');
 
-
-    
-  openModalBtn.removeEventListener('click', () => openModal(movie), { passive: true });
-  closeModalBtn.removeEventListener('click', closeModal, { passive: true });
+    openModalBtnHero.removeEventListener('click', openModalHero, { passive: true });
+    closeModalBtnHero.removeEventListener('click', closeModalHero, { passive: true });
   }
 }
 
@@ -156,11 +145,6 @@ function renderOneTrendsMovie(movie) {
 
 
 
-
-
-
-
-
 // Запрос трейлера фильма по его идентификатору
 async function getMovieTrailer(movieId) {
   try {
@@ -183,4 +167,3 @@ async function getMovieTrailer(movieId) {
     return null;
   }
 }
-
