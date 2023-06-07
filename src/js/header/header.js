@@ -13,9 +13,6 @@ refs.navMenuBtn.addEventListener('click', onMenuBtnClick);
 refs.backdropEl.addEventListener('click', onBackdropClick);
 refs.themeChangerEl.addEventListener('change', onThemeChange);
 
-//  refs.homeLinkEl.forEach(link => {
-//    link.classList.remove('active');
-//  });
 addActiveClass();
 themeSetup();
 
@@ -35,16 +32,6 @@ function mobileMenuToggle() {
   refs.mobMenuEl.classList.toggle('shown');
 }
 
-// function onThemeChange(e) {
-//   if (refs.themeChangerEl.checked) {
-//     document.body.setAttribute("light", "");
-//     localStorage.setItem("ui-theme", "light");
-//   } else { 
-//     document.body.removeAttribute("light");
-//     localStorage.removeItem("ui-theme");
-//   }
-// }
-
 function onThemeChange(e) {
   if (refs.themeChangerEl.checked) {
     document.documentElement.setAttribute('light', '');
@@ -57,7 +44,6 @@ function onThemeChange(e) {
 
 function themeSetup() { 
   if (localStorage.getItem("ui-theme") === "light") { 
-    document.documentElement.setAttribute('light', '');
     refs.themeChangerEl.checked = true;
   }
 } 

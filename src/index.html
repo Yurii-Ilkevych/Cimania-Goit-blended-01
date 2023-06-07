@@ -5,6 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="Frame770814.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <script>
+      let localS = localStorage.getItem("ui-theme");
+      if (localS === "light") {
+        document.documentElement.setAttribute("light", "light");
+      }
+    </script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"

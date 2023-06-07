@@ -99,6 +99,10 @@
   background-color: var(--color-white);
 }
 
+[light] .changer-btn {
+  right: 28px;
+}
+
 [light] .modal-trailer,
 [light] .mobile-menu {
   background-color: var(--color-secondary-text);
@@ -314,6 +318,9 @@
     right: 39px;
   }
 
+  [light] .changer-btn {
+  right: 39px;
+}
   .changer-btn {
     height: 18px;
     width: 18px;
