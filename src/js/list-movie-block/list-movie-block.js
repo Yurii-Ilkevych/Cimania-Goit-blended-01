@@ -1,5 +1,3 @@
-import { genreFetch } from "../search-string-block/search-string-block";
-
 export const refsList = {
     listMovieBlockOops: document.querySelector('.list-movie-block-oops'),
     listMovieBlockList: document.querySelector('.list-movie-block-list'), 
