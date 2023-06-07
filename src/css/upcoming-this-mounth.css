@@ -140,6 +140,13 @@
     border-color: var(--color-orange);
 } */
 
+.add-to-my-library:hover {
+    color: var(--color-orange);
+    background: var(--color-white);
+    border: 1px solid;
+    border-color: var(--color-orange);
+} 
+
 @media screen and (max-width: 767px) {
   .upcoming-film-img {
     object-fit: cover;
