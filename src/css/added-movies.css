@@ -26,10 +26,22 @@
   overflow: hidden;
 }
 
+.card-poster:hover {
+  box-shadow: 5px 5px 10px #f84119;
+  cursor: pointer;
+}
+
+.title-poster {
+  margin-bottom: 8px;
+}
+
 .card-poster img {
   object-fit: cover;
 }
-
+.info-about-post {
+  text-transform: capitalize;
+  color: var(--color-gray);
+}
 .poster-info {
   position: absolute;
   bottom: 12px;
@@ -39,11 +51,7 @@
   font-size: 12px;
   line-height: 1.67;
   text-transform: uppercase;
-}
-
-.info-about-post {
-  text-transform: capitalize;
-  color: var(--color-gray);
+  pointer-events: none;
 }
 
 .library-txt-info {

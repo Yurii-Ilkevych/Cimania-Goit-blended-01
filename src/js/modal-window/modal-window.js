@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { changeLibrary } from '../added-movies/added-movies';
 // ------------------Закриття та відкриття модалки---------------
 
 const refs = {
@@ -15,7 +15,7 @@ refs.modal.addEventListener('click', stopPropagation);
 refs.modalWindow.addEventListener('click', stopPropagation);
 
 let movieID;
-let movieDataFetched = false; 
+let movieDataFetched = false;
 
 export function openModal(id) {
   movieID = id;
@@ -32,6 +32,7 @@ function closeModal() {
   refs.modal.classList.add('is-hidden');
   document.removeEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = '';
+  changeLibrary();
 }
 
 function handleKeyPress(event) {
