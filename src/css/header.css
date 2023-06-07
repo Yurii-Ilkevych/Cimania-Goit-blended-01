@@ -65,7 +65,9 @@
 .changer-btn {
   position: absolute;
   right: 3px;
-  z-index: 5;
+  z-index: 2;
+  width: 13.9px;
+  height: 13.6px;
   transition: all 300ms linear;
 }
 
@@ -90,18 +92,39 @@
   z-index: 1;
 }
 
-[light] {
+[light] body,
+[light] .pop-modal,
+[light] .modal-add-btn,
+[light] .modal-remove-btn {
   background-color: var(--color-white);
+}
+
+[light] .modal-trailer,
+[light] .mobile-menu {
+  background-color: var(--color-secondary-text);
+}
+
+[light] .modal-add-btn:hover,
+[light] .modal-add-btn:focus,
+[light] .modal-remove-btn:hover,
+[light] .modal-remove-btn:focus {
+  background-color: var(--color-background);
 }
 
 [light] .logo-text,
 [light] .info-votes-value-white-wrap p,
-[light] .upcoming-film-description-text {
+[light] .upcoming-film-description-text,
+[light] .vote-data-pop-modal,
+[light] .votes-data-pop-modal,
+[light] .popularity-data-pop-modal,
+[light] .gerne-data-pop-modal,
+[light] .about-pop-modal-description {
   color: var(--color-secondary-black);
 }
 
 [light] .nav-list,
 [light] .nav-menu-btn,
+[light] .search-string-block-input,
 [light] .search-string-block-input::placeholder {
   color: var(--color-gray-white-theme);
 }
@@ -110,7 +133,12 @@
   stroke: var(--color-gray-white-theme);
 }
 
-[light] .search-string-block-btn > svg {
+[light] .modal-close-icon {
+  stroke: var(--color-secondary-black);
+}
+
+[light] .search-string-block-btn > svg,
+[light] .modal-close-icon-trailer {
   stroke: var(--color-background);
 }
 
@@ -125,7 +153,15 @@
 [light] .upcoming-film-description-title,
 [light] .weekly-trends__title,
 [light] .list-movie-block-oops,
-[light] .library-txt-info {
+[light] .library-txt-info,
+[light] .mobile-menu-link,
+[light] .name-film-pop-modal,
+[light] .vote-votes-pop-modal-text,
+[light] .popularity-pop-modal-text,
+[light] .gerne-pop-modal-text,
+[light] .about-pop-modal-text,
+[light] .modal-add-btn,
+[light] .modal-remove-btn {
   color: var(--color-background);
 }
 
@@ -134,8 +170,16 @@
   color: var(--color-background);
 }
 
+[light] .mobile-menu-backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+[light] .modal-developers {
+  background-color: var(--color-secondary-text);
+  color: var(--color-secondary-black);
+}
 /* --- MOBILE-MENU --- */
-.backdrop {
+.mobile-menu-backdrop {
   position: fixed;
   z-index: 99;
   top: 0;
@@ -187,7 +231,7 @@
 }
 
 .mobile-menu-link {
-  font-style: 14px;
+  font-size: 14px;
   line-height: calc(16 / 14);
   font-weight: 400;
   color: var(--color-gray);
@@ -195,7 +239,8 @@
 
 /* .mobile-menu-link:hover,
 .mobile-menu-link:focus, */
-.active {
+.active,
+[light] .mobile-menu-link.active {
   color: var(--color-orange);
 }
 

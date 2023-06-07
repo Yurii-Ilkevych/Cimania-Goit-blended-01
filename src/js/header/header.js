@@ -1,6 +1,6 @@
 const refs = {
   navMenuBtn: document.querySelector('.nav-menu-btn'),
-  backdropEl: document.querySelector('.backdrop'),
+  backdropEl: document.querySelector('.mobile-menu-backdrop'),
   mobMenuEl: document.querySelector('.mobile-menu'),
   logoTextEl: document.querySelector('.logo-text'),
   homeLinkEl: document.querySelectorAll('.home-link'),
@@ -19,16 +19,12 @@ refs.themeChangerEl.addEventListener('change', onThemeChange);
 addActiveClass();
 themeSetup();
 
-console.log(document.body);
-
-console.dir(refs.themeChangerEl.checked);
-
 function onMenuBtnClick(e) {
   mobileMenuToggle();
 }
 
 function onBackdropClick(e) {
-  if (!e.target.classList.contains('backdrop')) {
+  if (!e.target.classList.contains('mobile-menu-backdrop')) {
     return;
   }
   mobileMenuToggle();
@@ -39,19 +35,29 @@ function mobileMenuToggle() {
   refs.mobMenuEl.classList.toggle('shown');
 }
 
+// function onThemeChange(e) {
+//   if (refs.themeChangerEl.checked) {
+//     document.body.setAttribute("light", "");
+//     localStorage.setItem("ui-theme", "light");
+//   } else { 
+//     document.body.removeAttribute("light");
+//     localStorage.removeItem("ui-theme");
+//   }
+// }
+
 function onThemeChange(e) {
   if (refs.themeChangerEl.checked) {
-    document.body.setAttribute("light", "");
-    localStorage.setItem("ui-theme", "light");
-  } else { 
-    document.body.removeAttribute("light");
-    localStorage.removeItem("ui-theme");
+    document.documentElement.setAttribute('light', '');
+    localStorage.setItem('ui-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('light');
+    localStorage.removeItem('ui-theme');
   }
 }
 
 function themeSetup() { 
   if (localStorage.getItem("ui-theme") === "light") { 
-    document.body.setAttribute('light', '');
+    document.documentElement.setAttribute('light', '');
     refs.themeChangerEl.checked = true;
   }
 } 
