@@ -22,7 +22,7 @@ export function openModal(id) {
   refs.modal.classList.remove('is-hidden');
   document.addEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = 'hidden';
-
+  console.log(movieDataFetched);
   if (!movieDataFetched) {
     fetchMovieDetails(movieID);
   }
@@ -48,13 +48,15 @@ function stopPropagation(event) {
 // -------------------------API----------------------------
 
 const API_KEY_KOV = 'c8c2a74c43d87203307f2db942752251';
-const imgBlock = document.querySelector('.container-all');
-const movieBlock = document.querySelector('.container-item');
+const imgBlock = document.querySelector('.container-img');
+//const movieBlock = document.querySelector('.container-item');
+const movieBlock = document.querySelector('.container-item-render');
 
 const addToLibraryButton = document.querySelector('.modal-add-btn');
 const removeToLibraryButton = document.querySelector('.modal-remove-btn');
 
 function fetchMovieDetails(movieID) {
+  console.log(movieID);
   const URL_KOV = `https://api.themoviedb.org/3/movie/${movieID}`;
 
   axios
@@ -69,14 +71,14 @@ function fetchMovieDetails(movieID) {
       const genre = movieData.genres.map(genre => genre.name).join(' ');
       const overview = movieData.overview;
       const release_date = movieData.release_date;
-      
 
+      //const getImg = `<div class="container-img"><img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" /></div>`
 
-      const getImg = `<div class="container-img">
-        <img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />
-      </div>`;
+      const getImg = `<img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />`;
 
-      imgBlock.insertAdjacentHTML('afterbegin', getImg);
+      imgBlock.innerHTML = getImg;
+
+      //imgBlock.insertAdjacentHTML('afterbegin', getImg);
 
       const getMovie = `<h2 class="name-film-pop-modal">${movieTitle}</h2>
         <div class="vote-votes-pop-modal-container">
@@ -102,7 +104,9 @@ function fetchMovieDetails(movieID) {
           ${overview}
         </div>`;
 
-      movieBlock.insertAdjacentHTML('afterbegin', getMovie);
+      movieBlock.innerHTML = getMovie;
+
+      //movieBlock.insertAdjacentHTML('afterbegin', getMovie);
 
       // -------------------------LOCAL STORAGE-----------------
       const movieObject = {
@@ -149,7 +153,8 @@ function fetchMovieDetails(movieID) {
       });
 
       toggleButtons();
-      movieDataFetched = true;
+      
+      //movieDataFetched = true;
     })
     .catch(error => {
       console.error(error);
