@@ -63,7 +63,6 @@ function themeSetup() {
 } 
 
 function addActiveClass() {
-  console.log(window.location.pathname.includes('index.html'))
   if (window.location.pathname.includes('index.html')) {
     refs.homeLinkEl.forEach(link => {
       link.classList.add('active');

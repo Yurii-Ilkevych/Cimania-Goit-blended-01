@@ -30,6 +30,7 @@ export function changeLibrary() {
 }
 
 function addEventListenerForGallery(){
+  
   if (!window.location.pathname.includes('my-library.html')){
     return
   }
@@ -40,7 +41,7 @@ function addEventListenerForGallery(){
 
 function opnModalWindow(e) {
   const elementClick = e.target.parentNode;
-  if (elementClick.nodeName !== 'DIV') {
+  if (elementClick.nodeName !== 'LI') {
     return;
   }
   const idCard = elementClick.id;

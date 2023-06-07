@@ -22,7 +22,6 @@ export function openModal(id) {
   refs.modal.classList.remove('is-hidden');
   document.addEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = 'hidden';
-  console.log(movieDataFetched);
   if (!movieDataFetched) {
     fetchMovieDetails(movieID);
   }
@@ -58,7 +57,6 @@ const addToLibraryButton = document.querySelector('.modal-add-btn');
 const removeToLibraryButton = document.querySelector('.modal-remove-btn');
 
 function fetchMovieDetails(movieID) {
-  console.log(movieID);
   const URL_KOV = `https://api.themoviedb.org/3/movie/${movieID}`;
 
   axios
