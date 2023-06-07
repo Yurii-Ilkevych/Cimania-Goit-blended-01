@@ -8,8 +8,11 @@ const select = document.querySelector('.select');
 const galleryList = document.querySelector('.library-gallery');
 
 changeLibrary();
-
+addEventListenerForGallery()
 export function changeLibrary() {
+  if (!window.location.pathname.includes('my-library.html')){
+    return
+  }
   const dataFilm = load('movies') || [];
   if (dataFilm === undefined || dataFilm.length === 0) {
     if (firstBox.classList.contains('is-hidden')) {
@@ -26,7 +29,14 @@ export function changeLibrary() {
   }
 }
 
-galleryList.addEventListener('click', opnModalWindow);
+function addEventListenerForGallery(){
+  if (!window.location.pathname.includes('my-library.html')){
+    return
+  }
+  galleryList.addEventListener('click', opnModalWindow);
+}
+
+
 
 function opnModalWindow(e) {
   const elementClick = e.target.parentNode;
