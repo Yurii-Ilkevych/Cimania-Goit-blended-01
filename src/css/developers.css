@@ -15,14 +15,14 @@
   z-index: 3;
 }
 
-.backdrop-developers.is-hidden {
+.backdrop-developers.hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.backdrop-developers.is-hidden .modal-developers {
+.backdrop-developers.hidden .modal-developers {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.7);
   transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
