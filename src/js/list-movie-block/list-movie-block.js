@@ -52,7 +52,8 @@ export function createMarkup(resp, genres) {
 };
 
 
-export function renderMarkup(markup) { 
+export async function renderMarkup(markup) { 
+    refsList.listMovieBlockList.innerHTML = '';
     refsList.listMovieBlockList.insertAdjacentHTML("beforeend", markup);
 };
 

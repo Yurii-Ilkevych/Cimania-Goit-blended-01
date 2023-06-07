@@ -2,7 +2,7 @@ import axios from 'axios';
 import { refsList } from '../list-movie-block/list-movie-block';
 import { createMarkup } from '../list-movie-block/list-movie-block';
 import { renderMarkup } from '../list-movie-block/list-movie-block';
-
+import { createPagination } from '../pagination-block/pagination-block';
 const refs = {
     searchStringBlockForm: document.querySelector('.search-string-block-form'),
 };
@@ -19,19 +19,21 @@ const options = {
     }
 };
 
-
 document.addEventListener('DOMContentLoaded', onLoadTrends);
 
-async function onLoadTrends() {
+export async function onLoadTrends() {
     try {
-        const resp = await fetchTrends();
-        const genres = await genreFetch();
+        const resp = await fetchTrends(page);
+        const genres = await genreFetch(page);
 
         if (resp.length === 0) {
             refsList.listMovieBlockOops.textContent = 'Sorry, we did not find any movies.'
         }
         addDisplayNone();
-        const markup = createMarkup(resp, genres);
+        const markup = createMarkup(resp.data.results, genres);
+
+
+        createPagination(resp.data.total_pages, resp.data.page, "fetchTrends")
         renderMarkup(markup);
     } catch (error ) {
         console.log(error);
@@ -42,7 +44,7 @@ async function onLoadTrends() {
 
 refs.searchStringBlockForm.addEventListener('submit', onSearchSubmit);
 
-async function onSearchSubmit(e) {
+  function onSearchSubmit(e) {
     e.preventDefault();
     value = e.target[0].value.trim();
     onClearInput();
@@ -50,42 +52,43 @@ async function onSearchSubmit(e) {
     refsList.listMovieBlockList.innerHTML = '';
 
     if(value === '') {
-        refsList.listMovieBlockOops.textContent = 'You have not entered search text.';
+        refsList.listMovieBlockOops.textContent = 'You have not entered search text.';   
     } 
-    try {
-        const genres = await genreFetch();
-        const resp = await fetchFilmByValue(value);
+    callFetchFilmByValue()
+};
 
-        if (resp.length === 0) {
+export async function callFetchFilmByValue(){
+    try {
+        const genres = await genreFetch(page);
+        const resp = await fetchFilmByValue(value, page);
+
+        if (resp.data.results.length === 0) {
             removeDisplayNone();
-        } else if (resp.length >= 1)
+        } else if (resp.data.results.length >= 1)
         addDisplayNone();
-        const markup = createMarkup(resp, genres);
+        const markup = createMarkup(resp.data.results, genres);
+
+        createPagination(resp.data.total_pages, resp.data.page, "fetchFilmByValue")
         renderMarkup(markup);
     } catch (error) {
         console.log(error);
     }
-};
-
-async function fetchTrends() {
-    const response = await axios.get(
-        `https://api.themoviedb.org/3/trending/all/week?language=en-US&api_key=${API_KEY_V}`,
-    options
-    );
-    return response.data.results;
 }
 
-async function fetchFilmByValue(value) {
+
+
+async function fetchTrends(page) {
     const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=true&language=en-US&page=1&api_key=${API_KEY_V}`,
+        `https://api.themoviedb.org/3/trending/all/week?language=en-US&api_key=${API_KEY_V}&page=${page}`,
     options
     );
-    return response.data.results;
+    return response;
+    
 }
 
-export async function genreFetch() {
+export async function genreFetch(page) {
     const response = await axios.get(
-        `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${API_KEY_V}`,
+        `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${API_KEY_V}&page=${page}`,
     options
     );
     const genres = response.data.genres;
@@ -93,8 +96,21 @@ export async function genreFetch() {
 }
 
 
+
+
+async function fetchFilmByValue(value, page) {
+    const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=true&language=en-US&page=${page}&api_key=${API_KEY_V}`,
+    options
+    );
+    return response;
+}
+
+
+
 function onClearInput() {
     refs.searchStringBlockForm.reset();
+    page = 1
 };
 
 function removeDisplayNone() {
@@ -106,4 +122,6 @@ function addDisplayNone() {
 };
 
 
-
+export function countPage(newPage){
+page = newPage
+}
