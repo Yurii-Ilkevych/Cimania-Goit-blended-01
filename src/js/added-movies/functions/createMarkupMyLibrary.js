@@ -1,6 +1,6 @@
 export function createMarkupMyLibrary(arrayFilmsFromLocale) {
   return arrayFilmsFromLocale.reduce((markupPost, objCard) => {
-
+const year = getDate(objCard.release_date)
  const genre = getGanre(objCard.genre)
     const movieRating = rating(objCard.rating);
     const screenReaderMovieRating = ratingScreen(objCard.rating);
@@ -8,7 +8,7 @@ export function createMarkupMyLibrary(arrayFilmsFromLocale) {
       markupPost +
       `<li id="${objCard.movieID}"><div  class="card-poster">
 	<img src="https://image.tmdb.org/t/p/original/${objCard.posterPath}" width="280px" alt="${objCard.overview}" />
-	<div class="poster-info"><h3 class="title-poster">${objCard.movieTitle}</h3><p class="info-about-post">${[...genre]} | <span>Year</span></p></div>
+	<div class="poster-info"><h3 class="title-poster">${objCard.movieTitle}</h3><p class="info-about-post">${[...genre]} | <span>${year}</span></p></div>
   <p class="list-movie-block-rating" aria-label="${screenReaderMovieRating} stars out of 5" style="background: linear-gradient(
     to right,
     var(--color-orange),
@@ -40,9 +40,19 @@ export function createMarkupMyLibrary(arrayFilmsFromLocale) {
   }
 
 function getGanre(genre){
+if(genre){
+  return genre.split(" ").slice(0, 2)
+}
+return ["No genre"]
 
-return genre.split(" ").slice(0, 2)
 
+}
+
+function getDate(data){
+  if(data){
+    return data.slice(0, 4)
+  }
+  return "No date"
 }
 
 
