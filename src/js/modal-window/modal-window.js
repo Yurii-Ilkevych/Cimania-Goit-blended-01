@@ -33,6 +33,8 @@ function closeModal() {
   document.removeEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = '';
   changeLibrary();
+  imgBlock.innerHTML = '';
+  movieBlock.innerHTML = '';
 }
 
 function handleKeyPress(event) {
@@ -153,7 +155,7 @@ function fetchMovieDetails(movieID) {
       });
 
       toggleButtons();
-      
+
       //movieDataFetched = true;
     })
     .catch(error => {
