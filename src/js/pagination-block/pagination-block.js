@@ -10,7 +10,6 @@ export function createPagination(totalPage, currentPage, key){
         itemsPerPage: 20,
         visiblePages: 3,
         page: currentPage,
-      
         template: { 
           usageStatistics: false,
           page: '<a href="#" class="tui-page-btn important-page">{{page}}</a>',
@@ -49,7 +48,7 @@ export function createPagination(totalPage, currentPage, key){
 
 async function doCall(page, key){
 await countPage(page)
-window.scrollTo(0, 0)
+window.scrollTo(0, 450)
 if(key === "fetchTrends"){
     onLoadTrends()
 }else if(key === "fetchFilmByValue"){
