@@ -2,7 +2,6 @@ export function createMarkupMyLibrary(arrayFilmsFromLocale) {
   return arrayFilmsFromLocale.reduce((markupPost, objCard) => {
 
  const genre = getGanre(objCard.genre)
- console.log(genre);
     const movieRating = rating(objCard.rating);
     const screenReaderMovieRating = ratingScreen(objCard.rating);
     return (
