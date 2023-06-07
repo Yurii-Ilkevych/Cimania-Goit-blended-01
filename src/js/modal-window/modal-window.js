@@ -67,6 +67,9 @@ function fetchMovieDetails(movieID) {
       const popularity = Number(movieData.popularity.toFixed(1));
       const genre = movieData.genres.map(genre => genre.name).join(' ');
       const overview = movieData.overview;
+      const release_date = movieData.release_date;
+      
+
 
       const getImg = `<div class="container-img">
         <img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />
@@ -110,6 +113,7 @@ function fetchMovieDetails(movieID) {
         popularity,
         genre,
         overview,
+        release_date,
       };
 
       const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
