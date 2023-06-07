@@ -1,30 +1,35 @@
+import { openModal } from '../modal-window/modal-window'; // Igor
+
 export const refsList = {
-    listMovieBlockOops: document.querySelector('.list-movie-block-oops'),
-    listMovieBlockList: document.querySelector('.list-movie-block-list'), 
+  listMovieBlockOops: document.querySelector('.list-movie-block-oops'),
+  listMovieBlockList: document.querySelector('.list-movie-block-list'),
 };
 
 export function createMarkup(resp, genres) {
-    return resp.reduce(
+  return resp.reduce(
     (
-        markup,
-        { backdrop_path, title, genre_ids, release_date, vote_average, }
+      markup,
+      { backdrop_path, title, genre_ids, release_date, vote_average, id } // Igor
     ) => {
-        backdrop_path === null ? backdrop_path = '/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg' : backdrop_path;
-        release_date !== undefined ? release_date = release_date.split('').slice(0, 4).join('') : release_date = 'No date';
-        title === undefined ? title = 'NO NAME' : title = title.toUpperCase();
+      backdrop_path === null
+        ? (backdrop_path = '/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg')
+        : backdrop_path;
+      release_date !== undefined
+        ? (release_date = release_date.split('').slice(0, 4).join(''))
+        : (release_date = 'No date');
+      title === undefined ? (title = 'NO NAME') : (title = title.toUpperCase());
 
-        const firstGenreToFind = genre_ids[0];
-        const secondGenreToFind = genre_ids[1];
-        const firstGenre = findGenre(firstGenreToFind, genres);
-        const secondGenre = findGenre(secondGenreToFind, genres);
-        
-        const movieRating = rating(vote_average);
-        const screenReaderMovieRating = ratingScreen(vote_average);
-        
-        return (
+      const firstGenreToFind = genre_ids[0];
+      const secondGenreToFind = genre_ids[1];
+      const firstGenre = findGenre(firstGenreToFind, genres);
+      const secondGenre = findGenre(secondGenreToFind, genres);
+
+      const movieRating = rating(vote_average);
+      const screenReaderMovieRating = ratingScreen(vote_average);
+      // Igor - тег а
+      return (
         markup +
-        `<li class="list-movie-block-item">
-        <a class="list-movie-block-link" href="./">
+        `<li class="list-movie-block-item" data-id="${id}">
             <div class="list-movie-block-thumb">
                 <div class="list-movie-block-wrap"><img class="list-movie-block-img" src="https://image.tmdb.org/t/p/original/${backdrop_path}" alt="${title}"></div>
                 <div class="list-movie-block-info">
@@ -45,32 +50,44 @@ export function createMarkup(resp, genres) {
                     color: rgba(0, 0, 0, 0);
                     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2)">★★★★★</p>
             </div>
-        </a>
-    </li>`
-            );
-    }, '' );
-};
+         </li>`
+      );
+    },
+    ''
+  );
+}
 
-
-export async function renderMarkup(markup) { 
-    refsList.listMovieBlockList.innerHTML = '';
-    refsList.listMovieBlockList.insertAdjacentHTML("beforeend", markup);
-};
+export async function renderMarkup(markup) {
+  refsList.listMovieBlockList.innerHTML = '';
+  refsList.listMovieBlockList.insertAdjacentHTML('beforeend', markup);
+  const list = document.querySelector('.list-movie-block-list'); // Igor
+  list.addEventListener('click', handleMoreDetailsClick); // Igor
+}
+// Igor
+function handleMoreDetailsClick(event) {
+  //   console.log('click on More details btn');
+  const listItem = event.target.closest('.list-movie-block-item');
+  if (listItem) {
+    const movieId = listItem.getAttribute('data-id');
+    // console.log(movieId);
+    openModal(movieId);
+  }
+}
 
 function findGenre(genre, arr) {
-    let genreName = '';
-    const xxx = arr.map(el => {
+  let genreName = '';
+  const xxx = arr.map(el => {
     if (el.id === genre) {
-        genreName = el.name;
+      genreName = el.name;
     }
-    });
-    return genreName;
+  });
+  return genreName;
 }
 
 function rating(data) {
-    return Math.round(data * 10);
+  return Math.round(data * 10);
 }
 
 function ratingScreen(data) {
-    return Math.round((data / 2) * 10) / 10;
+  return Math.round((data / 2) * 10) / 10;
 }
