@@ -16,6 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
     gap: 8px;
 }
 .tui-pagination.tui-pagination .tui-page-btn{
@@ -51,15 +52,28 @@ display: none;
     color: white;
 }
 
-.tui-pagination .tui-first+.tui-prev, .tui-pagination .custom-class-next+.tui-next {
+.tui-pagination .tui-first+.tui-prev, .tui-pagination .custom-class-next+.tui-next, .tui-pagination > .tui-page-btn.tui-next-is-ellip > .tui-ico-ellip, .tui-pagination > .tui-page-btn.tui-prev-is-ellip > .tui-ico-ellip {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
     margin: 0;
 }
 
-.tui-page-btn .tui-next-is-ellip .custom-class-next .tui-last-child {
-    width: 8px;
+.tui-pagination > .tui-page-btn.tui-last, .tui-pagination > .tui-page-btn.is-disabled.tui-last, .tui-pagination > .tui-page-btn.tui-next, .tui-pagination > .tui-page-btn.is-disabled.tui-next, .tui-pagination > .tui-page-btn.tui-prev, .tui-pagination > .tui-page-btn.is-disabled.tui-prev, .tui-pagination > .tui-page-btn.tui-first, .tui-pagination > .tui-page-btn.is-disabled.tui-first {
+    height: 20px;
+    line-height: 20px;
+}
+
+.tui-pagination > .tui-page-btn.tui-next-is-ellip, .tui-pagination > .tui-page-btn.tui-prev-is-ellip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
     height: 10px;
 }
-.tui-pagination .tui-first-child.tui-is-selected.important-page{
+
+.tui-pagination .tui-first-child.tui-is-selected.important-page, .tui-pagination .tui-last-child.tui-is-selected.important-page{
+    border-right: none;
     border-left: none;
     cursor: pointer;
 }
@@ -75,5 +89,15 @@ display: none;
         width: 40px;
         height: 40px;
         font-size: 14px;
+    }
+
+    .tui-pagination > .tui-page-btn.tui-last, .tui-pagination > .tui-page-btn.is-disabled.tui-last, .tui-pagination > .tui-page-btn.tui-next, .tui-pagination > .tui-page-btn.is-disabled.tui-next, .tui-pagination > .tui-page-btn.tui-prev, .tui-pagination > .tui-page-btn.is-disabled.tui-prev, .tui-pagination > .tui-page-btn.tui-first, .tui-pagination > .tui-page-btn.is-disabled.tui-first {
+        height: 28px;
+        line-height: 28px;
+    }
+
+    .tui-pagination > .tui-page-btn.tui-next-is-ellip, .tui-pagination > .tui-page-btn.tui-prev-is-ellip {
+        width: 12px;
+        height: 14px;
     }
 }
