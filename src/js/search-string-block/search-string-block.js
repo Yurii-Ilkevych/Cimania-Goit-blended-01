@@ -51,8 +51,8 @@ refs.searchStringBlockForm.addEventListener('submit', onSearchSubmit);
 
     refsList.listMovieBlockList.innerHTML = '';
 
-    if(value === '') {
-        refsList.listMovieBlockOops.textContent = 'You have not entered search text.';   
+    if(value === '') { 
+        removeDisplayNone()
     } 
     callFetchFilmByValue()
 };
@@ -100,7 +100,7 @@ export async function genreFetch(page) {
 
 async function fetchFilmByValue(value, page) {
     const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=true&language=en-US&page=${page}&api_key=${API_KEY_V}`,
+        `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=false&language=en-US&page=${page}&api_key=${API_KEY_V}`,
     options
     );
     return response;
