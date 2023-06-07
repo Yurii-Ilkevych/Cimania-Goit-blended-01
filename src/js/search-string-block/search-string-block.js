@@ -19,7 +19,6 @@ const options = {
     }
 };
 
-// console.log(refs.searchStringBlockForm.elements);
 
 document.addEventListener('DOMContentLoaded', onLoadTrends);
 
@@ -27,11 +26,11 @@ async function onLoadTrends() {
     try {
         const resp = await fetchTrends();
         const genres = await genreFetch();
-        //  console.log(resp);
 
         if (resp.length === 0) {
-            refsList.listMovieBlockOops.style.display = 'block';
+            refsList.listMovieBlockOops.textContent = 'Sorry, we did not find any movies.'
         }
+        addDisplayNone();
         const markup = createMarkup(resp, genres);
         renderMarkup(markup);
     } catch (error ) {
@@ -51,21 +50,21 @@ async function onSearchSubmit(e) {
     refsList.listMovieBlockList.innerHTML = '';
 
     if(value === '') {
-        return;
+        refsList.listMovieBlockOops.textContent = 'You have not entered search text.';
     } 
     try {
         const genres = await genreFetch();
         const resp = await fetchFilmByValue(value);
 
         if (resp.length === 0) {
-            refsList.listMovieBlockOops.style.display = 'block';
-        }
+            removeDisplayNone();
+        } else if (resp.length >= 1)
+        addDisplayNone();
         const markup = createMarkup(resp, genres);
         renderMarkup(markup);
     } catch (error) {
         console.log(error);
     }
-    // console.log(e.target[2].style);
 };
 
 async function fetchTrends() {
@@ -97,4 +96,14 @@ export async function genreFetch() {
 function onClearInput() {
     refs.searchStringBlockForm.reset();
 };
+
+function removeDisplayNone() {
+    refsList.listMovieBlockOops.classList.remove('display-none');
+};
+
+function addDisplayNone() {
+    refsList.listMovieBlockOops.classList.add('display-none');
+};
+
+
 

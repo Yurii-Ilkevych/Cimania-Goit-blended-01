@@ -12,8 +12,11 @@
     overflow: hidden;
 }
 
+.display-none {
+    display: none;
+}
+
 .list-movie-block-oops {
-display: none;
 margin: 0 auto;
 max-width: 684px;
 color: var(--color-white);
@@ -57,8 +60,6 @@ border-radius: 5px;
 }
 
 .list-movie-block-info {
-/* display: flex;
-align-items: flex-end; */
 position: absolute;
 bottom: 2%;
 left: 5%;
@@ -103,10 +104,6 @@ color: var(--color-gray);
     .list-movie-block-text {
         max-width: 165px;
     }
-    /* .list-movie-block-rating {
-        width: 86px;
-        height: 14px;
-    } */
 }
 
 
@@ -139,11 +136,6 @@ color: var(--color-gray);
     .list-movie-block-text {
         max-width: 129px;
     }
-
-    /* .list-movie-block-rating {
-        width: 66px;
-        height: 10px;
-    } */
 }
 
 
@@ -194,9 +186,4 @@ color: var(--color-gray);
     .list-movie-block-text {
         max-width: 244px;
     }
-
-    /* .list-movie-block-rating {
-        width: 66px;
-        height: 18px;
-    } */
 }
