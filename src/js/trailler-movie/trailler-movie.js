@@ -17,6 +17,9 @@ export async function openTrailerModal(movie) {
     playerContainer.appendChild(player);
 
     modal.classList.remove('is-hidden');
+
+    const body = document.querySelector('html');
+    body.classList.add('modal-trailer-open')
   } else {
     errorModal.classList.remove('is-hidden');
     modal.classList.remove('is-hidden');
@@ -27,6 +30,8 @@ export function closeTrailerModal() {
   modal.classList.add('is-hidden');
   playerContainer.innerHTML = '';
   errorModal.classList.add('is-hidden');
+  const body = document.querySelector('html');
+  body.classList.remove('modal-trailer-open');
 }
 
 export function handleTrailerModalKeyDown(event) {

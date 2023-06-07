@@ -7,6 +7,10 @@
 .modal-close-icon-trailer:focus {
   stroke: var(--color-orange);
 }
+.modal-trailer-open
+{
+  overflow: hidden;
+}
 @media  screen and (min-width: 320px ) {
 
     .button-trailer {
@@ -160,7 +164,6 @@
         background: #111111;
         box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
         border-radius: 20px;
-     
       }
       
       .modal-button-trailer {
@@ -305,6 +308,7 @@
       }
       .img-trailer-three
       {
+        width: 700px;
         display: block;
         position: absolute;
         top: 100px;
