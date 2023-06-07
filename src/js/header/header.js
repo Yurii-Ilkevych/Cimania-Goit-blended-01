@@ -57,6 +57,7 @@ function themeSetup() {
 } 
 
 function addActiveClass() {
+  console.log(window.location.pathname.includes('index.html'))
   if (window.location.pathname.includes('index.html')) {
     refs.homeLinkEl.forEach(link => {
       link.classList.add('active');
@@ -67,6 +68,10 @@ function addActiveClass() {
     });
   } else if (window.location.pathname.includes('my-library.html')) {
     refs.libraryLinkEl.forEach(link => {
+      link.classList.add('active');
+    });
+  } else if (!window.location.pathname.includes('index.html')){
+    refs.homeLinkEl.forEach(link => {
       link.classList.add('active');
     });
   }
