@@ -20,7 +20,13 @@ const options = {
 };
 
 document.addEventListener('DOMContentLoaded', onLoadTrends);
-// onInputSearch();
+export const KEY__CATALOG = 'catalog-key';
+
+function addSessionStorage(value, key) {
+    const strValue = JSON.stringify(value);
+    sessionStorage.setItem(key,strValue);
+};
+
 export async function onLoadTrends() {
     try {
         const resp = await fetchTrends(page);
@@ -31,6 +37,7 @@ export async function onLoadTrends() {
         }
         addDisplayNone();
         const markup = createMarkup(resp.data.results, genres);
+        addSessionStorage(resp.data.results,KEY__CATALOG);
 
 
         createPagination(resp.data.total_pages, resp.data.page, "fetchTrends")
