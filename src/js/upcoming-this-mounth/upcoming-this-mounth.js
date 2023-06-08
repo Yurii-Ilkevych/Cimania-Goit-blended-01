@@ -85,6 +85,7 @@ function createUpcomingFilmMarkup(response, genres) {
        <picture class="upcoming-film-img">
   <source srcset="${miniFoto}" media="(max-width: 767px)" />
   <img
+  loading="lazy"
           src="${foto}"
           alt="Image of the upcoming film"
         />
@@ -154,7 +155,7 @@ function createUpcomingFilmMarkup(response, genres) {
 function renderUpcomingFilm(markup) {
   if (markup === undefined) {
     return (refs.upcomingFilmEl.innerHTML =
-      '<img src="./img/popupon404.jpeg" alt="No film found">');
+      '<img loading="lazy" src="./img/popupon404.jpeg" alt="No film found">');
   }
   return (refs.upcomingFilmEl.innerHTML = markup);
 }

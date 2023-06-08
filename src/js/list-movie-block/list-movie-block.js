@@ -39,7 +39,7 @@ export function createMarkup(resp, genres) {
         markup +
         `<li class="list-movie-block-item" data-id="${id}">
             <div class="list-movie-block-thumb">
-                <div class="list-movie-block-wrap"><img class="list-movie-block-img" src="https://image.tmdb.org/t/p/original/${backdrop_path}" alt="${title}"></div>
+                <div class="list-movie-block-wrap"><img loading="lazy" class="list-movie-block-img" src="https://image.tmdb.org/t/p/original/${backdrop_path}" alt="${title}"></div>
                 <div class="list-movie-block-info">
                     <div><h3 class="list-movie-block-title">${title}</h3>
                         <p class="list-movie-block-text">${firstGenre} ${secondGenre} | <span class="list-movie-block-span">${release_date}</span></p>

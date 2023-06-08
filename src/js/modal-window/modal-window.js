@@ -80,7 +80,7 @@ function fetchMovieDetails(movieID) {
       //const getImg = `<div class="container-img"><img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" /></div>`
 
       //<img class="list-movie-block-img" src="https://image.tmdb.org/t/p/original//rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="NO NAME"></img>
-      const getImg = `<img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />`;
+      const getImg = `<img loading="lazy" class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />`;
 
       imgBlock.innerHTML = getImg;
 
@@ -224,7 +224,7 @@ function defoltRender() {
 No description
 </div>`;
 
-  const defolttImgMarcup = `<img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="film" />`;
+  const defolttImgMarcup = `<img loading="lazy" class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="film" />`;
 
   imgBlock.innerHTML = defolttImgMarcup;
   movieBlock.innerHTML = defoltMovieMarcup;
