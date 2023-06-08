@@ -25,8 +25,7 @@ export function openModal(id, key) {
 
 
   movieID = id;
-  console.log(id, key);
-  refs.modal.classList.remove('is-hidden');
+  refs.modal.classList.remove('hidden');
   document.addEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = 'hidden';
   if (!movieDataFetched) {
@@ -35,7 +34,7 @@ export function openModal(id, key) {
 }
 
 function closeModal() {
-  refs.modal.classList.add('is-hidden');
+  refs.modal.classList.add('hidden');
   document.removeEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = '';
   changeLibrary();
