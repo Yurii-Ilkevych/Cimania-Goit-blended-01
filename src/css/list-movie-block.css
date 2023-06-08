@@ -48,13 +48,16 @@ overflow: hidden;
 
 border-radius: 5px;
 }
-
+.img-pop-modal{
+    object-fit: cover;
+}
 .list-movie-block-wrap > img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 
 .list-movie-block-info {
 font-weight: 500;
