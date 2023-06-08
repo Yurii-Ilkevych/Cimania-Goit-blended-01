@@ -1,4 +1,5 @@
 import { openModal } from '../modal-window/modal-window'; // Igor
+import { KEY__CATALOG } from '../search-string-block/search-string-block';
 
 export const refsList = {
   listMovieBlockOops: document.querySelector('.list-movie-block-oops'),
@@ -6,18 +7,25 @@ export const refsList = {
 };
 
 export function createMarkup(resp, genres) {
+  console.log(resp);
   return resp.reduce(
     (
       markup,
-      { backdrop_path, title, genre_ids, release_date, vote_average, id } // Igor
+      { backdrop_path, poster_path
+,         title, name, genre_ids, release_date, first_air_date, vote_average, id }
     ) => {
-      backdrop_path === null
-        ? (backdrop_path = '/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg')
-        : backdrop_path;
-      release_date !== undefined
-        ? (release_date = release_date.split('').slice(0, 4).join(''))
-        : (release_date = 'No date');
-      title === undefined ? (title = 'NO NAME') : (title = title.toUpperCase());
+
+      if (backdrop_path === null && poster_path === null) {
+        backdrop_path = '/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg';
+      } else if (backdrop_path === null) {
+        backdrop_path = poster_path;
+      } else if (poster_path === null) {
+        backdrop_path;
+      };
+
+      release_date === undefined ? (release_date = first_air_date.slice(0, 4)) : (release_date = release_date.slice(0, 4));
+      
+      title === undefined ? (title = name.toUpperCase()) : (title = title.toUpperCase());
 
       const firstGenreToFind = genre_ids[0];
       const secondGenreToFind = genre_ids[1];
@@ -70,7 +78,7 @@ function handleMoreDetailsClick(event) {
   if (listItem) {
     const movieId = listItem.getAttribute('data-id');
     // console.log(movieId);
-    openModal(movieId);
+    openModal(movieId, KEY__CATALOG);
   }
 }
 
