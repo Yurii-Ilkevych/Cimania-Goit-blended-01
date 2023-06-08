@@ -6,7 +6,8 @@ import { openModal } from '../modal-window/modal-window';
 const firstBox = document.querySelector('.first-box-library');
 const select = document.querySelector('.select');
 const galleryList = document.querySelector('.library-gallery');
-
+onSelectList()
+onSelect()
 changeLibrary();
 addEventListenerForGallery();
 export function changeLibrary() {
@@ -47,8 +48,6 @@ function opnModalWindow(e) {
   openModal(idCard);
 }
 
-select.addEventListener('change', clickOnSelect);
-
 function clickOnSelect(e) {
   const getGenre = e.target.value;
   if (getGenre === 'genre') {
@@ -72,7 +71,20 @@ function clickOnSelect(e) {
   }
 }
 
-select.addEventListener('click', onClickChangelist);
+
+function onSelectList(){
+  if (!window.location.pathname.includes('my-library.html')) {
+    return;
+  }
+
+  select.addEventListener('click', onClickChangelist);
+}
+function onSelect(){
+  if (!window.location.pathname.includes('my-library.html')) {
+    return;
+  }
+  select.addEventListener('change', clickOnSelect);
+}
 
 function onClickChangelist() {
   select.classList.toggle('salto');
