@@ -54,6 +54,7 @@
   object-fit: cover;
 }
 .info-about-post {
+  max-width: 110px;
   text-transform: capitalize;
   color: var(--color-gray);
 }
