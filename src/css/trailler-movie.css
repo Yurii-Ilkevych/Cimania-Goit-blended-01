@@ -11,6 +11,7 @@
 {
   overflow: hidden;
 }
+
 @media  screen and (min-width: 320px ) {
 
     .button-trailer {
@@ -48,7 +49,7 @@
         border-radius: 20px;
         display: flex;
         z-index: 110;
-        position: fixed;
+        position: relative;
       }
       
       .modal-button-trailer {
@@ -263,6 +264,7 @@
       .modal-trailer {
         color: #fff;
         padding: 20px;
+        padding-bottom: 40px;
         height: 400px;
         width: 700px;
         background: #111111;
@@ -291,17 +293,17 @@
         height: 80%;
         position: absolute;
         top: 65px;
-        left: 35px;
+        left: 33px;
       }
       .player {
         width: 95%;
-        height: 100%;
+        height: 95%;
        
         position: relative;
       }
       #player iframe {
-        width: 100%;
-        height: 100%;
+        width: 50%;
+        height: 50%;
         position: absolute;
         top: 0;
         left: 0;
