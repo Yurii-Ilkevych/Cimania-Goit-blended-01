@@ -54,7 +54,6 @@
   object-fit: cover;
 }
 .info-about-post {
-  max-width: 110px;
   text-transform: capitalize;
   color: var(--color-gray);
 }
@@ -173,6 +172,10 @@ select > option {
   padding: 14px 0 10px 20px;
 }
 
+.info-about-post{
+  max-width: 160px;
+}
+
 @media screen and (min-width: 768px) {
   .library-txt-info {
     width: 438px;
@@ -206,6 +209,10 @@ select > option {
   }
   #genre {
     padding: 8px 30px 5px 20px;
+  }
+
+  .info-about-post{
+    max-width: 110px
   }
 }
 
@@ -243,5 +250,10 @@ select > option {
   .select {
     width: 275px;
     height: 50px;
+  }
+
+
+  .info-about-post{
+    max-width: 285px
   }
 }
