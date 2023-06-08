@@ -15,7 +15,7 @@ export async function openTrailerModal(movie) {
     player.allowFullscreen = true;
     player.classList.add('player');
     playerContainer.appendChild(player);
-    
+
     modal.classList.remove('is-hidden');
 
     const body = document.querySelector('html');
