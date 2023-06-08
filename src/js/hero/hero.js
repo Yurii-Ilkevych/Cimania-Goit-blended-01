@@ -1,18 +1,9 @@
 import axios from 'axios';
-import { addBackToTop } from 'vanilla-back-to-top'; // Back tp top 
 import { KEY } from '../API';
 import { openModal } from '../modal-window/modal-window';
+// сюди імпортувати функцію, яка буде відкривати модалку з трейлером. викликати в строці 87. 
 import {openTrailerModal, closeTrailerModal, handleTrailerModalKeyDown } from '../trailler-movie/trailler-movie'
 
-// Back tp top 
-addBackToTop({
-  diameter: 50,
-  backgroundColor: 'var(--color-secondary-black)',
-  textColor: '#fff',
-  scrollDuration: 300, // ms
-});
-
-const HERO__KEY = 'hero-key';
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
@@ -64,9 +55,7 @@ async function doTryOrCatch() {
 function choiseRender(data) {
   if (data.results.length > 1) {
     // console.log(data);
-    const film = data.results[randomMovie()];
-    updateHeroSection(film);
-    addHeroSessionStorage([film]);
+    updateHeroSection(data.results[randomMovie()]);
   }
 }
 
@@ -88,7 +77,7 @@ function handleMoreDetailsClick() {
   const movieId = document.querySelector('.hero-default-tille.rendered');
   const dataId = movieId.getAttribute('data-id');
   // console.log(dataId);
-  openModal(dataId, HERO__KEY);
+  openModal(dataId);
 }
 
 // modal Whatch Trailer
@@ -212,7 +201,3 @@ function renderDefaultSection() {
 }
 
 
-function addHeroSessionStorage(list) {
-  const strList = JSON.stringify(list);
-  sessionStorage.setItem(HERO__KEY, strList);
-}
