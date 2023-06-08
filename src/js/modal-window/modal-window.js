@@ -17,7 +17,13 @@ refs.modalWindow.addEventListener('click', stopPropagation);
 let movieID;
 let movieDataFetched = false;
 
+let movieObjects;
+const defaulPoster = 'rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg';
+
 export function openModal(id, key) {
+
+
+
   movieID = id;
   console.log(id, key);
   refs.modal.classList.remove('is-hidden');
@@ -35,6 +41,9 @@ function closeModal() {
   changeLibrary();
   imgBlock.innerHTML = '';
   movieBlock.innerHTML = '';
+
+  addToLibraryButton.removeEventListener('click', onaAddToLibraryButton);
+  removeToLibraryButton.removeEventListener('click', onRemoveToLibraryButton);
 }
 
 function handleKeyPress(event) {
@@ -68,9 +77,13 @@ function fetchMovieDetails(movieID, key) {
   axios
     .get(`${URL_KOV}?api_key=${API_KEY_KOV}`)
     .then(response => {
+
       const movieData = myFilm;
       console.log(movieData);
-      const posterPath = movieData.poster_path;
+
+
+      const posterPath = getPosterPath(movieData.poster_path);
+
       const movieTitle = movieData.title;
       const rating = Number(movieData.vote_average.toFixed(1));
       const votes = movieData.vote_count.toString().slice(0, 4);
@@ -79,7 +92,12 @@ function fetchMovieDetails(movieID, key) {
       const overview = movieData.overview;
       const release_date = movieData.release_date;
 
-      const getImg = `<img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />`;
+
+
+      //const getImg = `<div class="container-img"><img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" /></div>`
+
+      //<img class="list-movie-block-img" src="https://image.tmdb.org/t/p/original//rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="NO NAME"></img>
+      const getImg = `<img loading="lazy" class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />`;
 
       imgBlock.innerHTML = getImg;
 
@@ -121,43 +139,54 @@ function fetchMovieDetails(movieID, key) {
         overview,
         release_date,
       };
+      movieObjects = movieObject;
+      // const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+      // const movieIndex = existingMovies.findIndex(
+      //   movie => movie.movieID === movieID
+      // );
 
-      const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-      const movieIndex = existingMovies.findIndex(
-        movie => movie.movieID === movieID
-      );
+      // if (movieIndex > -1) {
+      //   existingMovies.splice(movieIndex, 1);
+      // }
 
-      if (movieIndex > -1) {
-        existingMovies.splice(movieIndex, 1);
-      }
-
-      addToLibraryButton.addEventListener('click', function () {
-        const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-        const movieIndex = existingMovies.findIndex(
-          movie => movie.movieID === movieID
-        );
-
-        if (movieIndex === -1) {
-          existingMovies.push(movieObject);
-          localStorage.setItem('movies', JSON.stringify(existingMovies));
-          toggleButtons();
-        }
-      });
-
-      removeToLibraryButton.addEventListener('click', function () {
-        const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-        const updatedMovies = existingMovies.filter(
-          movie => movie.movieID !== movieID
-        );
-        localStorage.setItem('movies', JSON.stringify(updatedMovies));
-        toggleButtons();
-      });
+      removeToLibraryButton.addEventListener('click', onRemoveToLibraryButton);
+      addToLibraryButton.addEventListener('click', onaAddToLibraryButton);
 
       toggleButtons();
     })
     .catch(error => {
-      console.error(error);
+      //console.error(error);
+      console.log("THE SERVER DID NOT RESPOND");
+      defoltRender();
     });
+}
+
+function onRemoveToLibraryButton() {
+  const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+  const updatedMovies = existingMovies.filter(
+    movie => movie.movieID !== movieID
+  );
+  localStorage.setItem('movies', JSON.stringify(updatedMovies));
+  toggleButtons();
+}
+
+function onaAddToLibraryButton() {
+  const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+  const movieIndex = existingMovies.findIndex(
+    movie => movie.movieID === movieID
+  );
+  if (movieIndex === -1) {
+    existingMovies.push(movieObjects);
+    localStorage.setItem('movies', JSON.stringify(existingMovies));
+    toggleButtons();
+  }
+}
+
+function getPosterPath(poster) {
+  if (poster) {
+    return poster;
+  }
+  return defaulPoster;
 }
 
 // -------------------------Заміна кнопки-----------------
@@ -174,4 +203,45 @@ function toggleButtons() {
     addToLibraryButton.style.display = 'block';
     removeToLibraryButton.style.display = 'none';
   }
+}
+
+
+////////////// defoltRender
+
+
+
+function defoltRender() {
+  const defoltMovieMarcup = `<h2 class="name-film-pop-modal">No Tittle</h2>
+<div class="vote-votes-pop-modal-container">
+<p class="vote-votes-pop-modal-text">Vote / Votes</p>
+<div class="vote-data-container-pop-modal">
+<span class="vote-data-pop-modal">0</span>
+</div>
+<div class="devider-data-pop-modal">/</div>
+<div class="votes-data-container-pop-modal">
+<span class="votes-data-pop-modal">0</span>
+</div>
+</div>
+<div class="popularity-pop-modal-container">
+<p class="popularity-pop-modal-text">Popularity</p>
+<div class="popularity-data-pop-modal">0</div>
+</div>
+<div class="gerne-pop-modal-container">
+<p class="gerne-pop-modal-text">Genre</p>
+<div class="gerne-data-pop-modal">No genre</div>
+</div>
+<h2 class="about-pop-modal-text">About</h2>
+<div class="about-pop-modal-description">
+No description
+</div>`;
+
+  const defolttImgMarcup = `<img loading="lazy" class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="film" />`;
+
+  imgBlock.innerHTML = defolttImgMarcup;
+  movieBlock.innerHTML = defoltMovieMarcup;
+  
+
+
+  addToLibraryButton.style.display = "none"
+removeToLibraryButton.style.display = "none"
 }

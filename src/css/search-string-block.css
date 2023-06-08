@@ -12,6 +12,10 @@
   overflow: hidden;
 }
 
+.display-none {
+  display: none;
+}
+
 .search-string-block-form {
   display: flex;
   justify-content: center;
@@ -36,7 +40,6 @@
 }
 
 .search-string-block-clear-btn {
-  display: none;
   cursor: pointer;
   position: absolute;
   top: 48%;

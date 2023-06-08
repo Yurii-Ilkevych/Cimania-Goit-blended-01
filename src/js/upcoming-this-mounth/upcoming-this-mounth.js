@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { KEY } from '../API';
 
 const refs = {
   upcomingFilmEl: document.querySelector('.upcoming-film'),
@@ -6,14 +7,15 @@ const refs = {
   btn: document.getElementById('btn'),
 };
 
-const MY_API_KEY = 'b9984943b63ba7234c73c01c632259d1';
 const randomNumber = Math.random() * (10 - 1) + 1;
-const defImg = '../img/defImg.jpeg';
+const defImg = './img/defImg.jpeg';
+
+// _________________Getting Films_________________//
 
 async function getUpcomingFilm() {
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${randomNumber.toFixed()}&api_key=${MY_API_KEY}`
+      `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${randomNumber.toFixed()}&api_key=${KEY}`
     );
     return response;
   } catch (error) {
@@ -21,21 +23,26 @@ async function getUpcomingFilm() {
   }
 }
 
+// _________________Getting Genres________________//
+
 async function getGenres() {
   try {
     const genres = await axios.get(`
-    https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${MY_API_KEY}`);
+    https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${KEY}`);
     return genres;
   } catch (error) {
     console.log(error);
   }
 }
 
+// _______________Creating Markup_________________//
+
 function createUpcomingFilmMarkup(response, genres) {
   if (response === undefined) {
     return;
   }
   let foto;
+  let miniFoto;
 
   if (response.data.results[randomNumber.toFixed()].backdrop_path === null) {
     foto = defImg;
@@ -45,9 +52,17 @@ function createUpcomingFilmMarkup(response, genres) {
       response.data.results[randomNumber.toFixed()].backdrop_path;
   }
 
+  if (response.data.results[randomNumber.toFixed()].poster_path === null) {
+    miniFoto = defImg;
+  } else {
+    miniFoto =
+      'https://image.tmdb.org/t/p/original/' +
+      response.data.results[randomNumber.toFixed()].poster_path;
+  }
+
   function findGenre(genre, arr) {
     let genreName = '';
-    const xxx = arr.map(el => {
+    const x = arr.map(el => {
       if (el.id === genre) {
         genreName = el.name;
       }
@@ -67,11 +82,14 @@ function createUpcomingFilmMarkup(response, genres) {
 
   const markup = `
       <div class="upcoming-film-img-wrap">
-       <img
-          class="upcoming-film-img"
+       <picture class="upcoming-film-img">
+  <source srcset="${miniFoto}" media="(max-width: 767px)" />
+  <img
+  loading="lazy"
           src="${foto}"
           alt="Image of the upcoming film"
         />
+</picture>
       </div>
       <div class="about-upcoming-film">
         <h3 class="upcoming-film-name">${
@@ -128,19 +146,21 @@ function createUpcomingFilmMarkup(response, genres) {
           </button>
         </div>
       </div>`;
-  
 
   return markup;
 }
 
+// ____________Rendering________________//
+
 function renderUpcomingFilm(markup) {
   if (markup === undefined) {
-    return (refs.upcomingFilmEl.innerHTML = '');
+    return (refs.upcomingFilmEl.innerHTML =
+      '<img loading="lazy" src="./img/popupon404.jpeg" alt="No film found">');
   }
   return (refs.upcomingFilmEl.innerHTML = markup);
 }
 
-// _______________ГОЛОВНА___________________//
+// _______________MAIN___________________//
 
 async function showUpcomingFilm() {
   const response = await getUpcomingFilm();
@@ -150,18 +170,23 @@ async function showUpcomingFilm() {
 
   const btnAdd = document.getElementById('btn');
 
-handleAddRemooveToLibrary(response, btnAdd);
+  handleAddRemooveToLibrary(response, btnAdd);
 }
 
 showUpcomingFilm();
 
-
-
-// _____local storage______//
+// __________________local storage_________________//
 
 function handleAddRemooveToLibrary(response, btnAdd) {
+  if (response === undefined) {
+    return;
+  }
+  if (btnAdd === null) {
+    return;
+  }
+
   const movieObject = {
-    movieID: response.data.results[randomNumber.toFixed()].id,
+    movieID: `${response.data.results[randomNumber.toFixed()].id}`,
     posterPath: response.data.results[randomNumber.toFixed()].poster_path,
     movieTitle: response.data.results[randomNumber.toFixed()].title,
     rating: response.data.results[randomNumber.toFixed()].vote_average,
@@ -171,42 +196,37 @@ function handleAddRemooveToLibrary(response, btnAdd) {
     overview: response.data.results[randomNumber.toFixed()].overview,
   };
   const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-  
+
   const movieIndex = existingMovies.findIndex(
-    movie => movie.movieID === response.data.results[randomNumber.toFixed()].id
+    movie =>
+      movie.movieID === `${response.data.results[randomNumber.toFixed()].id}`
   );
 
   const updatedMovies = existingMovies.filter(
-    movie => movie.movieID !== response.data.results[randomNumber.toFixed()].id
+    movie =>
+      movie.movieID !== `${response.data.results[randomNumber.toFixed()].id}`
   );
-  
-  if (movieIndex > -1) {
-  btnAdd.textContent = 'Remove from my library';
-}
 
+  if (movieIndex > -1) {
+    btnAdd.textContent = 'Remove from my library';
+  }
 
   btnAdd.addEventListener('click', function () {
-const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+    const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
 
-const movieIndex = existingMovies.findIndex(
-  movie => movie.movieID === response.data.results[randomNumber.toFixed()].id
-);
+    const movieIndex = existingMovies.findIndex(
+      movie =>
+        movie.movieID === `${response.data.results[randomNumber.toFixed()].id}`
+    );
 
     if (movieIndex === -1) {
-  existingMovies.push(movieObject);
+      existingMovies.push(movieObject);
       localStorage.setItem('movies', JSON.stringify(existingMovies));
       btnAdd.textContent = 'Remove from my library';
-
-    } if (movieIndex > -1) {
+    }
+    if (movieIndex > -1) {
       localStorage.setItem('movies', JSON.stringify(updatedMovies));
       btnAdd.textContent = 'Add to my library';
     }
-
-  })
+  });
 }
-
-
-
-
- 
- 
