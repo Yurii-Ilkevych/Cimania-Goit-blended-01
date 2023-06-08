@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="Frame770814.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <script>
+    <script defer>
       let localS = localStorage.getItem("ui-theme");
       if (localS === "light") {
         document.documentElement.setAttribute("light", "light");
@@ -42,7 +42,7 @@
     <load ="partials/trailler-movie.html" />
     <load ="partials/modal-window.html" />
     <load ="partials/developers.html" />
-    <script type="module" src="/script-for-all-section.js"></script>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/script-for-all-section.js" defer></script>
+    <script type="module" src="/main.js" defer></script>
   </body>
 </html>
