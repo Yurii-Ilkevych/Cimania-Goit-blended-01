@@ -1,13 +1,21 @@
 .overlay {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(46, 47, 66, 0.4);
-  overflow: auto;
-  transition-duration: 500ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.56);
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  overflow-y: scroll;
+  z-index: 3;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pop-modal {
@@ -51,6 +59,14 @@
   stroke: var(--color-orange);
 }
 
+.container-img {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.container-img:hover {
+  transform: scale(1.06);
+}
+
 .img-pop-modal {
   width: 248px;
   height: 315px;
@@ -87,7 +103,8 @@
   height: 16px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   padding: 1px 8px;
   gap: 10px;
   margin-left: 62px;
@@ -122,7 +139,8 @@
 .votes-data-container-pop-modal {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   padding: 1px 4px;
   gap: 10px;
   min-width: 36px;
