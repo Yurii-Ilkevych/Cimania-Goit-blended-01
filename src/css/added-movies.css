@@ -157,6 +157,10 @@
   background-image: url('../img/chevron-down.svg');
 }
 
+.select.salto::after {
+  transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
 select > option {
   font-family: 'Roboto';
   font-weight: 500;

@@ -71,3 +71,9 @@ function clickOnSelect(e) {
     addMarkupInLibrary(filterMarkup);
   }
 }
+
+select.addEventListener('click', onClickChangelist);
+
+function onClickChangelist() {
+  select.classList.toggle('salto');
+}
