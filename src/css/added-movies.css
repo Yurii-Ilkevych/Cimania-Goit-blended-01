@@ -43,7 +43,7 @@
 .card-poster:hover {
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(1.03);
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .title-poster {
@@ -59,6 +59,7 @@
 }
 .poster-info {
   position: absolute;
+  max-width: 170px;
   bottom: 12px;
   left: 12px;
   color: var(--color-white);
@@ -196,6 +197,7 @@ select > option {
     column-gap: 16px;
   }
   .poster-info {
+    max-width: 135px;
     line-height: 1.5;
   }
   .select {
@@ -221,6 +223,7 @@ select > option {
     max-width: 1208px;
   }
   .poster-info {
+    max-width: 290px;
     font-size: 20px;
     line-height: 1.2;
   }

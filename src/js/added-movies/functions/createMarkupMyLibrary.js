@@ -1,15 +1,18 @@
+import axios from 'axios';
+
 export function createMarkupMyLibrary(arrayFilmsFromLocale) {
   return arrayFilmsFromLocale.reduce((markupPost, objCard) => {
-const year = getDate(objCard.release_date)
- const genre = getGanre(objCard.genre)
+    const year = getDate(objCard.release_date);
+    const genre = getGanre(objCard.genre);
     const movieRating = rating(objCard.rating);
     const screenReaderMovieRating = ratingScreen(objCard.rating);
     return (
       markupPost +
-      `<li id="${objCard.movieID}"><div  class="card-poster">
-
-	<img src="https://image.tmdb.org/t/p/original/${objCard.posterPath}" width="280px" alt="${objCard.overview}" />
-	<div class="poster-info"><h3 class="title-poster">${objCard.movieTitle}</h3><p class="info-about-post">${[...genre]} | <span>${year}</span></p></div>
+      `<li id="${objCard.movieID}"><div class="card-poster">
+			<img src="https://image.tmdb.org/t/p/original/${objCard.posterPath}" 
+			width="280px" alt="${objCard.overview}" />
+	<div class="poster-info"><h3 class="title-poster">${objCard.movieTitle}</h3>
+	<p class="info-about-post">${[...genre]} | <span>${year}</span></p></div>
 
   <p class="list-movie-block-rating" aria-label="${screenReaderMovieRating} stars out of 5" style="background: linear-gradient(
     to right,
@@ -36,22 +39,17 @@ const year = getDate(objCard.release_date)
     return Math.round((data / 2) * 10) / 10;
   }
 
-
-function getGanre(genre){
-if(genre){
-  return genre.split(" ").slice(0, 2)
-}
-return ["No genre"]
-
-
-}
-
-function getDate(data){
-  if(data){
-    return data.slice(0, 4)
+  function getGanre(genre) {
+    if (genre) {
+      return genre.split(' ').slice(0, 2);
+    }
+    return ['No genre'];
   }
-  return "No date"
-}
 
-
+  function getDate(data) {
+    if (data) {
+      return data.slice(0, 4);
+    }
+    return 'No date';
+  }
 }
