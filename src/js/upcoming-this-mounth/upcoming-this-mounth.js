@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { KEY } from '../API';
 
 const refs = {
   upcomingFilmEl: document.querySelector('.upcoming-film'),
@@ -6,16 +7,15 @@ const refs = {
   btn: document.getElementById('btn'),
 };
 
-const MY_API_KEY = 'b9984943b63ba7234c73c01c632259d1';
 const randomNumber = Math.random() * (10 - 1) + 1;
-const defImg = '../img/defImg.jpeg';
+const defImg = './img/defImg.jpeg';
 
-// _______________________Getting Films_________________//
+// _________________Getting Films_________________//
 
 async function getUpcomingFilm() {
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${randomNumber.toFixed()}&api_key=${MY_API_KEY}`
+      `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${randomNumber.toFixed()}&api_key=${KEY}`
     );
     return response;
   } catch (error) {
@@ -23,19 +23,19 @@ async function getUpcomingFilm() {
   }
 }
 
-// _________________________Getting Genres__________________//
+// _________________Getting Genres________________//
 
 async function getGenres() {
   try {
     const genres = await axios.get(`
-    https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${MY_API_KEY}`);
+    https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${KEY}`);
     return genres;
   } catch (error) {
     console.log(error);
   }
 }
 
-// ____________________Creating Markup______________________//
+// _______________Creating Markup_________________//
 
 function createUpcomingFilmMarkup(response, genres) {
   if (response === undefined) {
@@ -153,7 +153,8 @@ function createUpcomingFilmMarkup(response, genres) {
 
 function renderUpcomingFilm(markup) {
   if (markup === undefined) {
-    return (refs.upcomingFilmEl.innerHTML = '');
+    return (refs.upcomingFilmEl.innerHTML =
+      '<img src="./img/popupon404.jpeg" alt="No film found">');
   }
   return (refs.upcomingFilmEl.innerHTML = markup);
 }
@@ -176,6 +177,13 @@ showUpcomingFilm();
 // __________________local storage_________________//
 
 function handleAddRemooveToLibrary(response, btnAdd) {
+  if (response === undefined) {
+    return;
+  }
+  if (btnAdd === null) {
+    return;
+  }
+
   const movieObject = {
     movieID: `${response.data.results[randomNumber.toFixed()].id}`,
     posterPath: response.data.results[randomNumber.toFixed()].poster_path,
