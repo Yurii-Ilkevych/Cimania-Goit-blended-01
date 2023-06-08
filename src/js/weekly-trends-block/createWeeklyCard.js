@@ -15,7 +15,7 @@ export function createWeeklyCard(card) {
   }>
     <div class="weekly-trends-list__thumb">
       <div class="weekly-trends-list__bgc"></div>
-        <img src="${card.poster}" alt="${
+        <img loading="lazy" src="${card.poster}" alt="${
     card.title + 'poster'
   }" class="weekly-trends-list__img">
         <div class="weekly-trends-list__description">

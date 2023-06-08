@@ -16,15 +16,20 @@ refs.modalWindow.addEventListener('click', stopPropagation);
 
 let movieID;
 let movieDataFetched = false;
+
 let movieObjects;
 const defaulPoster = 'rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg';
-export function openModal(id) {
+
+export function openModal(id, key) {
+
+
+
   movieID = id;
   refs.modal.classList.remove('hidden');
   document.addEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = 'hidden';
   if (!movieDataFetched) {
-    fetchMovieDetails(movieID);
+    fetchMovieDetails(movieID, key);
   }
 }
 
@@ -54,37 +59,46 @@ function stopPropagation(event) {
 
 const API_KEY_KOV = 'c8c2a74c43d87203307f2db942752251';
 const imgBlock = document.querySelector('.container-img');
-//const movieBlock = document.querySelector('.container-item');
 const movieBlock = document.querySelector('.container-item-render');
 
 const addToLibraryButton = document.querySelector('.modal-add-btn');
 const removeToLibraryButton = document.querySelector('.modal-remove-btn');
 
-function fetchMovieDetails(movieID) {
+function fetchMovieDetails(movieID, key) {
   const URL_KOV = `https://api.themoviedb.org/3/movie/${movieID}`;
-
+  const films = JSON.parse(sessionStorage.getItem(key));
+  let myFilm = null;
+  for (const element of films) {
+    if (element.id === Number(movieID)) {
+      myFilm = films[films.indexOf(element)];
+    }
+  }
   axios
     .get(`${URL_KOV}?api_key=${API_KEY_KOV}`)
     .then(response => {
-      const movieData = response.data;
+
+      const movieData = myFilm;
+      console.log(movieData);
+
+
       const posterPath = getPosterPath(movieData.poster_path);
+
       const movieTitle = movieData.title;
       const rating = Number(movieData.vote_average.toFixed(1));
       const votes = movieData.vote_count.toString().slice(0, 4);
       const popularity = Number(movieData.popularity.toFixed(1));
-      const genre = movieData.genres.map(genre => genre.name).join(' ');
+      const genre = movieData.genre_ids.map(genre => genre.name).join(' ');
       const overview = movieData.overview;
       const release_date = movieData.release_date;
+
 
 
       //const getImg = `<div class="container-img"><img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" /></div>`
 
       //<img class="list-movie-block-img" src="https://image.tmdb.org/t/p/original//rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="NO NAME"></img>
-      const getImg = `<img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />`;
+      const getImg = `<img loading="lazy" class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />`;
 
       imgBlock.innerHTML = getImg;
-
-      //imgBlock.insertAdjacentHTML('afterbegin', getImg);
 
       const getMovie = `<h2 class="name-film-pop-modal">${movieTitle}</h2>
         <div class="vote-votes-pop-modal-container">
@@ -112,8 +126,6 @@ function fetchMovieDetails(movieID) {
 
       movieBlock.innerHTML = getMovie;
 
-      //movieBlock.insertAdjacentHTML('afterbegin', getMovie);
-
       // -------------------------LOCAL STORAGE-----------------
       const movieObject = {
         movieID,
@@ -140,8 +152,6 @@ function fetchMovieDetails(movieID) {
       addToLibraryButton.addEventListener('click', onaAddToLibraryButton);
 
       toggleButtons();
-
-      //movieDataFetched = true;
     })
     .catch(error => {
       //console.error(error);
@@ -224,7 +234,7 @@ function defoltRender() {
 No description
 </div>`;
 
-  const defolttImgMarcup = `<img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="film" />`;
+  const defolttImgMarcup = `<img loading="lazy" class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="film" />`;
 
   imgBlock.innerHTML = defolttImgMarcup;
   movieBlock.innerHTML = defoltMovieMarcup;
