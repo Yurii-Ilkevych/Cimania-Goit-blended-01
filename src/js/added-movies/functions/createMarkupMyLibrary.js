@@ -7,8 +7,10 @@ const year = getDate(objCard.release_date)
     return (
       markupPost +
       `<li id="${objCard.movieID}"><div  class="card-poster">
+
 	<img src="https://image.tmdb.org/t/p/original/${objCard.posterPath}" width="280px" alt="${objCard.overview}" />
 	<div class="poster-info"><h3 class="title-poster">${objCard.movieTitle}</h3><p class="info-about-post">${[...genre]} | <span>${year}</span></p></div>
+
   <p class="list-movie-block-rating" aria-label="${screenReaderMovieRating} stars out of 5" style="background: linear-gradient(
     to right,
     var(--color-orange),
@@ -26,18 +28,14 @@ const year = getDate(objCard.release_date)
     );
   }, '');
 
-
-
-
-
-
   function rating(data) {
     return Math.round(data * 10);
   }
-  
+
   function ratingScreen(data) {
     return Math.round((data / 2) * 10) / 10;
   }
+
 
 function getGanre(genre){
 if(genre){
@@ -57,20 +55,3 @@ function getDate(data){
 
 
 }
-
-
-
-
-
-// данные карточки
-
-//  const movieObject = {
-//    movieID,
-//    posterPath,
-//    movieTitle,
-//    rating,
-//    votes,
-//    popularity,
-//    genre,
-//    overview,
-//  };
