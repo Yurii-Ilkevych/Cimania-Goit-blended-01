@@ -14,12 +14,13 @@
 
 .list-movie-block-item {
     cursor: pointer;
-    transform: scale(1);
-    transition: transform 250ms ease-out;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .list-movie-block-item:hover {
-    transform: scale(1.02);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1.03);
+      cursor: pointer;
 }
 
 .display-none {

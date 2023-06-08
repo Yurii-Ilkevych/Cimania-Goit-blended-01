@@ -7,7 +7,7 @@ export const refsList = {
 };
 
 export function createMarkup(resp, genres) {
-  console.log(resp);
+  //console.log(resp);
   return resp.reduce(
     (
       markup,
