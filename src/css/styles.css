@@ -55,6 +55,7 @@ body {
   font-family: 'Roboto';
   src: url(../Fonts/Roboto/Roboto-Bold.ttf);
   font-weight: 700;
+  font-display: swap;
 }
 
 /* 'Roboto Medium 500' */
@@ -62,6 +63,7 @@ body {
   font-family: 'Roboto';
   src: url(../Fonts/Roboto/Roboto-Medium.ttf);
   font-weight: 500;
+  font-display: swap;
 }
 
 /* 'Roboto Normal 400' */
@@ -69,6 +71,7 @@ body {
   font-family: 'Roboto';
   src: url(../Fonts/Roboto/Roboto-Regular.ttf);
   font-weight: 400;
+  font-display: swap;
 }
 
 /* Container */
