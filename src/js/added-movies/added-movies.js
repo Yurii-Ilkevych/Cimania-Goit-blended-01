@@ -46,3 +46,28 @@ function opnModalWindow(e) {
   const idCard = elementClick.id;
   openModal(idCard);
 }
+
+select.addEventListener('change', clickOnSelect);
+
+function clickOnSelect(e) {
+  const getGenre = e.target.value;
+  if (getGenre === 'genre') {
+    changeLibrary();
+    return;
+  } else {
+    const getPosters = load('movies');
+    const filterPosters = getPosters.filter(poster => {
+      const arrayGenre = poster.genre.toLowerCase().split(' ');
+      const a = arrayGenre.includes(getGenre);
+      if (a) {
+        return poster;
+      }
+    });
+    if (filterPosters.length === 0) {
+      addMarkupInLibrary('');
+      return;
+    }
+    const filterMarkup = createMarkupMyLibrary(filterPosters);
+    addMarkupInLibrary(filterMarkup);
+  }
+}
