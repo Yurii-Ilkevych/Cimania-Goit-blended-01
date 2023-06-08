@@ -12,6 +12,8 @@ addBackToTop({
   textColor: '#fff',
 });
 
+const HERO__KEY = 'hero-key';
+
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
 };
@@ -62,7 +64,9 @@ async function doTryOrCatch() {
 function choiseRender(data) {
   if (data.results.length > 1) {
     // console.log(data);
-    updateHeroSection(data.results[randomMovie()]);
+    const film = data.results[randomMovie()];
+    updateHeroSection(film);
+    addHeroSessionStorage([film]);
   }
 }
 
@@ -84,7 +88,7 @@ function handleMoreDetailsClick() {
   const movieId = document.querySelector('.hero-default-tille.rendered');
   const dataId = movieId.getAttribute('data-id');
   // console.log(dataId);
-  openModal(dataId);
+  openModal(dataId, HERO__KEY);
 }
 
 // modal Whatch Trailer
@@ -208,3 +212,7 @@ function renderDefaultSection() {
 }
 
 
+function addHeroSessionStorage(list) {
+  const strList = JSON.stringify(list);
+  sessionStorage.setItem(HERO__KEY, strList);
+}
