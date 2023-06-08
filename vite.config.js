@@ -8,6 +8,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: glob.sync('./src/*.html'),
+             output: {
+        cacheControl: 'public, max-age=31536000'
+                     },
     },
     outDir: '../dist',
   },
