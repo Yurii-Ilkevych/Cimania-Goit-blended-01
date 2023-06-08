@@ -9,7 +9,7 @@ const refs = {
 
 const onOpenModal = evt => {
   evt.preventDefault();
-  refs.devModal.classList.remove('is-hidden');
+  refs.devModal.classList.remove('hidden');
 
   const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
   const body = document.body;
@@ -33,7 +33,7 @@ const onCloseModal = () => {
   body.style.right = '';
   window.scrollTo(0, parseInt(scrollY || '0') * -1);
 
-  refs.devModal.classList.add('is-hidden');
+  refs.devModal.classList.add('hidden');
 };
 
 window.addEventListener('scroll', () => {

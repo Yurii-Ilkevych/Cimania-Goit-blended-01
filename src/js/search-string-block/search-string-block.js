@@ -20,14 +20,14 @@ const options = {
 };
 
 document.addEventListener('DOMContentLoaded', onLoadTrends);
-
+// onInputSearch();
 export async function onLoadTrends() {
     try {
         const resp = await fetchTrends(page);
         const genres = await genreFetch(page);
 
         if (resp.length === 0) {
-            refsList.listMovieBlockOops.textContent = 'Sorry, we did not find any movies.'
+            removeDisplayNone();
         }
         addDisplayNone();
         const markup = createMarkup(resp.data.results, genres);
@@ -47,7 +47,9 @@ refs.searchStringBlockForm.addEventListener('submit', onSearchSubmit);
   function onSearchSubmit(e) {
     e.preventDefault();
     value = e.target[0].value.trim();
+    onInputSearch()
     onClearInput();
+    hideBtn();
 
     refsList.listMovieBlockList.innerHTML = '';
 
@@ -106,7 +108,26 @@ async function fetchFilmByValue(value, page) {
     return response;
 }
 
+refs.searchStringBlockForm.addEventListener('input', onInputSearch);
 
+function onInputSearch() {
+    return refs.searchStringBlockForm.elements[0].value.trim() !== '' ? showBtn() : hideBtn();
+}
+
+function showBtn() {
+    refs.searchStringBlockForm.elements[1].classList.remove('display-none');
+};
+
+function hideBtn() {
+    refs.searchStringBlockForm.elements[1].classList.add('display-none');
+};
+
+refs.searchStringBlockForm.elements[1].addEventListener('click', clearInput);
+
+function clearInput() {
+    refs.searchStringBlockForm.elements[0].value = '';
+    hideBtn();
+}
 
 function onClearInput() {
     refs.searchStringBlockForm.reset();

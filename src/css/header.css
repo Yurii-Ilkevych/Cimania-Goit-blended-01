@@ -92,6 +92,10 @@
   z-index: 1;
 }
 
+[light] .changer-btn {
+  right: 28px;
+}
+
 [light] body,
 [light] .pop-modal,
 [light] .modal-add-btn,
@@ -100,7 +104,10 @@
 }
 
 [light] .modal-trailer,
-[light] .mobile-menu {
+[light] .mobile-menu,
+[light] .info-votes-value-white-wrap,
+[light] .vote-data-container-pop-modal,
+[light] .votes-data-container-pop-modal {
   background-color: var(--color-secondary-text);
 }
 
@@ -122,28 +129,17 @@
   color: var(--color-secondary-black);
 }
 
+[light] .info-white-text {
+  color: var(--color-gray);
+}
+
 [light] .nav-list,
 [light] .nav-menu-btn,
 [light] .search-string-block-input,
-[light] .search-string-block-input::placeholder {
+[light] .search-string-block-input::placeholder,
+[light] .footer,
+[light] #genre {
   color: var(--color-gray-white-theme);
-}
-
-[light] .search-string-block-clear-btn > svg {
-  stroke: var(--color-gray-white-theme);
-}
-
-[light] .modal-close-icon {
-  stroke: var(--color-secondary-black);
-}
-
-[light] .search-string-block-btn > svg,
-[light] .modal-close-icon-trailer {
-  stroke: var(--color-background);
-}
-
-[light] .search-string-block-input {
-  border-color: var(--color-gray-white-theme);
 }
 
 [light] .hero-trailer-btn,
@@ -170,6 +166,24 @@
   color: var(--color-background);
 }
 
+[light] .search-string-block-clear-btn > svg {
+  stroke: var(--color-gray-white-theme);
+}
+
+[light] .modal-close-icon {
+  stroke: var(--color-secondary-black);
+}
+
+[light] .search-string-block-btn > svg,
+[light] .modal-close-icon-trailer {
+  stroke: var(--color-background);
+}
+
+[light] .search-string-block-input,
+[light] #genre {
+  border-color: var(--color-gray-white-theme);
+}
+
 [light] .mobile-menu-backdrop {
   background-color: rgba(0, 0, 0, 0.2);
 }
@@ -178,6 +192,13 @@
   background-color: var(--color-secondary-text);
   color: var(--color-secondary-black);
 }
+
+[light] .select::after {
+  background-image: url(/img/chevron-down-grey-white.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* --- MOBILE-MENU --- */
 .mobile-menu-backdrop {
   position: fixed;
@@ -314,6 +335,9 @@
     right: 39px;
   }
 
+  [light] .changer-btn {
+  right: 39px;
+}
   .changer-btn {
     height: 18px;
     width: 18px;
