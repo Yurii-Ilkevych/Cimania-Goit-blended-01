@@ -16,7 +16,7 @@ refs.modalWindow.addEventListener('click', stopPropagation);
 
 let movieID;
 let movieDataFetched = false;
-
+let movieObjects;
 export function openModal(id) {
   movieID = id;
   refs.modal.classList.remove('is-hidden');
@@ -34,6 +34,10 @@ function closeModal() {
   changeLibrary();
   imgBlock.innerHTML = '';
   movieBlock.innerHTML = '';
+
+
+  addToLibraryButton.removeEventListener('click', onaAddToLibraryButton)
+  removeToLibraryButton.removeEventListener('click', onRemoveToLibraryButton);
 }
 
 function handleKeyPress(event) {
@@ -120,37 +124,33 @@ function fetchMovieDetails(movieID) {
         overview,
         release_date,
       };
+      movieObjects = movieObject;
+      // const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+      // const movieIndex = existingMovies.findIndex(
+      //   movie => movie.movieID === movieID
+      // );
 
-      const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-      const movieIndex = existingMovies.findIndex(
-        movie => movie.movieID === movieID
-      );
+      // if (movieIndex > -1) {
+      //   existingMovies.splice(movieIndex, 1);
+      // }
 
-      if (movieIndex > -1) {
-        existingMovies.splice(movieIndex, 1);
-      }
 
-      addToLibraryButton.addEventListener('click', function () {
-        const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-        const movieIndex = existingMovies.findIndex(
-          movie => movie.movieID === movieID
-        );
 
-        if (movieIndex === -1) {
-          existingMovies.push(movieObject);
-          localStorage.setItem('movies', JSON.stringify(existingMovies));
-          toggleButtons();
-        }
-      });
 
-      removeToLibraryButton.addEventListener('click', function () {
-        const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-        const updatedMovies = existingMovies.filter(
-          movie => movie.movieID !== movieID
-        );
-        localStorage.setItem('movies', JSON.stringify(updatedMovies));
-        toggleButtons();
-      });
+
+
+
+
+
+
+
+      removeToLibraryButton.addEventListener('click', onRemoveToLibraryButton);
+      addToLibraryButton.addEventListener('click', onaAddToLibraryButton);
+
+
+
+
+
 
       toggleButtons();
 
@@ -160,6 +160,37 @@ function fetchMovieDetails(movieID) {
       console.error(error);
     });
 }
+
+
+
+
+function onRemoveToLibraryButton() {
+  const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+  const updatedMovies = existingMovies.filter(
+    movie => movie.movieID !== movieID
+  );
+  localStorage.setItem('movies', JSON.stringify(updatedMovies));
+  toggleButtons();
+}
+
+
+
+function onaAddToLibraryButton() {
+  const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
+  const movieIndex = existingMovies.findIndex(
+    movie => movie.movieID === movieID
+  );
+  console.log(movieIndex)
+  if (movieIndex === -1) {
+    existingMovies.push(movieObjects);
+    localStorage.setItem('movies', JSON.stringify(existingMovies));
+    toggleButtons();
+  }
+}
+
+
+
+
 
 // -------------------------Заміна кнопки-----------------
 function toggleButtons() {
