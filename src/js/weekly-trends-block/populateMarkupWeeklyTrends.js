@@ -1,7 +1,8 @@
 import { weeklyContainerEl } from './weekly-trends-block.js';
 import { onClickFilmWeek } from './onClickFilmWeek.js';
 import { createWeeklyCards } from './createWeeklyCards.js';
-import { trendingWeekFetch, genreFetch } from './weekly-api.js';
+import { trendingWeekFetch, genreFetch, addTrendsSessionStorage } from './weekly-api.js';
+
 
 export async function populateMarkupWeeklyTrends() {
   const trendingWeekly = trendingWeekFetch();
@@ -10,6 +11,7 @@ export async function populateMarkupWeeklyTrends() {
   const weeklyFilms = result[0].data.results;
   const genres = result[1].data.genres;
   createWeeklyCards(weeklyFilms, genres);
-
+  addTrendsSessionStorage(weeklyFilms)
+  
   weeklyContainerEl.addEventListener('click', onClickFilmWeek);
 }
