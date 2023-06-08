@@ -1,9 +1,16 @@
 import axios from 'axios';
+import { addBackToTop } from 'vanilla-back-to-top'; // Back tp top 
 import { KEY } from '../API';
 import { openModal } from '../modal-window/modal-window';
 // сюди імпортувати функцію, яка буде відкривати модалку з трейлером. викликати в строці 87. 
 import {openTrailerModal, closeTrailerModal, handleTrailerModalKeyDown } from '../trailler-movie/trailler-movie'
 
+// Back tp top 
+addBackToTop({
+  diameter: 50,
+  backgroundColor: 'var(--color-secondary-black)',
+  textColor: '#fff',
+});
 
 const refs = {
   heroSection: document.querySelector('.hero-upd'),
