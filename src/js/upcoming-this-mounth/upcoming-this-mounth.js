@@ -83,13 +83,12 @@ function createUpcomingFilmMarkup(response, genres) {
   const markup = `
       <div class="upcoming-film-img-wrap">
        <picture class="upcoming-film-img">
-  <source srcset="${miniFoto}" media="(max-width: 767px)" />
   <img
+  media="(max-width: 767px)
   loading="lazy"
-          src="${foto}"
+          src="${miniFoto}"
           alt="Image of the upcoming film"
         />
-</picture>
       </div>
       <div class="about-upcoming-film">
         <h3 class="upcoming-film-name">${
