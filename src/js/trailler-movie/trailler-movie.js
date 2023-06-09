@@ -16,20 +16,20 @@ export async function openTrailerModal(movie) {
     player.classList.add('player');
     playerContainer.appendChild(player);
 
-    modal.classList.remove('is-hidden');
+    modal.classList.remove('hidden');
 
     const body = document.querySelector('html');
     body.classList.add('modal-trailer-open')
   } else {
-    errorModal.classList.remove('is-hidden');
-    modal.classList.remove('is-hidden');
+    errorModal.classList.remove('hidden');
+    modal.classList.remove('hidden');
   }
 }
 
 export function closeTrailerModal() {
-  modal.classList.add('is-hidden');
+  modal.classList.add('hidden');
   playerContainer.innerHTML = '';
-  errorModal.classList.add('is-hidden');
+  errorModal.classList.add('hidden', 'is-hidden'); // Добавляем классы "hidden" и "is-hidden" для скрытия модального окна с ошибкой
   const body = document.querySelector('html');
   body.classList.remove('modal-trailer-open');
 }
