@@ -8,7 +8,7 @@ const refs = {
 };
 
 const randomNumber = Math.random() * (10 - 1) + 1;
-const defImg = './img/defImg.jpg';
+const defImg = './img/def-img.jpg';
 
 // _________________Getting Films_________________//
 
