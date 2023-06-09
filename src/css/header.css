@@ -289,7 +289,7 @@ body.mobile-menu-open {
     padding: 6px 32px;
   }
 
-  .backdrop {
+  .mobile-menu-backdrop {
     display: none;
   }
 
