@@ -25,13 +25,11 @@ function onBackdropClick(e) {
     return;
   }
   mobileMenuToggle();
-  document.body.classList.remove('mobile-menu-open');
 }
 
 function mobileMenuToggle() {
-  refs.mobMenuEl.classList.toggle('shown');
   refs.backdropEl.classList.toggle('is-hidden-header');
-  document.body.classList.add('mobile-menu-open');
+  refs.mobMenuEl.classList.toggle('shown');
 }
 
 function onThemeChange(e) {
@@ -44,11 +42,11 @@ function onThemeChange(e) {
   }
 }
 
-function themeSetup() {
-  if (localStorage.getItem('ui-theme') === 'light') {
+function themeSetup() { 
+  if (localStorage.getItem("ui-theme") === "light") { 
     refs.themeChangerEl.checked = true;
   }
-}
+} 
 
 function addActiveClass() {
   if (window.location.pathname.includes('index.html')) {
@@ -63,7 +61,7 @@ function addActiveClass() {
     refs.libraryLinkEl.forEach(link => {
       link.classList.add('active');
     });
-  } else if (!window.location.pathname.includes('index.html')) {
+  } else if (!window.location.pathname.includes('index.html')){
     refs.homeLinkEl.forEach(link => {
       link.classList.add('active');
     });
