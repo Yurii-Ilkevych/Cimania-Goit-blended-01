@@ -4,7 +4,7 @@ import { KEY } from '../API';
 const modal = document.querySelector('[data-hero-modal]');
 const playerContainer = document.getElementById('player-container');
 const errorModal = document.querySelector('.hero-modal-message.error');
-
+// открывает модальное окно или окно об ошибке
 export async function openTrailerModal(movie) {
   const trailerKey = await getMovieTrailer(movie.id);
   if (trailerKey) {
@@ -16,30 +16,30 @@ export async function openTrailerModal(movie) {
     player.classList.add('player');
     playerContainer.appendChild(player);
 
-    modal.classList.remove('is-hidden');
+    modal.classList.remove('hidden');
 
     const body = document.querySelector('html');
     body.classList.add('modal-trailer-open')
   } else {
-    errorModal.classList.remove('is-hidden');
-    modal.classList.remove('is-hidden');
+    errorModal.classList.remove('hidden');
+    modal.classList.remove('hidden');
   }
 }
-
+// закрывает модальное окно
 export function closeTrailerModal() {
-  modal.classList.add('is-hidden');
+  modal.classList.add('hidden');
   playerContainer.innerHTML = '';
-  errorModal.classList.add('is-hidden');
+  errorModal.classList.add('hidden', 'is-hidden'); 
   const body = document.querySelector('html');
   body.classList.remove('modal-trailer-open');
 }
-
+// функциия для закрытия модалки через клавиатуру
 export function handleTrailerModalKeyDown(event) {
   if (event.key === 'Escape') {
     closeTrailerModal();
   }
 }
-
+// пулчение ключа трейлера
 async function getMovieTrailer(movieId) {
   try {
     const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
