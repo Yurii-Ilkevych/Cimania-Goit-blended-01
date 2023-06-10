@@ -65,7 +65,7 @@ const addToLibraryButton = document.querySelector('.modal-add-btn');
 const removeToLibraryButton = document.querySelector('.modal-remove-btn');
 
 function fetchMovieDetails(movieID, key) {
-  const URL_KOV = `https://api.themoviedb.org/3/movie/${movieID}`;
+  // const URL_KOV = `https://api.themoviedb.org/3/movie/${movieID}`;
   const films = JSON.parse(sessionStorage.getItem(key));
   let myFilm = null;
   for (const element of films) {
