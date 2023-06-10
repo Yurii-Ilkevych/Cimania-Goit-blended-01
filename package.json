@@ -16,8 +16,10 @@
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
     "axios": "^1.4.0",
     "modern-normalize": "^2.0.0",
+    "normalize.css": "^8.0.1",
     "swiper": "^9.3.2",
     "tui-pagination": "^3.4.1",
     "vanilla-back-to-top": "^7.2.1",
