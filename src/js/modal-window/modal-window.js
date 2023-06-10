@@ -1,246 +1,109 @@
-import axios from 'axios';
 import { changeLibrary } from '../added-movies/added-movies';
-// ------------------Закриття та відкриття модалки---------------
+import { renderMovie } from './render-movie';
 
 const refs = {
-  closeModalBtn: document.querySelector('[data-modal-close-test]'),
+  closeModalBtn: document.querySelector('.modal-close-icon'),
+  clouseIcon: document.querySelector('.svg-close-modal'),
   modal: document.querySelector('[data-modal-test]'),
   backdrop: document.querySelector('.overlay'),
-  modalWindow: document.querySelector('.pop-modal'),
+  imgBlock: document.querySelector('.container-img'),
+  movieBlock: document.querySelector('.container-item-render'),
+  addToLibraryButton: document.querySelector('.modal-add-btn'),
+  removeToLibraryButton: document.querySelector('.modal-remove-btn'),
 };
 
-refs.closeModalBtn.addEventListener('click', closeModal);
-refs.backdrop.addEventListener('click', closeModal);
-refs.modal.addEventListener('click', stopPropagation);
-refs.modalWindow.addEventListener('click', stopPropagation);
-
 let movieID;
-let movieDataFetched = false;
-
 let movieObjects;
-const defaulPoster = 'rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg';
 
 export function openModal(id, key) {
-
-
-
-  movieID = id;
+  movieID = Number(id);
   refs.modal.classList.remove('hidden');
-  document.addEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = 'hidden';
-  if (!movieDataFetched) {
-    fetchMovieDetails(movieID, key);
+
+  refs.backdrop.addEventListener('click', doChoise);
+  window.addEventListener('keydown', doChoise);
+  fetchMovieDetails(movieID, key);
+}
+
+function doChoise(event) {
+  const { currentTarget, target, code } = event;
+  if (
+    currentTarget === target ||
+    target === refs.closeModalBtn ||
+    target === refs.clouseIcon ||
+    code === 'Escape'
+  ) {
+    closeModal();
+  }
+  if (target === refs.addToLibraryButton) {
+    onAddToLibraryButton();
+  } else if (target === refs.removeToLibraryButton) {
+    onRemoveToLibraryButton();
   }
 }
 
 function closeModal() {
   refs.modal.classList.add('hidden');
-  document.removeEventListener('keydown', handleKeyPress);
   document.documentElement.style.overflow = '';
-  changeLibrary();
-  imgBlock.innerHTML = '';
-  movieBlock.innerHTML = '';
-
-  addToLibraryButton.removeEventListener('click', onaAddToLibraryButton);
-  removeToLibraryButton.removeEventListener('click', onRemoveToLibraryButton);
-}
-
-function handleKeyPress(event) {
-  if (event.key === 'Escape') {
-    closeModal();
+  refs.imgBlock.innerHTML = '';
+  refs.movieBlock.innerHTML = '';
+  refs.backdrop.removeEventListener('click', doChoise);
+  document.removeEventListener('keydown', doChoise);
+  if (window.location.pathname.includes('my-library.html')) {
+    changeLibrary();
   }
 }
 
-function stopPropagation(event) {
-  event.stopPropagation();
-}
-
-// -------------------------API----------------------------
-
-const API_KEY_KOV = 'c8c2a74c43d87203307f2db942752251';
-const imgBlock = document.querySelector('.container-img');
-const movieBlock = document.querySelector('.container-item-render');
-
-const addToLibraryButton = document.querySelector('.modal-add-btn');
-const removeToLibraryButton = document.querySelector('.modal-remove-btn');
-
 function fetchMovieDetails(movieID, key) {
-  // const URL_KOV = `https://api.themoviedb.org/3/movie/${movieID}`;
-  const films = JSON.parse(sessionStorage.getItem(key));
   let myFilm = null;
+  let films = null;
+
+  if (key === 'movies') {
+    films = getAddedMovies();
+  } else {
+    films = JSON.parse(sessionStorage.getItem(key));
+  }
   for (const element of films) {
     if (element.id === Number(movieID)) {
       myFilm = films[films.indexOf(element)];
     }
   }
-  // axios
-  //   .get(`${URL_KOV}?api_key=${API_KEY_KOV}`)
-  //   .then(response => {
-
-      const movieData = myFilm;
-      console.log(movieData);
-
-
-      const posterPath = getPosterPath(movieData.poster_path);
-
-      const movieTitle = movieData.title;
-      const rating = Number(movieData.vote_average.toFixed(1));
-      const votes = movieData.vote_count.toString().slice(0, 4);
-      const popularity = Number(movieData.popularity.toFixed(1));
-      const genre = movieData.genre_ids.map(genre => genre.name).join(' ');
-      const overview = movieData.overview;
-      const release_date = movieData.release_date;
-
-
-
-      //const getImg = `<div class="container-img"><img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" /></div>`
-
-      //<img class="list-movie-block-img" src="https://image.tmdb.org/t/p/original//rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="NO NAME"></img>
-      const getImg = `<img loading="lazy" class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" />`;
-
-      imgBlock.innerHTML = getImg;
-
-      const getMovie = `<h2 class="name-film-pop-modal">${movieTitle}</h2>
-        <div class="vote-votes-pop-modal-container">
-          <p class="vote-votes-pop-modal-text">Vote / Votes</p>
-          <div class="vote-data-container-pop-modal">
-            <span class="vote-data-pop-modal">${rating}</span>
-          </div>
-          <div class="devider-data-pop-modal">/</div>
-          <div class="votes-data-container-pop-modal">
-            <span class="votes-data-pop-modal">${votes}</span>
-          </div>
-        </div>
-        <div class="popularity-pop-modal-container">
-          <p class="popularity-pop-modal-text">Popularity</p>
-          <div class="popularity-data-pop-modal">${popularity}</div>
-        </div>
-        <div class="gerne-pop-modal-container">
-          <p class="gerne-pop-modal-text">Genre</p>
-          <div class="gerne-data-pop-modal">${genre}</div>
-        </div>
-        <h2 class="about-pop-modal-text">About</h2>
-        <div class="about-pop-modal-description">
-          ${overview}
-        </div>`;
-
-      movieBlock.innerHTML = getMovie;
-
-      // -------------------------LOCAL STORAGE-----------------
-      const movieObject = {
-        movieID,
-        posterPath,
-        movieTitle,
-        rating,
-        votes,
-        popularity,
-        genre,
-        overview,
-        release_date,
-      };
-      movieObjects = movieObject;
-      // const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-      // const movieIndex = existingMovies.findIndex(
-      //   movie => movie.movieID === movieID
-      // );
-
-      // if (movieIndex > -1) {
-      //   existingMovies.splice(movieIndex, 1);
-      // }
-
-      removeToLibraryButton.addEventListener('click', onRemoveToLibraryButton);
-      addToLibraryButton.addEventListener('click', onaAddToLibraryButton);
-
-      toggleButtons();
-    // })
-    // .catch(error => {
-    //   //console.error(error);
-    //   console.log("THE SERVER DID NOT RESPOND");
-    //   defoltRender();
-    // });
+  renderMovie(myFilm);
+  movieObjects = myFilm;
+  toggleButtons();
 }
 
 function onRemoveToLibraryButton() {
-  const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-  const updatedMovies = existingMovies.filter(
-    movie => movie.movieID !== movieID
-  );
+  const existingMovies = getAddedMovies();
+  const updatedMovies = existingMovies.filter(movie => movie.id !== movieID);
   localStorage.setItem('movies', JSON.stringify(updatedMovies));
   toggleButtons();
 }
 
-function onaAddToLibraryButton() {
-  const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-  const movieIndex = existingMovies.findIndex(
-    movie => movie.movieID === movieID
-  );
-  if (movieIndex === -1) {
+function onAddToLibraryButton() {
+  const existingMovies = getAddedMovies();
+  if (!checkId()) {
     existingMovies.push(movieObjects);
     localStorage.setItem('movies', JSON.stringify(existingMovies));
     toggleButtons();
   }
 }
 
-function getPosterPath(poster) {
-  if (poster) {
-    return poster;
-  }
-  return defaulPoster;
-}
-
-// -------------------------Заміна кнопки-----------------
 function toggleButtons() {
-  const existingMovies = JSON.parse(localStorage.getItem('movies')) || [];
-  const movieIndex = existingMovies.findIndex(
-    movie => movie.movieID === movieID
-  );
-
-  if (movieIndex > -1) {
-    addToLibraryButton.style.display = 'none';
-    removeToLibraryButton.style.display = 'block';
+  if (checkId()) {
+    refs.addToLibraryButton.style.display = 'none';
+    refs.removeToLibraryButton.style.display = 'block';
   } else {
-    addToLibraryButton.style.display = 'block';
-    removeToLibraryButton.style.display = 'none';
+    refs.addToLibraryButton.style.display = 'block';
+    refs.removeToLibraryButton.style.display = 'none';
   }
 }
 
+function getAddedMovies() {
+  return JSON.parse(localStorage.getItem('movies')) || [];
+}
 
-////////////// defoltRender
-
-
-
-function defoltRender() {
-  const defoltMovieMarcup = `<h2 class="name-film-pop-modal">No Tittle</h2>
-<div class="vote-votes-pop-modal-container">
-<p class="vote-votes-pop-modal-text">Vote / Votes</p>
-<div class="vote-data-container-pop-modal">
-<span class="vote-data-pop-modal">0</span>
-</div>
-<div class="devider-data-pop-modal">/</div>
-<div class="votes-data-container-pop-modal">
-<span class="votes-data-pop-modal">0</span>
-</div>
-</div>
-<div class="popularity-pop-modal-container">
-<p class="popularity-pop-modal-text">Popularity</p>
-<div class="popularity-data-pop-modal">0</div>
-</div>
-<div class="gerne-pop-modal-container">
-<p class="gerne-pop-modal-text">Genre</p>
-<div class="gerne-data-pop-modal">No genre</div>
-</div>
-<h2 class="about-pop-modal-text">About</h2>
-<div class="about-pop-modal-description">
-No description
-</div>`;
-
-  const defolttImgMarcup = `<img loading="lazy" class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg" alt="film" />`;
-
-  imgBlock.innerHTML = defolttImgMarcup;
-  movieBlock.innerHTML = defoltMovieMarcup;
-  
-
-
-  addToLibraryButton.style.display = "none"
-removeToLibraryButton.style.display = "none"
+function checkId() {
+  const existingMovies = getAddedMovies();
+  return existingMovies.map(movie => movie.id).includes(movieID);
 }
