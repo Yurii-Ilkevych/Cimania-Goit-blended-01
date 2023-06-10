@@ -73,9 +73,9 @@ function fetchMovieDetails(movieID, key) {
       myFilm = films[films.indexOf(element)];
     }
   }
-  axios
-    .get(`${URL_KOV}?api_key=${API_KEY_KOV}`)
-    .then(response => {
+  // axios
+  //   .get(`${URL_KOV}?api_key=${API_KEY_KOV}`)
+  //   .then(response => {
 
       const movieData = myFilm;
       console.log(movieData);
@@ -152,12 +152,12 @@ function fetchMovieDetails(movieID, key) {
       addToLibraryButton.addEventListener('click', onaAddToLibraryButton);
 
       toggleButtons();
-    })
-    .catch(error => {
-      //console.error(error);
-      console.log("THE SERVER DID NOT RESPOND");
-      defoltRender();
-    });
+    // })
+    // .catch(error => {
+    //   //console.error(error);
+    //   console.log("THE SERVER DID NOT RESPOND");
+    //   defoltRender();
+    // });
 }
 
 function onRemoveToLibraryButton() {
