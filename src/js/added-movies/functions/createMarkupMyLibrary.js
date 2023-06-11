@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export function createMarkupMyLibrary(arrayFilmsFromLocale) {
   return arrayFilmsFromLocale.reduce((markupPost, objCard) => {
     const year = getDate(objCard.release_date);
@@ -9,7 +7,9 @@ export function createMarkupMyLibrary(arrayFilmsFromLocale) {
     return (
       markupPost +
       `<li id="${objCard.movieID}"><div class="card-poster">
-			<img loading="lazy" src="https://image.tmdb.org/t/p/original/${objCard.posterPath}" 
+			<img loading="lazy" src="https://image.tmdb.org/t/p/original/${
+        objCard.posterPath
+      }" 
 			width="280px" alt="${objCard.overview}" />
 	<div class="poster-info"><h3 class="title-poster">${objCard.movieTitle}</h3>
 	<p class="info-about-post">${[...genre]} | <span>${year}</span></p></div>

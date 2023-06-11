@@ -6,12 +6,12 @@ import { openModal } from '../modal-window/modal-window';
 const firstBox = document.querySelector('.first-box-library');
 const select = document.querySelector('.select');
 const galleryList = document.querySelector('.library-gallery');
-onSelectList()
-onSelect()
+onSelectList();
+onSelect();
 changeLibrary();
 addEventListenerForGallery();
 export function changeLibrary() {
-  if (!window.location.pathname.includes('my-library.html')) {
+  if (!window.location.pathname.includes('/my-library.html')) {
     return;
   }
   const dataFilm = load('movies');
@@ -33,7 +33,7 @@ export function changeLibrary() {
 }
 
 function addEventListenerForGallery() {
-  if (!window.location.pathname.includes('my-library.html')) {
+  if (!window.location.pathname.includes('/my-library.html')) {
     return;
   }
   galleryList.addEventListener('click', opnModalWindow);
@@ -71,16 +71,15 @@ function clickOnSelect(e) {
   }
 }
 
-
-function onSelectList(){
-  if (!window.location.pathname.includes('my-library.html')) {
+function onSelectList() {
+  if (!window.location.pathname.includes('/my-library.html')) {
     return;
   }
 
   select.addEventListener('click', onClickChangelist);
 }
-function onSelect(){
-  if (!window.location.pathname.includes('my-library.html')) {
+function onSelect() {
+  if (!window.location.pathname.includes('/my-library.html')) {
     return;
   }
   select.addEventListener('change', clickOnSelect);

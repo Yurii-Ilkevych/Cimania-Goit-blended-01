@@ -141,6 +141,11 @@
   color: var(--color-gray-white-theme);
 }
 
+[light] select > option {
+  background-color: var(--color-secondary-text);
+  color: var(--color-secondary-black);
+}
+
 [light] .hero-trailer-btn,
 [light] .upcoming-title,
 [light] .upcoming-film-name,

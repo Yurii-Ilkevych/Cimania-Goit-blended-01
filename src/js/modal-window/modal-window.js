@@ -98,7 +98,6 @@ function toggleButtons() {
     refs.removeToLibraryButton.style.display = 'none';
   }
 }
-
 function getAddedMovies() {
   return JSON.parse(localStorage.getItem('movies')) || [];
 }
