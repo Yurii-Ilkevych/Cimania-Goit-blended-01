@@ -18,6 +18,7 @@ themeSetup();
 
 function onMenuBtnClick(e) {
   mobileMenuToggle();
+  document.body.classList.add("mobile-menu-open");
 }
 
 function onBackdropClick(e) {
@@ -25,6 +26,7 @@ function onBackdropClick(e) {
     return;
   }
   mobileMenuToggle();
+  document.body.classList.remove('mobile-menu-open');
 }
 
 function mobileMenuToggle() {
