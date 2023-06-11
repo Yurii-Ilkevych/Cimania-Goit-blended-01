@@ -3,8 +3,10 @@ import { refsList } from '../list-movie-block/list-movie-block';
 import { createMarkup } from '../list-movie-block/list-movie-block';
 import { renderMarkup } from '../list-movie-block/list-movie-block';
 import { createPagination } from '../pagination-block/pagination-block';
+
 const refs = {
     searchStringBlockForm: document.querySelector('.search-string-block-form'),
+    paginationBlockDiv: document.getElementById('pagination-block-div',)
 };
 
 const API_KEY_V = '48b2bba5f96af80717b061a99685cb65';
@@ -61,7 +63,8 @@ refs.searchStringBlockForm.addEventListener('submit', onSearchSubmit);
     refsList.listMovieBlockList.innerHTML = '';
 
     if(value === '') { 
-        removeDisplayNone()
+        removeDisplayNone();
+        refs.paginationBlockDiv.style.display = 'none';
     } 
     callFetchFilmByValue()
 };
@@ -72,13 +75,16 @@ export async function callFetchFilmByValue(){
         const resp = await fetchFilmByValue(value, page);
 
         if (resp.data.results.length === 0) {
+            refs.paginationBlockDiv.style.display = 'none';
             removeDisplayNone();
-        } else if (resp.data.results.length >= 1)
+        } else if (resp.data.results.length >= 1) {
         addDisplayNone();
+        refs.paginationBlockDiv.style.display = 'flex';
         const markup = createMarkup(resp.data.results, genres);
 
         createPagination(resp.data.total_pages, resp.data.page, "fetchFilmByValue")
         renderMarkup(markup);
+        }
     } catch (error) {
         console.log(error);
     }

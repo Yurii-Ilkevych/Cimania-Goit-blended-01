@@ -15,8 +15,10 @@ export function createMarkup(resp, genres) {
 ,         title, name, genre_ids, release_date, first_air_date, vote_average, id }
     ) => {
 
+      let source = 'https://image.tmdb.org/t/p/original/';
       if (backdrop_path === null && poster_path === null) {
-        backdrop_path = '/rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg';
+        source = '../img/';
+        backdrop_path = 'defImg.jpeg';
       } else if (backdrop_path === null) {
         backdrop_path = poster_path;
       } else if (poster_path === null) {
@@ -39,7 +41,7 @@ export function createMarkup(resp, genres) {
         markup +
         `<li class="list-movie-block-item" data-id="${id}">
             <div class="list-movie-block-thumb">
-                <div class="list-movie-block-wrap"><img loading="lazy" class="list-movie-block-img" src="https://image.tmdb.org/t/p/original/${backdrop_path}" alt="${title}"></div>
+                <div class="list-movie-block-wrap"><img loading="lazy" class="list-movie-block-img" src="${source}${backdrop_path}" alt="${title}"></div>
                 <div class="list-movie-block-info">
                     <div><h3 class="list-movie-block-title">${title}</h3>
                         <p class="list-movie-block-text">${firstGenre} ${secondGenre} | <span class="list-movie-block-span">${release_date}</span></p>
