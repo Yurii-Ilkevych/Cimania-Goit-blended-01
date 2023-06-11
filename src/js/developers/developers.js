@@ -10,6 +10,7 @@ const refs = {
 const onOpenModal = evt => {
   evt.preventDefault();
   refs.devModal.classList.remove('hidden');
+  window.addEventListener('keydown', onEscKeyPress);
 
   const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
   const body = document.body;
@@ -50,6 +51,7 @@ const onEscKeyPress = evt => {
   if (isEscKey) {
     onCloseModal();
   }
+  window.removeEventListener('keydown', onEscKeyPress);
 };
 
 // On Overlay Click
