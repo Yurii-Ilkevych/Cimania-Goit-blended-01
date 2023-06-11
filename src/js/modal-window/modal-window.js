@@ -21,9 +21,6 @@ let movieObjects;
 const defaulPoster = 'rmmKVswMSMJfBxPAe4rn5jN2Tb0.jpg';
 
 export function openModal(id, key) {
-
-
-
   movieID = id;
   refs.modal.classList.remove('hidden');
   document.addEventListener('keydown', handleKeyPress);
@@ -73,13 +70,12 @@ function fetchMovieDetails(movieID, key) {
       myFilm = films[films.indexOf(element)];
     }
   }
+
   axios
     .get(`${URL_KOV}?api_key=${API_KEY_KOV}`)
     .then(response => {
-
       const movieData = myFilm;
       console.log(movieData);
-
 
       const posterPath = getPosterPath(movieData.poster_path);
 
@@ -90,8 +86,6 @@ function fetchMovieDetails(movieID, key) {
       const genre = movieData.genre_ids.map(genre => genre.name).join(' ');
       const overview = movieData.overview;
       const release_date = movieData.release_date;
-
-
 
       //const getImg = `<div class="container-img"><img class="img-pop-modal" src="https://image.tmdb.org/t/p/w500/${posterPath}" alt="film" /></div>`
 
@@ -155,7 +149,7 @@ function fetchMovieDetails(movieID, key) {
     })
     .catch(error => {
       //console.error(error);
-      console.log("THE SERVER DID NOT RESPOND");
+      console.log('THE SERVER DID NOT RESPOND');
       defoltRender();
     });
 }
@@ -204,10 +198,7 @@ function toggleButtons() {
   }
 }
 
-
 ////////////// defoltRender
-
-
 
 function defoltRender() {
   const defoltMovieMarcup = `<h2 class="name-film-pop-modal">No Tittle</h2>
@@ -238,9 +229,7 @@ No description
 
   imgBlock.innerHTML = defolttImgMarcup;
   movieBlock.innerHTML = defoltMovieMarcup;
-  
 
-
-  addToLibraryButton.style.display = "none"
-removeToLibraryButton.style.display = "none"
+  addToLibraryButton.style.display = 'none';
+  removeToLibraryButton.style.display = 'none';
 }

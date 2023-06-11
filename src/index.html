@@ -5,10 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="Frame770814.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <script >
-      let localS = localStorage.getItem("ui-theme");
-      if (localS === "light") {
-        document.documentElement.setAttribute("light", "light");
+    <script>
+      let localS = localStorage.getItem('ui-theme');
+      if (localS === 'light') {
+        document.documentElement.setAttribute('light', 'light');
       }
     </script>
     <link
@@ -27,22 +27,19 @@
   <body>
     <load ="partials/header.html" />
 
+    <main>
+      <load ="partials/Hero.html" />
 
-   <main>
-    <load ="partials/Hero.html" />
-
-    <load ="partials/weekly-trends-block.html" />
-    <load ="partials/upcoming-this-mounth.html" />
- 
-  </main>
-    
+      <load ="partials/weekly-trends-block.html" />
+      <load ="partials/upcoming-this-mounth.html" />
+    </main>
 
     <load ="partials/footer.html" />
 
     <load ="partials/trailler-movie.html" />
     <load ="partials/modal-window.html" />
     <load ="partials/developers.html" />
-    <script type="module" src="/script-for-all-section.js" ></script>
-    <script type="module" src="/main.js" ></script>
+    <script type="module" src="./script-for-all-section.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
