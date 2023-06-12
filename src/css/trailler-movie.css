@@ -32,8 +32,17 @@
     align-items: center;
     z-index: 30;
 
-    transition-duration: 500ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    overflow-y: scroll;
+    z-index: 3;
+  }
+
+  .backdrop-trailer.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .modal-trailer {
@@ -61,7 +70,7 @@
     left: 230px;
   }
 
-  .is-hidden {
+  .hidden {
     display: none;
   }
   #player-container {
@@ -165,7 +174,7 @@
     left: 540px;
   }
 
-  .is-hidden {
+  .hidden {
     display: none;
   }
   #player-container {
@@ -264,7 +273,7 @@
     left: 640px;
   }
 
-  .is-hidden {
+  .hidden {
     display: none;
   }
 
