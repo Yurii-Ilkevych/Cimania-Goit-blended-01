@@ -50,18 +50,13 @@ function opnModalWindow(e) {
 
 function clickOnSelect(e) {
   const getGenre = e.target.value;
+
   if (getGenre === 'genre') {
     changeLibrary();
     return;
   } else {
     const getPosters = load('movies');
-    const filterPosters = getPosters.filter(poster => {
-      const arrayGenre = poster.genre.toLowerCase().split(' ');
-      const a = arrayGenre.includes(getGenre);
-      if (a) {
-        return poster;
-      }
-    });
+    const filterPosters = getPosters.filter(movie => movie.genres.toLowerCase().includes(getGenre))
     if (filterPosters.length === 0) {
       addMarkupInLibrary('');
       return;
