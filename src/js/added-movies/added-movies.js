@@ -45,7 +45,7 @@ function opnModalWindow(e) {
     return;
   }
   const idCard = elementClick.id;
-  openModal(idCard);
+  openModal(idCard, "movies");
 }
 
 function clickOnSelect(e) {

@@ -1,6 +1,6 @@
 import { changeLibrary } from '../added-movies/added-movies';
 import { renderMovie } from './render-movie';
-
+import { getGanre } from '../request-processing';
 const refs = {
   closeModalBtn: document.querySelector('.modal-close-icon'),
   clouseIcon: document.querySelector('.svg-close-modal'),
@@ -80,9 +80,10 @@ function onRemoveToLibraryButton() {
   toggleButtons();
 }
 
-function onAddToLibraryButton() {
+async function onAddToLibraryButton() {
   const existingMovies = getAddedMovies();
   if (!checkId()) {
+    movieObjects.genres = await getGanre(movieObjects.id)
     existingMovies.push(movieObjects);
     localStorage.setItem('movies', JSON.stringify(existingMovies));
     toggleButtons();
