@@ -17,8 +17,8 @@ export function createMarkup(resp, genres) {
 
       let source = 'https://image.tmdb.org/t/p/original/';
       if (backdrop_path === null && poster_path === null) {
-        source = '../img/';
-        backdrop_path = 'defImg.jpeg';
+        source = '';
+        backdrop_path = 'Coming-soon.png';
       } else if (backdrop_path === null) {
         backdrop_path = poster_path;
       } else if (poster_path === null) {
